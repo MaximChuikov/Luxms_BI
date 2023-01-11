@@ -1,0 +1,128 @@
+.NewsNotifications {
+  position: absolute;
+  top: 3.92rem;
+  right: 0.62rem;
+  width: 73rem;
+  height: 35rem;
+
+  background: #333333;
+  border-radius: 0.23rem;
+  box-shadow: 0 0 0 1px white;
+
+  z-index: 1;
+}
+
+.NewsNotifications .NewsPage__Body .PresentationElement__DescriptionText, .NewsNotifications .NewsPage__Body .PresentationElement__TitleText{
+  cursor: default !important;
+}
+
+.NewsNotifications::after {
+  content: "▲";
+  position: absolute;
+  top: -1.3rem;
+  right: 0.8rem;
+
+  //top: -0.54rem;
+  //right: 1.20rem;
+
+  font-size: 2rem;
+  color: #333333;
+
+  z-index: -1;
+}
+
+.NewsNotifications__Header {
+  margin-bottom: 2rem;
+}
+
+.NewsNotifications__Header h2 {
+  position: static;
+  font-size: 1.46rem;
+  line-height: 1.69rem;
+  font-weight: bold;
+  color: white;
+
+  align-items: flex-end;
+
+  //из .Root__Header h2
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 4rem;
+  //конец
+  padding-bottom: 1rem;
+}
+
+.NewsNotifications__Columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.NewsNotifications__Title {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-grow: 1;
+  border-bottom: 0.154rem solid #4CB0E6;
+}
+
+.NewsNotifications__Close {
+  margin-right: .7rem;
+}
+
+.NewsNotifications__Close  a.ButtonLink {
+  display: block;
+  margin: 0;
+  padding: 0;
+  //margin-top: 0.85rem;
+
+  width: 1rem;
+  height: 1rem;
+}
+
+.NewsNotifications__Close  a.ButtonLink svg {
+  width: 100%;
+  top: 0;
+}
+
+.NewsNotifications .NewsListView__Item td span {
+  display: initial;
+  word-break: break-word;
+}
+
+.NewsNotifications .NewsListView__Item {
+  height: 7.46rem;
+  background-color: #3E4951;
+  border-bottom: 0.231rem solid #333333;
+  transition: background-color 2s ease;
+}
+
+.NewsNotifications .NewsListView__Item.Highlighted{
+  background-color: #4CB0E6;
+}
+
+.NewsNotifications .NewsListView__Item td {
+  font-size: 1.23rem;
+  line-height: 1.46rem;
+}
+
+.NewsNotifications .NewsListView__Item td:nth-child(1) {
+  width: 1%;
+  padding-left: 1rem;
+  padding-right: .7rem;
+}
+
+.NewsNotifications .NewsListView__Item td:nth-child(2) {
+  width: 10%;
+  padding-left: .7rem;
+  padding-right: .7rem;
+  white-space: nowrap;
+}
+
+.NewsNotifications .NewsListView__Item td:nth-child(3) {
+  width: 89%;
+  padding-left: .7rem;
+}

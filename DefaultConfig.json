@@ -1,0 +1,10 @@
+{
+  "port": 3000,
+  "server": "http://10.30.2.10",
+  "dashboards": true,
+  "resources": true,
+  "force": false,
+  "noRemove": false,
+  "include": "ds_\\w+$",
+  "exclude": ""
+}

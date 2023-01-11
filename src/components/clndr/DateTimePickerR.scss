@@ -1,0 +1,35 @@
+@import "../../vars.scss";
+@import "../../calc-font-size";
+
+.DateTimePicker__Description {
+  display: inline-block;
+  padding: convertToRem(5px) convertToRem(8px);
+}
+
+.DateTimePicker__DateInput {
+  font-size: $normal;
+  background-color: #ffffff;
+  height: convertToRem(32px);
+  cursor: pointer !important;
+}
+
+.DateTimePicker__DateIcon {
+  background: white;
+  padding: 0;
+  cursor: pointer;
+  height: convertToRem(32px);
+  width: convertToRem(32px);
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.DateTimePicker__DateInputContainer {
+  display: inline-block;
+  width: convertToRem(150px);
+}
+
+.DateTimePicker__TimeInputContainer {
+  position: relative;
+  width: convertToRem(100px);
+  margin-left: convertToRem(10px);
+}

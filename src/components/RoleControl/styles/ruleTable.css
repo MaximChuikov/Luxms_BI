@@ -1,0 +1,227 @@
+.filtered-table-wrapper {
+    width: 100%;
+    max-height: 41.5rem;
+    overflow-y: auto;
+    color: #ffffff;
+    font-size: 1.69rem;
+}
+.select-all {
+    padding-left: 0.7rem;
+}
+.rule-control-wrapper thead {
+    background: #F2F2F2;
+    border-radius: 3px;
+}
+.rule-control-wrapper table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+    background-color: transparent;
+    width: 100%;
+}
+.rule-control-wrapper td, .rule-control-wrapper th {
+    text-align: left;
+    vertical-align: middle;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-style: normal;
+    word-break: break-word;
+    min-width: 11rem;
+}
+.rule-control-wrapper thead th {
+    font-weight: normal;
+    position: sticky;
+    top: 0;
+    background: #394a58;
+    z-index: 10;
+}
+.rule-control-wrapper thead tr {
+    border-bottom: 0.5rem solid #4b5c6b;
+}
+.rule-control-wrapper tr {
+    background: #394a58;
+    border-bottom: 0.077rem solid #5c6f82;
+    height: 6.9rem;
+}
+/*th:nth-child(1) {*/
+/*  min-width: 16rem;*/
+/*}*/
+/*th:nth-child(2) {*/
+/*  min-width: 20rem;*/
+/*}*/
+/*th:nth-child(3) {*/
+/*  min-width: 20rem;*/
+/*}*/
+/*th:nth-child(4) {*/
+/*  min-width: 40rem;*/
+/*}*/
+/*.table-body {*/
+/*    display: block;*/
+/*    max-height: 45rem;*/
+/*    overflow-y: auto;*/
+/*}*/
+.rule-control-wrapper .new-item {
+    background: #294c69;
+}
+.column-header-title {
+    width: max-content;
+    padding-right: 1rem;
+}
+.checkbox-cell {
+    width: 3.5rem;
+    padding: 0 0.7rem;
+}
+.column-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.selected-row {
+    background: #FFECD6;
+}
+.row-button-set {
+    display: flex;
+    align-items: center;
+}
+.row-button-set-item {
+    margin: 0 0.5rem;
+}
+.row-button-edit-svg {
+    width: 2.3rem;
+    height: 2.3rem;
+    fill: #ff8900;
+}
+.array-item-remove-icon {
+    width: 2.3rem;
+    height: 2.5rem;
+}
+.row-button-set-item {
+    cursor: pointer;
+    margin: 0 2.5rem;
+}
+/* Tooltip container */
+.tooltip-role {
+    position: relative;
+    display: inline-block;
+    visibility: visible;
+}
+.input-tooltip{
+    visibility: hidden;
+}
+
+/* Tooltip text */
+.tooltip-role .input-tooltip {
+    width: 20rem;
+    height: max-content;
+    background-color: #333333;
+    color: #fff;
+    text-align: center;
+    padding: 0.7rem 0;
+    border-radius: 6px;
+    position: absolute;
+    right: -1.5rem;
+    top: 3.4rem;
+    z-index: 10;
+
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.showed {
+    visibility: visible;
+}
+.tooltip-role .input-tooltip::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 87%;
+    margin-left: -0.5rem;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: transparent transparent #333333 transparent;
+}
+
+.tooltip-text {
+  padding: 0 0.5rem;
+}
+.tooltip-button-set {
+  padding-top: 0.5rem;
+}
+
+.tooltip-success-button {
+    width: 6.67rem;
+    background: #78D64B;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.7rem;
+    line-height: 1.8rem;
+
+    color: #FFFFFF;
+    margin-right: 0.9rem;
+}
+.tooltip-cancel-button {
+    width: 6.67rem;
+    background: #FEB0B0;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.7rem;
+    line-height: 1.8rem;
+
+    color: #FFFFFF;
+}
+/* end tooltip */
+tr:last-child .input-tooltip, tr:nth-last-child(2) .input-tooltip {
+    right: 3.5rem;
+    top: -5rem;
+}
+tr:last-child .input-tooltip::after, tr:nth-last-child(2) .input-tooltip::after {
+    bottom: 28%;
+    left: 102%;
+    margin-left: -0.4rem;
+    transform: rotate(90deg);
+}
+.clear-filter-svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: #ffffff;
+    cursor: pointer;
+    margin-left: 2.5rem;
+}
+
+.clear-filter-svg__filtered {
+    fill: #4CB0E6;
+}
+.fail-data-message {
+    text-align: center;
+}
+/*@media screen and (min-height: calc(869px - 232px)) {*/
+/*    .filtered-table-wrapper {*/
+/*        max-height: 42rem;*/
+/*    }*/
+/*}*/
+/*@media screen and (min-height: calc(919px - 232px)) {*/
+/*    .filtered-table-wrapper {*/
+/*        max-height: 44rem;*/
+/*    }*/
+/*}*/
+/*@media screen and (min-height: calc(949px - 232px)) {*/
+/*    .filtered-table-wrapper {*/
+/*        max-height: 47rem;*/
+/*    }*/
+/*}*/
+/*@media screen and (min-height: calc(1011px - 232px)) {*/
+/*    .filtered-table-wrapper {*/
+/*        max-height: 49rem;*/
+/*    }*/
+/*}*/
+/*@media screen and (min-height: calc(1080px - 232px)) {*/
+/*    .filtered-table-wrapper {*/
+/*        max-height: 53rem;*/
+/*    }*/
+/*}*/

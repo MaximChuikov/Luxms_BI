@@ -1,0 +1,527 @@
+@import '../../../calc-font-size';
+
+.NewsPage {
+  position: relative;
+  padding-left: 0 !important;
+  height: 100%;
+  width: 100%;
+  min-height: 23.08rem;
+  padding-top: 0;
+  background: #4b5c6b;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.23rem;
+}
+
+.NewsPage {
+  > .presentations-search-block {
+    position: fixed;
+    //top: 160px;
+    z-index: 9;
+  }
+}
+
+.NewsPage {
+  > ul.folders {
+    width: 100%;
+    padding: 0 0 0 1rem;
+    list-style: none;
+
+    > li {
+      border-bottom: 0.077rem solid #dbdbdb;
+      border-top: none;
+      background: #e8eaf6;
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 16px;
+      margin-right: 16px;
+      -webkit-box-shadow: 5px 4px 30px -1px rgba(0, 0, 0, 0.52);
+      -moz-box-shadow: 5px 4px 30px -1px rgba(0, 0, 0, 0.52);
+      box-shadow: 5px 4px 30px -1px rgba(0, 0, 0, 0.52);
+
+      &:first-child {
+        border-top: 0.077rem solid #dbdbdb;
+        margin-top: 0;
+      }
+
+      .folder.icon {
+        flex: 0 1 100%;
+        max-width: 120px;
+        height: 100px;
+        float: left;
+        display: inline-block;
+        margin: 2px 20px 0 2px;
+        width: 68px;
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
+      }
+
+      .folder.title {
+        display: inline-block;
+        font-size: convertToRem(20px);
+        height: 42px;
+        padding: 0 10px 0 10px;
+        margin: 5px 0 5px 0;
+        min-width: 50%;
+        line-height: 42px;
+        vertical-align: middle;
+      }
+
+      span.folder.description {
+        display: inline-block;
+        position: relative;
+        font-size: convertToRem(15px);
+        line-height: 25px;
+        padding: 5px 5px 5px 5px;
+        margin: 5px 0 5px 10px;
+        min-height: 60px;
+        min-width: 50%;
+        width: 519px;
+        clear: both;
+        vertical-align: middle;
+        white-space: pre-wrap;
+        max-height: 150px;
+        overflow: auto;
+        border: 0.077rem solid #dddddd;
+
+        > textarea {
+          position: absolute;
+          padding: 5px 5px 5px 5px;
+          font-size: convertToRem(15px);
+          line-height: 25px;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          resize: none;
+        }
+      }
+
+      .folder.created {
+        margin-left: 16px;
+        font-size: convertToRem(10px);
+      }
+
+      input.folder.title, input.folder.description, textarea.folder.description {
+        background: white;
+        outline: 1px solid #42a5f5;
+        -webkit-border-radius: 0.154rem;
+        -moz-border-radius: 0.154rem;
+        border-radius: 0.154rem;
+        border: none;
+      }
+
+      .bi-icon.yes {
+        > .title {
+          width: 70px;
+          margin-left: -10px;
+          text-align: center;
+        }
+      }
+
+      ul.users {
+        margin: 8px 140px 8px 0px;
+        padding-left: 0;
+        max-width: 100%;
+        clear: both;
+
+        > li {
+          display: inline-block;
+          padding: 0;
+          background: #e6e6e6;
+          line-height: 22px;
+          margin: 2px 8px;
+          white-space: nowrap;
+          transition: background-color 500ms linear;
+
+          &.folder-author {
+            background: #d7ccc8;
+            color: #000000;
+          }
+
+          &.error {
+            background-color: #ffaabb;
+          }
+
+          > .user-title {
+            margin: 0 8px;
+            white-space: nowrap;
+          }
+
+          > .bi-icon {
+            width: convertToRem(22px);
+            height: convertToRem(22px);
+            margin: 0;
+
+            > svg {
+              width: 62%;
+              height: 62%;
+            }
+          }
+        }
+      }
+
+      .ctrl {
+        position: absolute;
+        width: 168px;
+        right: 0;
+        top: 0;
+        height: 100%;
+        max-height: 160px;
+        background: white;
+        margin-top: 10px;
+        padding: 10px;
+        transform: translate(+100%, 0);
+        transition-duration: 0.3s;
+        transition-delay: 0.3s;
+        overflow: hidden;
+
+        > div {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          > p {
+            flex: 1 0 100%;
+          }
+
+          > a.bi-icon {
+            flex: 1 0 33%;
+            text-align: center;
+            padding: 0;
+            width: convertToRem(40px);
+            height: convertToRem(40px);
+
+            > svg {
+              width: 68%;
+              height: 68%;
+            }
+          }
+
+          > .start {
+            flex: 0 1 100%;
+            text-align: center;
+            padding: 5px;
+            height: 36px;
+            font-size: convertToRem(16px);
+            margin: 0 8%;
+
+            > .bi-icon {
+              width: 20px;
+              height: 20px;
+              display: inline-block;
+            }
+          }
+        }
+
+        div.main-block {
+          transform: translate(0, 0);
+        }
+
+        div.secondary-block {
+          transform: translate(0, 100%);
+        }
+
+        &.secondary > div.main-block {
+          transform: translate(0, -100%);
+        }
+
+        &.secondary > div.secondary-block {
+          transform: translate(0, 0);
+        }
+
+        .start.bookmarks-play {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+
+          > div {
+            position: relative;
+            width: 32px;
+            height: 32px;
+          }
+        }
+
+      }
+
+      &:hover {
+        .ctrl {
+          transform: translate(0, 0);
+          transition-delay: 0s;
+          background: rgba(247, 247, 247, 0.85);
+
+          > div {
+            transition-duration: 0.3s;
+          }
+        }
+      }
+    }
+  }
+}
+
+.BackgroundBlack {
+  background-color: #333333;
+}
+
+.PresentationControlElement__Pdf,.findItBtn,.NewsPage__SchedulerIcon,
+.ScheduleDlg__CloseIcon,.ScheduleDlg__Create, .openPresentationBtn {
+  cursor: pointer;
+}
+
+.NewsPage__Body {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.NewsPage.empty * {
+  color: white;
+}
+//
+//.NewsListView {
+//  top: 1rem;
+//  width: 100%;
+//  color: white;
+//  thead tr { height: 4rem; }
+//  thead th { text-align: left; vertical-align: center; padding-left: 1rem; padding-right: 1rem; font-weight: normal; font-size: convertToRem(22px); padding-bottom: 8px;}
+//
+//  tbody tr { background: #394a58; border-bottom: 0.077rem solid #5c6f82;height: 7.5rem;  }
+//  tbody td { text-align: left; vertical-align: middle; padding-left: 1rem; padding-right: 1rem; font-style: normal; font-size: convertToRem(22px); word-break: break-all;}
+//
+//  td:nth-child(1) { padding-left: convertToRem(40px); width: 1% }
+//  td:nth-child(2) { width: 6%; font-size: 1.69rem; white-space: nowrap; }
+//  td:nth-child(3) { width: 25%; font-size: 1.69rem; word-break: break-word; }
+//  td:nth-child(4) { width: 1%; font-size: convertToRem(18px); }
+//  td:nth-child(5) { width: 13%; font-size: convertToRem(22px);  }
+//  td:nth-child(6) { width: 13%;}
+//  td:nth-child(7) { width:22%; text-align: center; width: 10rem; }
+//  td:nth-child(8) {  }
+//}
+
+
+
+.PresentationElement__Description { position: relative; }
+.PresentationElement__DescriptionText {}
+
+.NewsPage__Header { padding: 0rem 2rem 1rem 2rem; display: flex; flex-direction: row; flex-wrap: wrap }
+.NewsPage__HeaderWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: auto;
+}
+
+.NewsNavigation {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  padding-left: 0;
+
+  font-weight: normal;
+  font-size: 2.31rem;
+  line-height: 2.69rem;
+
+  border-bottom: 0.154rem solid white;
+
+
+  list-style: none;
+}
+
+.NewsNavigation li {
+  margin-right: 8.31rem;
+  padding-bottom: 1rem;
+}
+
+.NewsNavigation li.active {
+  box-shadow: inset 0 -0.308rem white;
+}
+
+.NewsNavigation a {
+  color: white;
+}
+
+.NewsNavigation__Wrapper {
+  flex: 0 1 100%;
+  margin-bottom: 1.69rem;
+}
+
+.NewsPage__HeaderTitle { flex-grow: 1; color: white; font-style: normal; font-weight: normal; font-size: convertToRem(30px); line-height: convertToRem(35px); }
+.NewsPage__HeaderPanel { display: flex; flex-direction: row; align-items: center; margin-right: 2rem; position: relative; }
+.NewsPage__HeaderPanel > svg {position: absolute; right: 0; top: 50%; transform: translate(-5px, -50%); }
+input[type="text"].NewsPage__SearchInput { font-size: convertToRem(14px); line-height: convertToRem(1.428571429); padding: convertToRem(4px) convertToRem(8px);}
+.NewsPage__SearchInput { width: convertToRem(245px); height: convertToRem(26px); position: relative; border-radius: 0.385rem !important; border: 1px solid #FFFFFF !important; }
+.NewsPage__SchedulerButton { position: relative; margin-right: 2rem; height: convertToRem(26px); width: convertToRem(26px);}
+.NewsPage__SchedulerButton > svg {
+  width: 100%;
+}
+
+.PdfMenu__Buttons {
+  display: flex;
+  justify-content: space-between;
+  .PdfMenu__Button {
+    width: 45%;
+    svg {
+      margin-left: 5px;
+    }
+  }
+}
+.PresentationControlElement__Pdf {
+  position: relative; display: block; width: convertToRem(40px); height: convertToRem(40px);
+  > svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+}
+
+.PresentationControlElement__Pdf {
+  svg { width: convertToRem(25px); height: convertToRem(25px); }
+}
+
+.PdfMenu {
+  position: absolute; background: #333333; left: 50%; top: 100%; transform: translate(-75%, 0); display: flex; flex-direction: column; z-index: 3; color: white;
+  padding: 0.5rem;
+  width: 14rem;
+  height: 8rem;
+  font-size: 1rem;
+  border-radius: 0.308rem;
+}
+.PdfMenu__Header { flex-grow: 0; flex-shrink: 0; height: 1.5rem; font-size: convertToRem(15px); }
+.PdfMenu__Calendar { flex-grow: 1; flex-shrink: 1; background: #3E4951; border: 1px solid white; border-radius: 5px; }
+.PdfMenu__Button {
+  flex-grow: 0; flex-shrink: 0; border-radius: 5px; border: 1px solid #ffffff; background: #4CB0E6; width: 100%; height: 2.5rem;
+  margin-top: 0.5rem;
+  display: flex; flex-direction: row; align-items: center; justify-content: center;
+}
+
+.NewsPage__IconLogout {
+  cursor: pointer;
+  width: convertToRem(32px) !important;
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  > svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
+.NewsPage .Root__Header {
+  background-color: #68798b;
+  margin-top: 2rem;
+  margin-bottom: 2.54rem;
+  height: 5rem;
+  position: relative;
+  border-top: 0.07rem solid #8e98a0;
+  // border-bottom: 1px solid #5c6472;
+  border-bottom: none;
+  &:before { content: ''; position: absolute; top: -27px; height: 26px; left: 0; right: 0; background: #394a58; }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.NewsPage .Root__Header .Root__Icons {
+  position: static;
+  bottom: auto;
+  right: 0;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  cursor: pointer;
+
+  span {
+    width: convertToRem(28.5px);
+    height: convertToRem(28.5px);
+    margin-right: convertToRem(20px);
+  }
+}
+
+.NewsPage .Root__HeaderThumbnail {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 87px;
+  color: #e21a1a;
+  svg {
+    height: 7rem;
+    width: 8rem;
+    * { fill: #e21a1a; }
+  }
+}
+
+.PresentationElement__Created {
+  white-space: pre-wrap;
+}
+
+
+// для новых еще не созданных элементов не показываем кнопку "публиковать"
+.NewsListView__Item.new .ControlElements__Publish { visibility: hidden; }
+
+
+.NewsListView__Item .Popup.Calendar {
+  width: 12.2rem;
+  height: 5.08rem;
+  background: #3E4951;
+  border: 0.077rem solid #5C6F82;
+  box-shadow: 0 0.308rem 0.308rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.385rem;
+}
+.NewsListView__Item .Popup.Calendar.active {
+  border: 0.077rem solid #66afe9;
+  box-shadow:
+    inset 0 0.077rem 0.077rem rgba(0, 0, 0, 0.075),
+    0 0 0.62rem rgba(102, 175, 233, 0.6);
+}
+
+.NewsListView__Item .Popup.Calendar .Calendar__Title {
+  border: none;
+  background: #3E4951;
+}
+
+.NewsListView__Item .Popup.Calendar .Calendar__Input {
+  background: transparent;
+  color: white;
+  border: none !important;
+  vertical-align: top;
+  font-size: 1.6rem;
+  height: 2.9rem;
+}
+
+.NewsListView__Item .Popup.Calendar .Popup__Popup {
+  width: calc(189rem / 13);
+  top: calc(100% - 1.3rem);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+}
+
+.NewsListView__Item .Popup.Calendar .Calendar__Icon {
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.NewsListView__Item .Popup.Calendar .Calendar__Icon svg {
+  fill: white;
+  width: 2rem;
+  height: 2rem;
+}
+
+.access-rights {
+  width: 100%;
+  height: 100%;
+}

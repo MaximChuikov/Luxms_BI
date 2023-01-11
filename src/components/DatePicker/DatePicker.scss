@@ -1,0 +1,41 @@
+.DatePicker__Background {
+  fill: #3f505e;
+}
+
+.DatePicker__ButtonTarget {
+  cursor: pointer;
+  fill: transparent;
+}
+
+.DatePicker__ButtonTitle {
+  font-size: 18px;
+  user-select: none;
+}
+
+.DatePicker__HorizontalPicker .DatePicker__ButtonTitle {
+  font-weight: bold;
+}
+
+.DatePicker__ButtonBackground {
+  fill: #6e7f90;
+}
+
+.DatePicker__IconTriangle {
+  fill: #ffffff;
+}
+
+.DatePicker__Day .DatePicker__ButtonTitle       { fill: #ffffff; }
+.DatePicker__Day .DatePicker__ButtonBackground  { fill: #00a8e2; }
+
+.DatePicker__Day.disabled .DatePicker__ButtonTitle { fill: #86909b; }
+.DatePicker__Day.disabled .DatePicker__ButtonBackground { fill: #6e7f90; }
+
+.DatePicker__Day.active .DatePicker__ButtonTitle { font-weight: bold;}
+.DatePicker__Day.active .DatePicker__ButtonBackground { fill: #ff6600; }
+
+.DatePicker__Day.active.disabled .DatePicker__ButtonBackground { fill: #ffcccc; }
+
+.DatePicker__DayOfWeekTitle {
+  font-size: 16px;
+  user-select: none;
+}

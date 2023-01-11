@@ -1,0 +1,544 @@
+@import '../../calc-font-size';
+
+.PresentationsPage {
+  position: relative;
+  padding-left: 0 !important;
+  height: 100%;
+  width: 100%;
+  min-height: convertToRem(300px);
+  padding-top: 0;
+  background: #4b5c6b;
+  display: flex;
+  flex-direction: column;
+}
+
+.PresentationsPage {
+  > .presentations-search-block {
+    position: fixed;
+    //top: convertToRem(160px);
+    z-index: 9;
+  }
+}
+
+.PresentationsPage {
+  > ul.folders {
+    width: 100%;
+    padding: 0 0 0 1rem;
+    list-style: none;
+
+    > li {
+      border-bottom: convertToRem(1px) solid #dbdbdb;
+      border-top: none;
+      background: #e8eaf6;
+      display: block;
+      width: 100%;
+      min-height: convertToRem(48px);
+      overflow: hidden;
+      position: relative;
+      margin-top: convertToRem(16px);
+      margin-right: convertToRem(16px);
+      -webkit-box-shadow: convertToRem(5px) convertToRem(4px) convertToRem(30px) convertToRem(-1px) rgba(0, 0, 0, 0.52);
+      -moz-box-shadow: convertToRem(5px) convertToRem(4px) convertToRem(30px) convertToRem(-1px) rgba(0, 0, 0, 0.52);
+      box-shadow: convertToRem(5px) convertToRem(4px) convertToRem(30px) convertToRem(-1px) rgba(0, 0, 0, 0.52);
+
+      &:first-child {
+        border-top: convertToRem(1px) solid #dbdbdb;
+        margin-top: 0;
+      }
+
+      .folder.icon {
+        flex: 0 1 100%;
+        max-width: convertToRem(120px);
+        height: convertToRem(100px);
+        float: left;
+        display: inline-block;
+        margin: convertToRem(2px) convertToRem(20px) 0 convertToRem(2px);
+        width: convertToRem(68px);
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
+      }
+
+      .folder.title {
+        display: inline-block;
+        font-size: convertToRem(20px);
+        height: convertToRem(42px);
+        padding: 0 convertToRem(10px) 0 convertToRem(10px);
+        margin: convertToRem(5px) 0 convertToRem(5px) 0;
+        min-width: 50%;
+        line-height: convertToRem(42px);
+        vertical-align: middle;
+      }
+
+      span.folder.description {
+        display: inline-block;
+        position: relative;
+        font-size: convertToRem(15px);
+        line-height: convertToRem(25px);
+        padding: convertToRem(5px) convertToRem(5px) convertToRem(5px) convertToRem(5px);
+        margin: convertToRem(5px) 0 convertToRem(5px) convertToRem(10px);
+        min-height: convertToRem(60px);
+        min-width: 50%;
+        width: convertToRem(519px);
+        clear: both;
+        vertical-align: middle;
+        white-space: pre-wrap;
+        max-height: convertToRem(150px);
+        overflow: auto;
+        border: convertToRem(1px) solid #dddddd;
+
+        > textarea {
+          position: absolute;
+          padding: convertToRem(5px) convertToRem(5px) convertToRem(5px) convertToRem(5px);
+          font-size: convertToRem(15px);
+          line-height: convertToRem(25px);
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          resize: none;
+        }
+      }
+
+      .folder.created {
+        margin-left: convertToRem(16px);
+        font-size: convertToRem(10px);
+      }
+
+      input.folder.title, input.folder.description, textarea.folder.description {
+        background: white;
+        outline: convertToRem(1px) solid #42a5f5;
+        -webkit-border-radius: convertToRem(2px);
+        -moz-border-radius: convertToRem(2px);
+        border-radius: convertToRem(2px);
+        border: none;
+      }
+
+      .bi-icon.yes {
+        > .title {
+          width: convertToRem(70px);
+          margin-left: convertToRem(-10px);
+          text-align: center;
+        }
+      }
+
+      ul.users {
+        margin: convertToRem(8px) 10.77rem convertToRem(8px) 0;
+        padding-left: 0;
+        max-width: 100%;
+        clear: both;
+
+        > li {
+          display: inline-block;
+          padding: 0;
+          background: #e6e6e6;
+          line-height: convertToRem(22px);
+          margin: convertToRem(2px) convertToRem(8px);
+          white-space: nowrap;
+          transition: background-color 500ms linear;
+
+          &.folder-author {
+            background: #d7ccc8;
+            color: #000000;
+          }
+
+          &.error {
+            background-color: #ffaabb;
+          }
+
+          > .user-title {
+            margin: 0 convertToRem(8px);
+            white-space: nowrap;
+          }
+
+          > .bi-icon {
+            width: convertToRem(22px);
+            height: convertToRem(22px);
+            margin: 0;
+
+            > svg {
+              width: 62%;
+              height: 62%;
+            }
+          }
+        }
+      }
+
+      .ctrl {
+        position: absolute;
+        width: convertToRem(168px);
+        right: 0;
+        top: 0;
+        height: 100%;
+        max-height: 12.3rem;
+        background: white;
+        margin-top: convertToRem(10px);
+        padding: convertToRem(10px);
+        transform: translate(+100%, 0);
+        transition-duration: 0.3s;
+        transition-delay: 0.3s;
+        overflow: hidden;
+
+        > div {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          > p {
+            flex: 1 0 100%;
+          }
+
+          > a.bi-icon {
+            flex: 1 0 33%;
+            text-align: center;
+            padding: 0;
+            width: 3.07rem;
+            height: 3.07rem;
+
+            > svg {
+              width: 68%;
+              height: 68%;
+            }
+          }
+
+          > .start {
+            flex: 0 1 100%;
+            text-align: center;
+            padding: convertToRem(5px);
+            height: convertToRem(36px);
+            font-size: convertToRem(16px);
+            margin: 0 8%;
+
+            > .bi-icon {
+              width: convertToRem(20px);
+              height: convertToRem(20px);
+              display: inline-block;
+            }
+          }
+        }
+
+        div.main-block {
+          transform: translate(0, 0);
+        }
+
+        div.secondary-block {
+          transform: translate(0, 100%);
+        }
+
+        &.secondary > div.main-block {
+          transform: translate(0, -100%);
+        }
+
+        &.secondary > div.secondary-block {
+          transform: translate(0, 0);
+        }
+
+        .start.bookmarks-play {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+
+          > div {
+            position: relative;
+            width: convertToRem(32px);
+            height: convertToRem(32px);
+          }
+        }
+
+      }
+
+      &:hover {
+        .ctrl {
+          transform: translate(0, 0);
+          transition-delay: 0s;
+          background: rgba(247, 247, 247, 0.85);
+
+          > div {
+            transition-duration: 0.3s;
+          }
+        }
+      }
+    }
+  }
+}
+
+.PresentationsPage__SchedulerIcon__Wrap{
+  margin: 0;
+  svg {
+    width: 1.92rem;
+    height: 1.92rem;
+  }
+}
+
+p.PresentationsPage__SchedulerIcon__Wrap{
+  margin: 0;
+}
+
+.PresentationControlElement__Remove,.PresentationControlElement__Pdf,.PresentationControlElement__Edit,.openItBtn,.findItBtn,.PresentationsPage__SchedulerIcon,
+.ScheduleDlg__CloseIcon,.ScheduleDlg__Create,.PresentationsListView__Footer li, .openPresentationBtn {
+  cursor: pointer;
+}
+
+.PresentationControlElement__Pdf.disabled {
+  visibility: hidden;
+}
+
+.PresentationsPage__Body {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.PresentationsPage.empty * {
+  color: white;
+}
+
+.PresentationsListView {
+  top: 1rem;
+  width: 100%;
+  color: white;
+  thead tr { height: 4rem; }
+  thead th { text-align: left; vertical-align: center; padding-left: 1rem; padding-right: 1rem; font-weight: normal; font-size: convertToRem(22px); padding-bottom: convertToRem(8px);}
+
+  tbody tr { background: #394a58; border-bottom: convertToRem(1px) solid #5c6f82; height: 8.00rem;  }
+  tbody td { text-align: left; vertical-align: middle; padding-left: 1rem; padding-right: 1rem; font-style: normal; font-size: convertToRem(22px); word-break: break-word;}
+
+  td:nth-child(1) { padding-left: 3.07rem; width: 7% }
+  td:nth-child(2) { width: 8%; font-size: convertToRem(22px); }
+  td:nth-child(3) { width: 17%; font-size: convertToRem(22px); }
+  td:nth-child(4) { width: 20%; font-size: convertToRem(18px); }
+  td:nth-child(5) { width: 13%; font-size: convertToRem(22px);  }
+  td:nth-child(6) { width: 13%;}
+  td:nth-child(7) { width:22%; text-align: center; width: 10rem; }
+  td:nth-child(8) {  }
+
+  .PresentationsListView__NewItem {
+    background-color: #294c69;
+  }
+}
+
+.PresentationsListView td:nth-child(1) svg {
+  width: convertToRem(25px);
+}
+
+.PresentationElement__TitleEdit {background-color: #3E4951 !important; border: convertToRem(1px) solid #5C6F82 !important; box-shadow: 0 convertToRem(4px) convertToRem(4px) rgba(0, 0, 0, 0.25) !important; border-radius: convertToRem(5px) !important; width: convertToRem(281px); height: convertToRem(66px); color: white !important; font-size: convertToRem(22px) !important;}
+
+.PresentationElement__Description { position: relative; }
+.PresentationElement__DescriptionText {}
+.PresentationElement__DescriptionEdit { margin-top: convertToRem(4px); width: convertToRem(289px); height: convertToRem(66px); overflow:hidden; resize: none; box-shadow: 0 convertToRem(4px) convertToRem(4px) rgba(0, 0, 0, 0.25); background: #3E4951; border: convertToRem(1px) solid #5C6F82; border-radius: convertToRem(5px); color: white !important; font-size: convertToRem(18px); }
+
+.PresentationsPage__Header { padding: 0 2rem 1rem 2rem; display: flex; flex-direction: row; }
+.PresentationsPage__HeaderWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: auto;
+
+  .PresentationsPage__NewButton {
+    border: convertToRem(1px) solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: convertToRem(5px);
+    font-style: normal;
+    font-weight: 300;
+    font-size: convertToRem(18px);
+    color: #ffffff;
+    margin-top: convertToRem(15px);
+    margin-left: convertToRem(115px);
+    width: convertToRem(177px);
+    height: convertToRem(28px);
+    padding: convertToRem(1px) convertToRem(12px);
+    background-color: #4CB0E6;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.PresentationsPage__HeaderTitle { flex-grow: 1; color: white; font-style: normal; font-weight: normal; font-size: convertToRem(30px); line-height: convertToRem(35px); }
+.PresentationsPage__HeaderPanel { display: flex; flex-direction: row; align-items: center; margin-right: 2rem; position: relative; }
+.PresentationsPage__HeaderPanel > svg {position: absolute; right: 0; top: 50%; transform: translate(convertToRem(-5px), -50%); }
+input[type="text"].PresentationsPage__SearchInput { font-size: convertToRem(14px); line-height: convertToRem(1.428571429); padding: convertToRem(4px) convertToRem(8px);}
+.PresentationsPage__SearchInput { width: convertToRem(245px); height: convertToRem(26px); position: relative; border-radius: convertToRem(5px) !important; border: 1px solid #FFFFFF !important; }
+.PresentationsPage__SchedulerButton { position: relative; margin-right: 2rem; height: convertToRem(26px); width: convertToRem(26px);}
+.PresentationsPage__SchedulerButton > svg {
+  width: 100%;
+}
+
+.PresentationControlElement { padding-right: 1rem; }
+.PresentationControlElement .main-block { display: flex; flex-direction: row; justify-content: space-between; width:12.3rem; }
+
+.PresentationsListView__Footer {
+  height: 5rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #4b5c6b;
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    li {
+      width: 2rem; height: 2rem; border-radius: 3rem; display: flex; align-items: center; justify-content: center;
+      font-size: convertToRem(18px); line-height: 21px;
+      &.active { background: #e21a19; }
+    }
+  }
+}
+
+.PresentationsListView__FooterArrow {
+  visibility: hidden;
+}
+.PresentationsListView__FooterArrow.visible {
+  visibility: visible;
+}
+
+.PdfMenu__Buttons {
+  display: flex;
+  justify-content: space-between;
+  .PdfMenu__Button {
+    width: 45%;
+    svg {
+      margin-left: 5px;
+    }
+  }
+}
+.PresentationControlElement__Edit, .PresentationControlElement__Pdf, .PresentationControlElement__Remove{
+  position: relative; display: block; width: 3.07rem; height: 3.07rem;
+  > svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+}
+
+.PresentationControlElement__Edit, .PresentationControlElement__Pdf, .PresentationControlElement__Remove{
+  svg { width: convertToRem(25px); height: convertToRem(25px); }
+}
+
+.openItBtn {
+  width: convertToRem(25px);
+  height: convertToRem(25px);
+}
+
+.PresentationControlElement__Remove > a { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.PresentationControlElement__Remove.disabled { cursor: default; path {fill: grey;}}
+
+.PdfMenu {
+  position: absolute; background: #333333; left: 50%; top: 100%; transform: translate(-75%, 0); display: flex; flex-direction: column; z-index: 3; color: white;
+  padding: 0.5rem;
+  width: 14rem;
+  height: 8rem;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+.PdfMenu__Header { flex-grow: 0; flex-shrink: 0; height: 1.5rem; font-size: convertToRem(15px); }
+.PdfMenu__Calendar { flex-grow: 1; flex-shrink: 1; background: #3E4951; border: convertToRem(1px) solid white; border-radius: convertToRem(5px); }
+.PdfMenu__Button {
+  flex-grow: 0; flex-shrink: 0; border-radius: convertToRem(5px); border: convertToRem(1px) solid #ffffff; background: #4CB0E6; width: 100%; height: 2.5rem;
+  margin-top: 0.5rem;
+  display: flex; flex-direction: row; align-items: center; justify-content: center;
+}
+
+.PresentationControlElement__RemoveApprove {
+  word-break: normal;
+  position: absolute; top: calc(100% + 0.38rem); right: convertToRem(-10px); width: convertToRem(148px); height: convertToRem(70px); background: #333333; border-radius: convertToRem(3px);}
+
+.PresentationControlElement__RemoveApprove:after { content: "▲"; position: absolute; top: convertToRem(-12px); right: convertToRem(23px); color: #333333; font-size: 1rem;}
+
+.PresentationControlElement__RemoveTitle { font-style: normal; font-weight: normal; font-size: convertToRem(15px); line-height: convertToRem(18px); display: flex; align-items: center; color: #ffffff;
+  position: absolute; left: convertToRem(9px); top: 0px;
+  margin: 0; padding: 0;
+}
+
+.PresentationControlElement__RemoveYes {
+  position: absolute; width: convertToRem(43px); height: convertToRem(20px); left: convertToRem(16px); top: 3.07rem; background: #78D64B; border: convertToRem(1px) solid #FFFFFF;
+  border-radius: convertToRem(5px); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #ffffff; font-size: convertToRem(15px); line-height: convertToRem(12px);
+}
+
+.PresentationControlElement__RemoveNo {
+  position: absolute; width: convertToRem(43px); height: convertToRem(20px); left: convertToRem(77px); top: 3.07rem; background: #FEB0B0; border: convertToRem(1px) solid #FFFFFF;
+  border-radius: convertToRem(5px); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #ffffff; font-size: convertToRem(15px); line-height: convertToRem(12px);
+}
+
+.PresentationsPage__IconLogout {
+  cursor: pointer;
+  width: convertToRem(32px) !important;
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  > svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
+.PresentationsPage .Root__Header {
+  background-color: #68798b;
+  margin-top: 2rem;
+  height: 5rem;
+  position: relative;
+  border-top: 0.07rem solid #8e98a0;
+  // border-bottom: 1px solid #5c6472;
+  border-bottom: 0.07rem solid white;
+  &:before { content: ''; position: absolute; top: -2.07rem; height: 2rem; left: 0; right: 0; background: #394a58; }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.PresentationsPage .Root__Header .Root__Icons {
+  position: static;
+  bottom: auto;
+  right: 0;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  span {
+    width: convertToRem(28.5px);
+    height: convertToRem(28.5px);
+    margin-right: convertToRem(20px);
+    cursor: pointer;
+  }
+}
+
+.PresentationsPage .Root__HeaderThumbnail {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 87px;
+  color: #e21a1a;
+  svg {
+    height: 7rem;
+    width: 8rem;
+    * { fill: #e21a1a; }
+  }
+}
+
+.PresentationElement__Created {
+  white-space: pre-wrap;
+}
+
+.PresentationsListView__Empty {
+  text-align: center !important;
+  background-color: #4b5c6b;
+  height: calc(100vh - 30rem);
+  color: #4CB0E6;
+}

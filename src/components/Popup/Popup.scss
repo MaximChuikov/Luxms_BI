@@ -1,0 +1,16 @@
+.Popup {
+  position: relative;
+}
+
+.Popup__Target {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.Popup__Popup {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}

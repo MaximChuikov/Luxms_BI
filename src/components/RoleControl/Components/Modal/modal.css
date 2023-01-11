@@ -1,0 +1,43 @@
+.role-control-modal {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+.role-control-modal-body-wrapper {
+    position: relative;
+    height: max-content;
+    width: 70%;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    background: #333333;
+    border: 1px solid #FEFEFE;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: calc( 22rem / 13);
+
+    color: #FFFFFF;
+}
+.close-modal-button {
+    width: 1.4rem;
+    height: 1.4rem;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    cursor: pointer;
+}
+
+.role-control-modal ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

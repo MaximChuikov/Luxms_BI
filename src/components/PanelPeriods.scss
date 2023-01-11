@@ -1,0 +1,285 @@
+@import "../vars.scss";
+@import "../calc-font-size";
+
+//.PanelPeriods {
+//  position: absolute;
+//  overflow: hidden;
+//  left: 0;
+//  top: 0;
+//  right: 0;
+//  bottom: 0;
+//  display: flex;
+//  align-items: center;
+//  > div {
+//    padding: 0;
+//    color: white;
+//    height: convertToRem(32px);
+//  }
+//  > .PanelPeriods__PickersContainer {
+//    margin-left: convertToRem(14px);
+//    display: flex;
+//    flex-flow: row wrap;
+//    align-items: center;
+//    height: 100%;
+//  }
+//  &.use-single-period > .PanelPeriods__PickersContainer { left:210px;  }
+//
+//  #fromDateInput, #toDateInput { width:convertToRem(120px); }
+//  #fromTimeInput, #toTimeInput { width: convertToRem(70px); }
+//}
+//
+//.PanelPeriods__PtPickerTitle {
+//  margin-left: convertToRem(10px);
+//  line-height: 2.31rem;
+//}
+//
+//.PtPicker {
+//  margin-left: convertToRem(10px);
+//}
+//
+//.PtPicker__Select {
+//  width: convertToRem(120px);
+//  border-radius: $rounded-corner;
+//}
+
+.dtpkr, .tmpkr {
+  display: none;
+  position: absolute;
+  z-index: 101;
+  background: white;
+  border: 1px solid #333333;
+  padding: convertToRem(4px);
+  box-sizing: content-box;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  .current {
+    cursor: default;
+  }
+}
+
+.dtpkr {
+  width: convertToRem(183px);
+
+  .year-selector, .quarter-selector, .month-selector { display: flex;}
+
+  .year-selector, .quarter-selector, .month-selector, .date-selector {
+    clear: both;
+  }
+
+  .year-selector, .quarter-selector, .month-selector {
+    button {
+      background: #0cc422;
+      color: #ffffff;
+      font-weight: 600;
+
+      > svg {
+        //zoom: 0.95;
+        transform-origin: 50% 50%;
+      }
+
+      &:hover {
+        > svg {
+          zoom: 1.04;
+        }
+      }
+
+      &.disabled {
+        background: #0cc422;
+        color: #0cc422;
+        box-shadow: none;
+        outline: none;
+        svg {
+          display: none;
+        }
+      }
+    }
+    .value {
+      width: convertToRem(128px);
+    }
+  }
+
+  .dec, .inc {
+    font-size: 1.5em;
+  }
+
+  .weekdays {
+    clear: both;
+  }
+
+  button {
+    display: inline;
+    float: left;
+    border: none;
+    margin: convertToRem(1px);
+    height: convertToRem(24px);
+    font-size: $normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.disabled {
+      background: #f0f0f0;
+      color: #999999;
+      outline: none;
+    }
+    &.current {
+      border: convertToRem(1px) solid #ff3300;
+      background: #ff6600 !important;
+      color: white;
+      font-weight: bold;
+    }
+    svg {
+      width: convertToRem(24px);
+      height: convertToRem(24px);
+    }
+  }
+  .date {background: #c5fbff; }
+  .dec, .inc, .date { width:convertToRem(24px); padding: 0;}
+  .weekday-title{display: inline; font-size: $normal; float:left; margin:convertToRem(1px); width:convertToRem(24px); height: convertToRem(16px); text-align: center; color:#39b3d7; }
+  .date-padding{display: inline; float:left; margin:convertToRem(1px); width:convertToRem(24px); height: convertToRem(24px);}
+}
+
+.tmpkr {
+  width:625px;
+  .hour { width:convertToRem(24px); height:convertToRem(24px); padding: 0; background: #c5fbff;}
+  button{ display: inline; float:left; border: none; margin:convertToRem(1px); height: convertToRem(24px);}
+  button.disabled {background: #f0f0f0; color:#999999; }
+  button.current {border: 1px solid #ff3300; background: #ff6600 !important; color:white; font-weight: bold;}
+}
+
+.slider {
+  position: relative;
+  height: convertToRem(16px);
+  max-height: convertToRem(16px);
+  flex-grow: 1;
+  margin-left: convertToRem(120px);
+  margin-right: convertToRem(120px);
+  .back {
+    position: absolute;
+    left: 0;
+    right: -2px;
+    top: 0;
+    bottom: -2px;
+    border: 1px solid #666666;
+    color: #008fd8;
+    box-sizing: content-box;
+  }
+  canvas {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+  }
+  .label-min, .label-max, .label-from, .label-to, .slider-tooltip {
+    position: absolute;
+    width: convertToRem(128px);
+    line-height: convertToRem(16px);
+    color: white;
+    font-size: convertToRem(12px);
+    box-sizing: content-box;
+  }
+  .label-min {
+    background: none;
+    left: -130px;
+    text-align: right;
+    font-weight: bold;
+  }
+  .label-max {
+    background: none;
+    right: -130px;
+    font-weight: bold;
+  }
+  .label-from {
+    background: none;
+    top: -16px;
+    text-align: right;
+    border-right: 1px solid #cccccc;
+  }
+  .label-to {
+    background: none;
+    top: -16px;
+    border-left: 1px solid #cccccc;
+  }
+  .thumb-bar {
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    top: 18px;
+    background: none;
+    height: convertToRem(16px);
+  }
+  .thumb {
+    position: absolute;
+    top: 0;
+    width: convertToRem(16px);
+    height: convertToRem(16px);
+    background: none;
+    font-size: convertToRem(20px);
+    font-family: Arial, Verdana, _sans;
+    padding: convertToRem(0px);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .thumb div {
+    margin-top: convertToRem(-4px);
+    margin-left: convertToRem(-2px);
+  }
+  .thumb-min {
+    color: #008fd8;
+  }
+  .thumb-max {
+    color: #008fd8;
+  }
+  .slider-tooltip {
+    left: 0;
+    top: 16px;
+    border-left: 1px solid #cccccc;
+    padding-left: convertToRem(10px);
+  }
+}
+
+
+@media (max-width: 700px) {
+  .PanelPeriods__PickersContainer {
+    left: 10px;
+    top: 50px;
+  }
+
+  .datetimepicker.use-single-period {
+    .PanelPeriods__PickersContainer {
+      top: 0;
+      left: 210px;
+    }
+  }
+
+  .slider {
+    left: 150px;
+    right: 150px;
+    top: 50px;
+  }
+}
+
+.PanelPeriodsToggler {
+  display: flex;
+  min-width:convertToRem(82px);
+  margin-left: convertToRem(10px);
+
+  .PanelPeriodsToggler__Calendar {
+    border-radius: 3px 0px 0px 3px;
+    border-right: 1px solid #ddd;
+  }
+  .PanelPeriodsToggler__Slider {
+    margin-left: 1px;
+    border-radius: 0px 3px 3px 0;
+    border-color: #333;
+  }
+}
+
+.PanelPeriodsSlider {
+  position: absolute;
+  left: 260px;
+  top: 28px;
+  bottom: 0;
+  right: 28px;
+}
+
+#dateInput {
+  min-width: 0;
+}

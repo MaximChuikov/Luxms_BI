@@ -1,0 +1,13 @@
+.ButtonEdit {
+  cursor: pointer;
+  position: relative; display: block; width: 3rem; height: 3rem;
+  svg {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 2rem; height: 2rem;
+  }
+}
+
+.ButtonEdit.disabled {
+  filter: grayscale(100%);
+  cursor: default;
+}

@@ -1,0 +1,46 @@
+.paginator-wrapper {
+    padding: 2rem 3rem 1.5rem;
+}
+
+.paginator {
+    display: flex;
+    margin: 0 auto;
+    width: max-content;
+    color: #ffffff;
+}
+.paginator-item {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    padding: 0 0.6rem;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+.first-page {
+    transform: rotate(270deg);
+    border-bottom: 2px solid #ffffff;
+}
+.prev-page {
+    transform: rotate(270deg);
+}
+.next-page {
+    transform: rotate(90deg);
+}
+.last-page {
+    transform: rotate(90deg);
+    border-bottom: 2px solid #ffffff;
+}
+
+.paginator-number-list {
+    display: flex;
+}
+
+.number__selected {
+    /*background: red;*/
+    /*border-radius: 50%;*/
+    color: #4CB0E6;
+    font-size: 1.8rem;
+}

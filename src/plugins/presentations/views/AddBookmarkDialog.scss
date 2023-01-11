@@ -1,0 +1,300 @@
+@import "../../../calc-font-size";
+.AddBookmarkDialog {
+  position: relative;
+  z-index: 1000000;
+  width: 100%;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  background: #333333;
+  border-radius: convertToRem(3px);
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+
+.AddBookmarkDialog__Header {
+  height: 3.07rem;
+  background: #575757;
+}
+
+.AddBookmarkDialog__HeaderTitle {
+  color: white;
+  font-weight: normal;
+  font-size: convertToRem(16px);
+  float: left;
+  margin-top: convertToRem(10px);
+  margin-left: convertToRem(10px);
+  margin-right: 3.07rem;
+  line-height: 100%;
+}
+
+.AddBookmarkDialog__Header .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3.07rem;
+  height: 3.07rem;
+}
+
+.AddBookmarkDialog__Body {
+  position: relative;
+  padding: convertToRem(10px);
+}
+
+.AddBookmarkDialog__Description {
+  resize: none;
+  width: 100% !important;
+  margin-left: 0em;
+  margin-top: convertToRem(20px);
+  padding: convertToRem(4px) convertToRem(8px);
+  height: 4em;
+  font-weight: 300;
+  font-size: convertToRem(19px) !important;
+  line-height: convertToRem(22px) !important;
+  // font-family: Roboto;
+  background-color: #3E4951;
+  border: convertToRem(1px) solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: convertToRem(5px);
+  color: #C0BCBC;
+}
+
+.AddBookmarkDialog__Title {
+  width: 100% !important;
+
+  background-color: #3E4951 !important;
+  border: convertToRem(1px) solid #FFFFFF !important;
+  box-sizing: border-box;
+  border-radius: convertToRem(5px) !important;
+  // font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: convertToRem(19px) !important;
+  line-height: convertToRem(22px) !important;
+
+  color: #C0BCBC !important;
+}
+
+input.AddBookmarkDialog__Title {
+  padding: convertToRem(4px) convertToRem(8px);
+}
+
+.AddBookmarkDialog__Presentations > span:nth-child(1) {
+  font-style: normal;
+  font-weight: normal;
+  font-size: convertToRem(18px);
+  line-height: convertToRem(21px);
+}
+
+
+.AddBookmarkDialog .folder-selector {
+  margin: 0 0 0 0em;
+  position: relative;
+  overflow: hidden;
+  height: convertToRem(69px);
+  transition: height 0.25s ease-in;
+}
+.AddBookmarkDialog .folder-selector {
+
+}
+
+.AddBookmarkDialog .folder-selector.opened {
+  height: convertToRem(182px);
+}
+
+.AddBookmarkDialog__PresentationsTitle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: convertToRem(13px);
+  height: convertToRem(26px);
+  line-height: convertToRem(26px);
+}
+
+.AddBookmarkDialog__SelectedPresentation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: convertToRem(39px);
+  height: convertToRem(30px);
+  width: 100%;
+  line-height: convertToRem(30px);
+  font-size: convertToRem(14px);
+  outline: none;
+  padding: 0 convertToRem(10px);
+  text-decoration: none;
+  font-weight: normal;
+  display: inline-block;
+  color: white;
+  text-align: left;
+  background: #3E4951;
+  cursor: pointer;
+  border: convertToRem(1px) solid #FFFFFF;
+  border-radius: convertToRem(5px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.InvalidValue {
+    border: 0.0625rem solid red;
+  }
+}
+
+.AddBookmarkDialog__Title.InvalidValue {
+  border: 0.0625rem solid red;
+}
+
+.AddBookmarkDialog__Title.InvalidValue:focus {
+  border: 0.0625rem solid red;
+}
+
+.AddBookmarkDialog .folder-selector.opened > .AddBookmarkDialog__SelectedPresentation {
+  border-bottom: convertToRem(1px) solid #3E4951;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &.InvalidValue {
+    border: 0.0625rem solid red;
+  }
+}
+
+.AddBookmarkDialog__PresentationsSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: convertToRem(69px);
+  height: convertToRem(98px);
+}
+
+a.create-folder {
+  color: #4CB0E6;
+}
+
+.AddBookmarkDialog .folder-selector.creating-folder a.create-folder {
+  color: #777777;
+  text-decoration: none;
+  cursor: default;
+}
+
+.AddBookmarkDialog .folder-selector:after {
+  content: '▼';
+  color: white;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: convertToRem(46px);
+  right: convertToRem(8px);
+  height: convertToRem(10px);
+  width: convertToRem(10px);
+  font-size: convertToRem(12px);
+  pointer-events: none;
+  transform: rotate(0);
+  transition: transform 0.25s;
+  transform-origin: 60% 83%;
+}
+
+.AddBookmarkDialog .folder-selector.opened:after {
+  transform: rotate(180deg);
+}
+
+
+.AddBookmarkDialog__PresentationsList {
+  list-style: none;
+  border-top: convertToRem(1px) solid #3E4951;
+  border-left: convertToRem(1px) solid white;
+  border-right: convertToRem(1px) solid white;
+  border-bottom: convertToRem(1px) solid white;
+  height: convertToRem(85px);
+  overflow-y: scroll;
+  padding: convertToRem(2px) 0;
+  background: #3E4951;
+  transition: height 0.25s ease-in;
+  border-bottom-left-radius: convertToRem(5px);
+  border-bottom-right-radius: convertToRem(5px);
+}
+
+.AddBookmarkDialog__Presentations.opened .AddBookmarkDialog__PresentationsList:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: convertToRem(-1px);
+  background: #3E4951;
+  height: convertToRem(2px);
+  border-left: convertToRem(1px) solid white;
+  border-right: convertToRem(1px) solid white;
+}
+
+.AddBookmarkDialog__PresentationsList.hasNewFolder {
+  height: convertToRem(112px);
+}
+
+.AddBookmarkDialog__Presentation {
+  padding: 0 convertToRem(5px);
+  cursor: pointer;
+  height: 1.8em;
+  line-height: 1.8em;
+  color: white;
+
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+
+  border-top: convertToRem(1px) solid transparent;
+  border-bottom: convertToRem(1px) solid transparent;
+}
+
+.AddBookmarkDialog__Presentation:hover {
+  // background: #f0f0f0;
+}
+
+.AddBookmarkDialog__Presentation.active {
+  background: #4CB0E6;
+  border-top: convertToRem(1px) solid #4CB0E6;
+  border-bottom: convertToRem(1px) solid #4CB0E6;
+}
+
+
+.AddBookmarkDialog__NewPresentation .AddBookmarkDialog__NewPresentationTitle {
+  width: 100%;
+  height: 1.7em;
+  color: white;
+  background: #3E4951;
+}
+
+.AddBookmarkDialog__NewPresentation.active .AddBookmarkDialog__NewPresentationTitle {
+  background: #4CB0E6;
+}
+
+.AddBookmarkDialog__Footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: convertToRem(10px);
+  text-align: right;
+}
+
+.AddBookmarkDialog__SaveButton, .AddBookmarkDialog__SaveButton:hover {
+  font-style: normal;
+  font-weight: 300;
+  font-size: convertToRem(16px);
+  line-height: convertToRem(19px);
+  width: convertToRem(95px);
+  height: convertToRem(30px);
+  background: #4CB0E6;
+  border: convertToRem(1px) solid #FFFFFF;
+  border-radius: convertToRem(5px);
+  padding: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.AddBookmarkDialog__SaveButton.disabled, .AddBookmarkDialog__SaveButton.disabled:hover {
+  background: #8B959A;
+  color: white;
+  border: convertToRem(1px) solid #FFFFFF;
+  cursor: default;
+}
+

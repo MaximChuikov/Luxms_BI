@@ -1,0 +1,38 @@
+.Pagination {
+  height: 5rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #4b5c6b;
+  cursor: pointer;
+  border-radius: .23rem;
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    li {
+      width: 2rem; height: 2rem; border-radius: 3rem; display: flex; align-items: center; justify-content: center;
+      font-size: 1.38rem; line-height: 1.62rem;
+      &.active {
+        font-size: 1.58rem;
+        font-weight: bold;
+        color: #4CB0E6;
+      }
+    }
+  }
+  &.minimalMode ul li{
+    font-size: 1.08rem;
+    line-height: 1.23rem;
+  }
+}
+
+.Pagination.BackgroundBlack {
+  background-color: #333333;
+}
+
+.Pagination__ArrowPrev.disabled { visibility: hidden; }
+.Pagination__ArrowNext.disabled { visibility: hidden; }

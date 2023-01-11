@@ -1,0 +1,19 @@
+.ButtonPrimitive {
+  border: 0.077rem solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 0.385rem;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.38rem;
+  color: #ffffff;
+  margin-top: 1.15rem;
+  //margin-left: 8.85rem;
+  width: 13.62rem;
+  height: 2.15rem;
+  padding: 0.08rem 0.92rem;
+  background-color: #4CB0E6;
+
+  &:focus {
+    outline: none;
+  }
+}

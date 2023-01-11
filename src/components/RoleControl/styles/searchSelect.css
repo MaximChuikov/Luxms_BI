@@ -1,0 +1,106 @@
+.search-select {
+    position: relative;
+    background: #3E4951;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.69rem;
+    line-height: 2.1rem;
+    max-height: 20rem;
+}
+
+.search-select::after {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    content: '\25B2';
+    color: #C4C4C4;
+    transform: rotate(-180deg);
+    font-size: 1rem;
+    width: 2rem;
+}
+.search-select-input {
+    width: 100%;
+    background: #3E4951;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.69rem;
+    line-height: 2.1rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.4rem;
+    padding-right: 3.2rem;
+}
+
+.search-select-filter-input {
+    width: 100%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.69rem;
+    line-height: 2.1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    background: #5f7382;
+    color: white;
+}
+
+.search-select-input__opened {
+    border-bottom: 0.1rem solid #FFFFFF;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+.options-list-wrapper {
+    margin-left: -0.1rem;
+    max-height: 15rem;
+    /*overflow-y: auto;*/
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    background: #3E4951;
+    border: 1px solid #ffffff;
+    border-radius: 0 0 0.5rem 0.5rem;
+    border-top: none;
+    z-index: 1000;
+}
+.options-list {
+    max-height: 15rem;
+    overflow-y: auto;
+    width: 97%;
+}
+.options-list__multiselect {
+    max-height: 12.5rem;
+    overflow-y: auto;
+    width: 97%;
+}
+.search-select-filter {
+    position: relative;
+}
+.search-select-filter-svg {
+    position: absolute;
+    right: 0.7rem;
+    top: 0.5rem;
+    width: 1.3rem;
+    height: 1.4rem;
+    fill: white;
+}
+
+.option {
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+}
+.option__selected {
+    background: #294c69;
+}
+.empty-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3rem;
+    width: 3rem;
+    border-left: 0.1rem solid #ffffff;
+}

@@ -1,0 +1,54 @@
+.ComponentTextarea {
+  margin-top: 0.308rem;
+  width: 70rem;
+
+  color: white !important;
+  font-size: inherit;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  outline: none;
+
+  &:focus {
+    border: none;
+    box-shadow: none
+  }
+
+  &.isEditing {
+    box-shadow: 0 0.308rem 0.308rem rgba(0, 0, 0, 0.25);
+    background: #3E4951;
+    border: 0.077rem solid #5C6F82;
+    border-radius: 0.385rem;
+  }
+
+  &.minimalMode {
+    width: 100%;
+    background-color: inherit;
+  }
+
+  &:focus.isEditing {
+    border-color: #66afe9;
+    box-shadow: inset 0 0.077rem 0.077rem rgba(0, 0, 0, 0.075), 0 0 calc(8rem / 13) rgba(102, 175, 233, 0.6);
+  }
+}
+::-webkit-scrollbar {
+  width: 1.0rem;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  border-radius: 0.3rem;
+  width: 100%;
+}
+::-webkit-scrollbar-thumb {
+  border: 0.2rem solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 1rem;
+  background-color: #ced2da ;
+  -webkit-box-shadow: inset -0.1rem -0.1rem 0rem rgba(255, 255, 255, 0.5), inset 0.1rem 0.1rem 0rem rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
