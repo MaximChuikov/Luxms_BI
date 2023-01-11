@@ -7,11 +7,6 @@ import Modal from "./src/Modal/Modal"
 import './src/index.css';
 import AddTodo from './src/Todo/AddTodo'
 
-// const AddTodo = React.lazy(() => new Promise(resolve => {
-//     setTimeout(() => {
-//         resolve(import('./src/Todo/AddTodo'))
-//     }, 2000)
-// }))
 
 function App() {
     const [todos, setTodos] = React.useState([])

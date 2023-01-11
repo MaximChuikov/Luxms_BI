@@ -34,6 +34,8 @@ const defaultValues = {
   noRemove: false,
   include: 'ds_\\w+$',
   exclude: '',
+  dashboards: false,
+  resources: true
 };
 
 
@@ -65,8 +67,17 @@ function getOption(name, prompt) {
     try {
       const jsonConfig = JSON.parse(authConfig);
       const currentBranchName = require('current-git-branch')();
-      const jsonConfigValue = (currentBranchName in jsonConfig) ? jsonConfig[currentBranchName][name] : jsonConfig[name];
-      if (jsonConfigValue) return (savedValues[name] = jsonConfigValue);
+      let jsonConfigValue
+      switch (jsonConfigFileName) {
+        case 'authConfig.json':
+          jsonConfigValue = (currentBranchName in jsonConfig) ? jsonConfig[currentBranchName][name] : jsonConfig['default'] ? jsonConfig['default'][name] : null;
+        break
+        case 'config.json':
+          jsonConfigValue = jsonConfig[name]
+        break
+      }
+
+      if (!(jsonConfigValue === null || jsonConfigValue === undefined)) return (savedValues[name] = jsonConfigValue);
     } catch (err) {
       console.warn('Error reading authConfig.json:', err.message);
     }
@@ -140,6 +151,26 @@ function getNoRemove() {
   return !!getOption('noRemove');
 }
 
+/**
+ * get dashboards: it's possibility to save configs
+ * of Dashboards and Dashlets to a local disk.
+ * Also, upload it to a server after.
+ * @returns boolean
+ */
+function mustSaveDashboardConfigToDisk() {
+  return !!getOption('dashboards');
+}
+
+/**
+ * get dashboards: it's possibility to save resources
+ * of Dashboards and Dashlets to a local disk.
+ * Also, upload it to a server after.
+ * @returns boolean
+ */
+function mustSaveResourcesToDisk() {
+  return !!getOption('resources');
+}
+
 
 /**
  * get server, username and password values from config
@@ -173,4 +204,6 @@ module.exports = {
   getExclude,
   getSUPConfig,
   getSUPConfigAndLog,
+  mustSaveDashboardConfigToDisk,
+  mustSaveResourcesToDisk,
 }

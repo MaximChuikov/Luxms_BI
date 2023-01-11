@@ -4,6 +4,8 @@
   "description": "Resources editor",
   "main": "dist/bootstrap.js",
   "scripts": {
+    "pull:dev": "node scripts/pull.js --env development",
+    "pull:prod": "node scripts/pull.js --env production",
     "push:dev": "rimraf dist_development && yarn test && webpack --env development && node scripts/push.js --env development",
     "push:prod": "rimraf dist_production  && yarn test && webpack --env production  && node scripts/push.js --env production ",
     "start": "node scripts/start-react.js",
