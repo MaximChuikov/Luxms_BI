@@ -1,0 +1,32 @@
+{
+  "id": 1,
+  "parent_id": null,
+  "dashboard_id": 1,
+  "view_class": "internal",
+  "title": "SKIM-IT",
+  "description": null,
+  "layout": null,
+  "length": null,
+  "idx": 0,
+  "srt": 2147483647,
+  "config": {
+    "url": "res:App.js",
+    "frame": {
+      "h": 1,
+      "w": 1,
+      "x": 0,
+      "y": 0
+    },
+    "options": [
+      "HideTopBarMenu"
+    ],
+    "dataSource": {
+      "metrics": "lpe:es",
+      "periods": "lpe:es",
+      "locations": "lpe:es"
+    }
+  },
+  "updated": "2023-01-11T10:55:17.692573+03:00",
+  "created": "2019-07-26T13:57:52.441+03:00",
+  "frame": null
+}
