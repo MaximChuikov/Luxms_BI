@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import "./NewDatePicker.scss";
+import React, { forwardRef, useState } from "react";
+import "./styles.scss";
 import DatePicker from "react-datepicker";
 import { CalendarIcon, months } from "./tools/constants";
 import { getDayShortName, getMonthName, getYear } from "./tools/utils";
@@ -11,7 +11,7 @@ type DatePickerProps = {
   maxDate?: Date;
 };
 
-const MultipleDates: React.FC<DatePickerProps> = ({
+const MultipleDatePicker: React.FC<DatePickerProps> = ({
   onChange,
   initialValue,
   minDate,
@@ -152,4 +152,4 @@ const MultipleDates: React.FC<DatePickerProps> = ({
   );
 };
 
-export default MultipleDates;
+export default MultipleDatePicker;

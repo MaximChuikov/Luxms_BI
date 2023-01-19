@@ -1,24 +1,25 @@
-import React, { forwardRef } from "react";
-import "./NewDatePicker.scss";
+import React, { forwardRef, useState } from "react";
+import "./styles.scss";
 import DatePicker from "react-datepicker";
-import { CalendarIcon, daysShortNamesDict, months } from "./tools/constants";
+import { CalendarIcon } from "./tools/constants";
 import { getDayShortName, getMonthName, getYear } from "./tools/utils";
 
 type DatePickerProps = {
-  startDate: null | Date;
-  endDate: null | Date;
-  // onChange: (update: any) => void;
+  onChange?: (newValue: [Date, Date]) => void;
+  initialValue?: [Date, Date | null];
+  minDate?: Date;
+  maxDate?: Date;
 };
 
-const onChange = (a) => {
-  console.log("%c⧭", "color: #f200e2", a);
-};
-
-const NewDatePicker: React.FC<DatePickerProps> = ({
-  startDate,
-  endDate,
-  // onChange,
+const RangeDatePicker: React.FC<DatePickerProps> = ({
+  onChange,
+  initialValue,
+  minDate,
+  maxDate,
 }) => {
+  const [dateRange, setDateRange] = useState(initialValue || [null, null]);
+  const [startDate, endDate] = dateRange;
+
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
     <div className="custom-input" onClick={onClick} ref={ref}>
       <div className="custom-input__value">
@@ -30,22 +31,27 @@ const NewDatePicker: React.FC<DatePickerProps> = ({
     </div>
   ));
 
+  const changeHandler = (newValue) => {
+    setDateRange(newValue);
+    onChange(newValue);
+  };
+
   return (
     <DatePicker
-      // selectsRange={true}
-      // startDate={startDate}
-      // endDate={endDate}
+      selectsRange={true}
+      startDate={startDate}
+      endDate={endDate}
       value={[new Date(), new Date().setMonth(3)]}
-      // monthsShown={2}
-      onChange={onChange}
+      monthsShown={2}
+      onChange={changeHandler}
       dateFormat="dd.MM.yyyy"
-      // placeholderText="Выберите дату"
+      minDate={minDate}
+      maxDate={maxDate}
       formatWeekDay={getDayShortName}
       calendarClassName="custom-calendar"
       customInput={<CustomInput />}
       renderCustomHeader={({
         date,
-        changeMonth,
         decreaseMonth,
         increaseMonth,
         decreaseYear,
@@ -53,6 +59,8 @@ const NewDatePicker: React.FC<DatePickerProps> = ({
         prevMonthButtonDisabled,
         nextMonthButtonDisabled,
         prevYearButtonDisabled,
+        monthDate,
+        customHeaderCount,
       }) => {
         return (
           <div className="custom-header">
@@ -61,6 +69,7 @@ const NewDatePicker: React.FC<DatePickerProps> = ({
                 onClick={decreaseYear}
                 disabled={prevYearButtonDisabled}
                 className="custom-header__button"
+                style={customHeaderCount === 1 ? { display: "none" } : null}
               >
                 {"<"}
               </button>
@@ -69,6 +78,7 @@ const NewDatePicker: React.FC<DatePickerProps> = ({
                 onClick={increaseYear}
                 disabled={nextMonthButtonDisabled}
                 className="custom-header__button"
+                style={customHeaderCount === 0 ? { display: "none" } : null}
               >
                 {">"}
               </button>
@@ -79,26 +89,18 @@ const NewDatePicker: React.FC<DatePickerProps> = ({
                 onClick={decreaseMonth}
                 disabled={prevMonthButtonDisabled}
                 className="custom-header__button"
+                style={customHeaderCount === 1 ? { display: "none" } : null}
               >
                 {"<"}
               </button>
-              <select
-                value={getMonthName(date)}
-                onChange={({ target: { value } }) =>
-                  changeMonth(months.indexOf(value))
-                }
-                className="custom-header__select"
-              >
-                {months.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+              <div className="custom-header__select">
+                {getMonthName(monthDate)}
+              </div>
               <button
                 onClick={increaseMonth}
                 disabled={nextMonthButtonDisabled}
                 className="custom-header__button"
+                style={customHeaderCount === 0 ? { display: "none" } : null}
               >
                 {">"}
               </button>
@@ -110,4 +112,4 @@ const NewDatePicker: React.FC<DatePickerProps> = ({
   );
 };
 
-export default NewDatePicker;
+export default RangeDatePicker;

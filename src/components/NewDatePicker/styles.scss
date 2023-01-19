@@ -30,6 +30,7 @@ $dark-blue: #206689;
     &__day {
       border-radius: 0;
       margin: 0.05rem;
+      height: auto;
 
       color: $white;
       background: $blue;
@@ -49,6 +50,9 @@ $dark-blue: #206689;
       }
       &--selecting-range-start {
         background: $orange;
+      }
+      &--outside-month {
+        background: $dark-blue;
       }
     }
   }
