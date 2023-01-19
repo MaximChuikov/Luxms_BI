@@ -4,14 +4,14 @@ import DatePicker from "react-datepicker";
 import { CalendarIcon } from "./tools/constants";
 import { getDayShortName, getMonthName, getYear } from "./tools/utils";
 
-type DatePickerProps = {
+type RangeDatePickerProps = {
   onChange?: (newValue: [Date, Date]) => void;
   initialValue?: [Date, Date | null];
   minDate?: Date;
   maxDate?: Date;
 };
 
-const RangeDatePicker: React.FC<DatePickerProps> = ({
+const RangeDatePicker: React.FC<RangeDatePickerProps> = ({
   onChange,
   initialValue,
   minDate,
@@ -20,7 +20,9 @@ const RangeDatePicker: React.FC<DatePickerProps> = ({
   const [dateRange, setDateRange] = useState(initialValue || [null, null]);
   const [startDate, endDate] = dateRange;
 
+  // @ts-ignore
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    // @ts-ignore
     <div className="custom-input" onClick={onClick} ref={ref}>
       <div className="custom-input__value">
         {value ? value : "Выберите дату"}
@@ -59,6 +61,7 @@ const RangeDatePicker: React.FC<DatePickerProps> = ({
         prevMonthButtonDisabled,
         nextMonthButtonDisabled,
         prevYearButtonDisabled,
+        nextYearButtonDisabled,
         monthDate,
         customHeaderCount,
       }) => {
@@ -76,7 +79,7 @@ const RangeDatePicker: React.FC<DatePickerProps> = ({
               <div className="custom-header__select">{getYear(date)}</div>
               <button
                 onClick={increaseYear}
-                disabled={nextMonthButtonDisabled}
+                disabled={nextYearButtonDisabled}
                 className="custom-header__button"
                 style={customHeaderCount === 0 ? { display: "none" } : null}
               >

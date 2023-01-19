@@ -4,14 +4,14 @@ import DatePicker from "react-datepicker";
 import { CalendarIcon, months } from "./tools/constants";
 import { getDayShortName, getMonthName, getYear } from "./tools/utils";
 
-type DatePickerProps = {
+type MultipleDatePickerProps = {
   onChange?: (selectedDates: Date[]) => void;
   initialValue?: Date[];
   minDate?: Date;
   maxDate?: Date;
 };
 
-const MultipleDatePicker: React.FC<DatePickerProps> = ({
+const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
   onChange,
   initialValue,
   minDate,
@@ -38,8 +38,10 @@ const MultipleDatePicker: React.FC<DatePickerProps> = ({
     onChange(newHighlightedValue);
   };
 
+  // @ts-ignore
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     return (
+      // @ts-ignore
       <div className="custom-input" onClick={onClick} ref={ref}>
         <div className="custom-input__value">
           {value ? value : "Выберите дату"}
@@ -95,6 +97,7 @@ const MultipleDatePicker: React.FC<DatePickerProps> = ({
         prevMonthButtonDisabled,
         nextMonthButtonDisabled,
         prevYearButtonDisabled,
+        nextYearButtonDisabled,
       }) => {
         return (
           <div className="custom-header">
@@ -109,7 +112,7 @@ const MultipleDatePicker: React.FC<DatePickerProps> = ({
               <div className="custom-header__select">{getYear(date)}</div>
               <button
                 onClick={increaseYear}
-                disabled={nextMonthButtonDisabled}
+                disabled={nextYearButtonDisabled}
                 className="custom-header__button"
               >
                 {">"}
