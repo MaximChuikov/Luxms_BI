@@ -1,0 +1,53 @@
+@import "../../../../ds_res/styles/variables.scss";
+
+$vertical-spacing: 0.1rem;
+$horizontal-spacing: 0.3rem;
+
+.table {
+  table {
+    border-collapse: separate;
+    border-spacing: $horizontal-spacing $vertical-spacing;
+    width: 100%;
+
+    color: $white;
+
+    // thead {
+    //   th {
+    //   }
+    // }
+
+    tbody {
+      td {
+        width: 13rem;
+        height: 3.3rem;
+        // background: grey;
+      }
+      tr {
+        background: $dark-marengo;
+      }
+      tr:nth-child(odd) {
+        background: $marengo;
+      }
+    }
+  }
+}
+
+.headerTitle {
+  background: $dark-blue;
+  padding: 0.6rem;
+  margin-bottom: $vertical-spacing;
+
+  text-align: center;
+  // color: $white;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.headerFilterWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+
+  background: $marengo;
+}

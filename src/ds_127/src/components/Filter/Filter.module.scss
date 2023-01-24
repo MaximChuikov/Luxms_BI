@@ -1,0 +1,63 @@
+@import "../../../../ds_res/styles/variables.scss";
+
+.filterBtn {
+  margin-right: 1rem;
+}
+
+.filterBtnWrapper {
+  display: flex;
+  background: #455d70;
+  height: 2.3rem;
+  border: 1px solid $white;
+  border-radius: 0.3rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filterBtnSubBtn {
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-transform: uppercase;
+  margin: 0 0.5rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+}
+
+.filterBtnArrow {
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  width: 2.2rem;
+  height: 100%;
+  border-left: solid 1px $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.3rem);
+  left: 0;
+  padding: 0.5rem;
+
+  background: $black;
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-direction: column;
+}

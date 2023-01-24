@@ -1,13 +1,4 @@
-@import "../../vars.scss";
-@import "../../calc-font-size";
-
-$white: #ffffff;
-$light-gray: #717f8f;
-$dark-gray: #42505d;
-$orange: #ff6900;
-$light-orange: #ff9c55;
-$blue: #45a6dd;
-$dark-blue: #206689;
+@import "../../ds_res/styles/variables.scss";
 
 .custom-calendar {
   background: $dark-gray;
@@ -33,7 +24,7 @@ $dark-blue: #206689;
       height: auto;
 
       color: $white;
-      background: $blue;
+      background: $light-blue;
 
       &--disabled {
         color: $dark-gray;
@@ -52,7 +43,7 @@ $dark-blue: #206689;
         background: $orange;
       }
       &--outside-month {
-        background: $dark-blue;
+        background: $blue;
       }
     }
 
@@ -60,7 +51,7 @@ $dark-blue: #206689;
       border-radius: 0;
       margin: 0.05rem;
       color: $white;
-      background: $blue;
+      background: $light-blue;
 
       // &--today {
       //   font-weight: normal;

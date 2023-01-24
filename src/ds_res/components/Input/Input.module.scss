@@ -1,0 +1,14 @@
+@import "../../../ds_res/styles/variables.scss";
+
+.input {
+  border: 1px solid $dark-gray;
+  border-radius: 5px;
+  padding: 5px;
+
+  color: $white;
+  background: $light-gray;
+
+  &::placeholder {
+    color: $dark-gray;
+  }
+}
