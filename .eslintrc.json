@@ -1,39 +1,108 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+  "env": { // секция определяет глобальные переменные окружений
+    "browser": true,
+    "es2021": true, // устанавливает ecmaVersion в parserOptions на 12 версию
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base", // airbnb-base как альтернатива чисто airbnb для реакта (остальные плагины по вкусу)
+    "airbnb-typescript/base",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true, // допускает внешние двойные кавычки при вложенности
+        "allowTemplateLiterals": true
+      }
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false,
+        "printWidth": 120
+      }
     ],
-    "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
+    "indent": [
+      "error",
+      2
+    ],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": "off", // отключил для возможности записи функциональных компонентов в стрелочном виде
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages", // в строке импорта не выдает ошибку на отсутствие расширений
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/self-closing-comp": ["error", {
+      "component": true,
+      "html": true
+    }],
+    "arrow-body-style": "off", // не наставивает на синтаксисе стрелочной (return-ы)
+    "max-len": [
+      "warn",
+      {
+        "tabWidth": 2,
+        "ignoreComments": false,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
         ]
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true            
+    },
+    "react": {
+      "version": "detect"
     }
+  }
 }
