@@ -4,8 +4,9 @@ import styles from "./Checkbox.module.scss";
 type VariantType = "default" | "circle";
 
 type CheckboxProps = {
-  onChange?: (evt: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
+  checked?: boolean;
+  onChange?: (evt: ChangeEvent<HTMLInputElement>) => void;
   width?: string | number;
   variant?: VariantType;
 };
@@ -17,10 +18,11 @@ const variantsDict: { [key in VariantType]: string } = {
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
+  checked,
   onChange,
   variant = "default",
 }) => {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState(checked ?? false);
 
   const changeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
     setValue(evt.target.checked);
@@ -29,7 +31,11 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <label className={variantsDict[variant]}>
-      <input checked={value} onChange={changeHandler} type="checkbox" />
+      <input
+        checked={checked ?? value}
+        onChange={changeHandler}
+        type="checkbox"
+      />
       <span>{label}</span>
     </label>
   );

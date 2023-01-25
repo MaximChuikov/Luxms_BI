@@ -1,35 +1,39 @@
 @import "../../../../ds_res/styles/variables.scss";
 
 $vertical-spacing: 0.1rem;
-$horizontal-spacing: 0.3rem;
+$horizontal-spacing: 0.2rem;
 
 .table {
   table {
     border-collapse: separate;
     border-spacing: $horizontal-spacing $vertical-spacing;
-    width: 100%;
-
     color: $white;
 
-    // thead {
-    //   th {
-    //   }
-    // }
+    th {
+      padding: 0;
+      height: 100px;
+    }
 
     tbody {
       td {
-        width: 13rem;
+        // width: 13rem;
         height: 3.3rem;
-        // background: grey;
+        padding: 0.3rem;
       }
       tr {
-        background: $dark-marengo;
+        background: $marengo;
       }
       tr:nth-child(odd) {
-        background: $marengo;
+        background: $dark-marengo;
       }
     }
   }
+}
+
+.headerWrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
 }
 
 .headerTitle {
@@ -38,7 +42,6 @@ $horizontal-spacing: 0.3rem;
   margin-bottom: $vertical-spacing;
 
   text-align: center;
-  // color: $white;
   font-size: 10px;
   font-weight: normal;
 }

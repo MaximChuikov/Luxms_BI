@@ -4,7 +4,7 @@
 
   &__wrapper {
     display: flex;
-    background: #455D70;
+    background: #455d70;
     height: 2.3rem;
     border: 1px solid white;
     border-radius: 0.3rem;
@@ -71,10 +71,13 @@
     min-height: 1rem;
     background: black;
     color: white;
-    border: 1px solid #B0DCF4;
+    border: 1px solid #b0dcf4;
     z-index: 20;
     display: none;
     text-transform: uppercase;
+
+    list-style-type: none;
+    padding-left: 0;
 
     &.show {
       display: block;

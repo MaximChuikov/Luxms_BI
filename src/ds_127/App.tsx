@@ -1,73 +1,100 @@
 import React, { useEffect, useState } from "react";
-import RangeDatePicker from "../components/NewDatePicker/RangeDatePicker";
-import MultipleDatePicker from "../components/NewDatePicker/MultipleDatePicker";
+import RangeDatePicker from "../ds_res/components/DatePicker/RangeDatePicker";
+import MultipleDatePicker from "../ds_res/components/DatePicker/MultipleDatePicker";
 import Context from "./src/context";
-import MonthPicker from "../components/NewDatePicker/MonthPicker";
+import MonthPicker from "../ds_res/components/DatePicker/MonthPicker";
 import Table from "./src/components/Table/Table";
+import { fetchTableData, fetchColumnUniqFilters } from "./src/api";
+import Dropdown from "../ds_res/components/Dropdown";
 
-export const HEADERS_FOR_FETCH = {
-  accept: "application/json, text/javascript, */*; q=0.01",
-  "accept-language": "en-US,en;q=0.9,ru;q=0.8",
-  "cache-control": "no-cache",
-  "content-type": "application/json",
-  pragma: "no-cache",
-  "x-requested-with": "XMLHttpRequest",
+const MULTIPLE_DATE_PICKER_ID = "multipleDatePicker";
+const RANGE_DATE_PICKER_ID = "rangeDatePicker";
+const MONTH_PICKER_ID = "monthPicker";
+
+const datePickerSelectData = [
+  { id: MULTIPLE_DATE_PICKER_ID, name: "За сутки(выбор дат)" },
+  { id: RANGE_DATE_PICKER_ID, name: "За сутки(выбор периода)" },
+  { id: MONTH_PICKER_ID, name: "За месяц" },
+];
+
+const convertToTableData = (rows: string[][], columns) => {
+  // const convertToTableData = (rows: string[][], columns: Column[]) => {
+  const tableData = rows.map((row) => {
+    let convertedRow = {};
+    columns.forEach((column, i) => {
+      convertedRow[column.name] = row[i];
+    });
+    return convertedRow;
+  });
+  return tableData;
 };
 
-export async function getData(lookupId: number, data: any = {}) {
-  const body = {
-    lookupId: lookupId,
-    // limit: 100,
-    // offset: 0,
-    ...data,
-  };
-
-  try {
-    // user_ip, product,
-    // SELECT vendor, product, product_version, event_type, event_name, event_severity, user_ip, service_host, user_ident, msg, info, outcome, created
-    // FROM audit.events;
-    const response = await fetch(`../../../api/lookup/ds_127/${lookupId}`, {
-      credentials: "include",
-      headers: HEADERS_FOR_FETCH,
-      body: JSON.stringify(body),
-      method: "POST",
-      mode: "cors",
-    });
-    return await response.json();
-  } catch (error) {
-    console.log(`fetch data ${lookupId} is not load`);
-  }
-}
-
 function App() {
-  const [columns, setColumns] = useState([]);
   const [rows, setRows] = useState([]);
+  const [selectedDatePicker, setSelectedDatePicker] = useState(
+    datePickerSelectData[0]
+  );
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [{ uniqIps, uniqSystems, uniqLogins }, setFilters] = useState({
+    uniqIps: [],
+    uniqSystems: [],
+    uniqLogins: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getData(2);
-      console.log("%c⧭", "color: #00e600", data);
-      setRows(data.rows);
-      setColumns(data.columns);
+      const data = await fetchTableData();
+      const [uniqIps, uniqSystems, uniqLogins] = await Promise.all([
+        fetchColumnUniqFilters("user_ip"),
+        fetchColumnUniqFilters("product"),
+        fetchColumnUniqFilters("user_ident"),
+      ]);
+      setFilters({ uniqIps, uniqSystems, uniqLogins });
+      console.log("%c⧭", "color: #40fff2", [uniqIps, uniqSystems, uniqLogins]);
+      const tableData = convertToTableData(data.rows, data.columns);
+      setRows(tableData);
+      // setColumns(data.columns);
     };
     fetchData();
   }, []);
 
-  const onChange = (newValue) => {
-    console.log("%c⧭", "color: #e50000", newValue);
+  const onDateChange = (newValue) => {
+    setSelectedDate(newValue);
+  };
+
+  const applyUserIpFilters = (filters) => {
+    console.log("%c⧭", "color: #c800ff", "context", filters);
+  };
+  const applySystemFilters = (filters) => {
+    console.log("%c⧭", "color: #c800ff", "context", filters);
+  };
+  const applyLoginFilters = (filters) => {
+    console.log("%c⧭", "color: #c800ff", "context", filters);
   };
 
   return (
-    <Context.Provider value={{}}>
+    <Context.Provider
+      value={{ applyUserIpFilters, applySystemFilters, applyLoginFilters }}
+    >
       <div className="wrapper">
-        <h1>TEST</h1>
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <RangeDatePicker onChange={onChange} />
-          <MultipleDatePicker onChange={onChange} />
-          <MonthPicker />
+        <div style={{ display: "flex", gap: "20px" }}>
+          <Dropdown
+            data={datePickerSelectData}
+            onChange={(obj) => {
+              setSelectedDate(null);
+              setSelectedDatePicker(obj);
+            }}
+          />
+          {selectedDatePicker.id === MULTIPLE_DATE_PICKER_ID ? (
+            <MultipleDatePicker onChange={onDateChange} />
+          ) : selectedDatePicker.id === RANGE_DATE_PICKER_ID ? (
+            <RangeDatePicker onChange={onDateChange} />
+          ) : (
+            <MonthPicker onChange={onDateChange} />
+          )}
         </div>
 
-        <Table />
+        <Table data={rows} filters={{ uniqIps, uniqSystems, uniqLogins }} />
       </div>
     </Context.Provider>
   );

@@ -1,8 +1,15 @@
 import React, { forwardRef, useState } from "react";
 import "./styles.scss";
 import DatePicker from "react-datepicker";
-import { CalendarIcon, months } from "./tools/constants";
-import { getDayShortName, getMonthName, getYear } from "./tools/utils";
+import {
+  CalendarIcon,
+  months,
+} from "../../../components/NewDatePicker/tools/constants";
+import {
+  getDayShortName,
+  getMonthName,
+  getYear,
+} from "../../../components/NewDatePicker/tools/utils";
 
 type MultipleDatePickerProps = {
   onChange?: (selectedDates: Date[]) => void;

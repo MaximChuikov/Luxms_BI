@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import classNames from "classnames";
-import "./DropdownDumb.scss";
+import "./Dropdown.scss";
 
 import { DropdownArrow } from "./icons";
 import { useOnClickOutside } from "../../hooks/useOnCLickOutside";
@@ -12,41 +12,30 @@ interface IOption {
 
 interface ISelect {
   data: IOption[];
-  display?: string;
-  onChange: (filterName: string, obj: any) => void;
-  className?: string;
+  onChange: (obj: any) => void;
   selectedOption?: { id: string; name: string };
-  filterName?: string;
 }
 
-export const DropdownDumb: FC<ISelect> = ({
-  data,
-  display,
-  onChange,
-  className = "",
-  selectedOption, //= data[0],
-  filterName = "",
-}) => {
+export const Dropdown: FC<ISelect> = ({ data, onChange }) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(data[0] || null);
 
   const ref = useRef(null);
   useOnClickOutside(ref, () => setIsOptionsOpen(false));
 
   const toggleOptions = () => {
-    if (display === "false") return null;
     setIsOptionsOpen(!isOptionsOpen);
   };
 
   const onSelectOption = (selectedObj: any) => {
-    onChange(filterName, selectedObj);
+    setSelectedOption(selectedObj);
+    onChange(selectedObj);
     setIsOptionsOpen(false);
   };
   return (
-    <div className={`customSelect ${className}`} ref={ref}>
+    <div className={"customSelect"} ref={ref}>
       <div
-        className={classNames("customSelect__wrapper", {
-          disabled: display === "false",
-        })}
+        className={classNames("customSelect__wrapper")}
         onClick={toggleOptions}
       >
         <button className="customSelect__btn" type="button">

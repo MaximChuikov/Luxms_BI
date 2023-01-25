@@ -1,8 +1,11 @@
 import React, { forwardRef, useState } from "react";
 import "./styles.scss";
 import DatePicker from "react-datepicker";
-import { CalendarIcon } from "./tools/constants";
-import { getDayShortName, getYear } from "./tools/utils";
+import { CalendarIcon } from "../../../components/NewDatePicker/tools/constants";
+import {
+  getDayShortName,
+  getYear,
+} from "../../../components/NewDatePicker/tools/utils";
 import ru from "date-fns/locale/ru";
 
 type MonthPickerProps = {

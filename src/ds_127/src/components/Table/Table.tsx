@@ -1,44 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Table.module.scss";
 import { useTable } from "react-table";
 import Filter from "../Filter/Filter";
-
-const data = [
-  {
-    1: "chess",
-    2: "patch",
-    3: 19,
-    4: 64,
-    5: 19,
-    6: "complicated",
-  },
-  {
-    1: "chess",
-    2: "patch",
-    3: 19,
-    4: 64,
-    5: 19,
-    6: "complicated",
-  },
-  {
-    1: "chess",
-    2: "patch",
-    3: 19,
-    4: 64,
-    5: 19,
-    6: "complicated",
-  },
-];
+import Context from "../../context";
 
 function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
       data,
     });
 
-  // Render the UI for your table
   return (
     <table {...getTableProps()}>
       <thead>
@@ -66,54 +38,113 @@ function Table({ columns, data }) {
   );
 }
 
-function App() {
+const TableComponent: React.FC<{
+  data: any[];
+  filters: { uniqIps: string[]; uniqSystems: string[]; uniqLogins: string[] };
+}> = ({ data, filters }) => {
+  const { applyUserIpFilters, applySystemFilters, applyLoginFilters } =
+    useContext(Context);
+
   const columns = React.useMemo(
     () => [
       {
-        // Header: "IP",
         Header: () => {
           return (
-            <div>
+            <div className={styles.headerWrapper}>
               <div className={styles.headerTitle}>IP</div>
               <div className={styles.headerFilterWrapper}>
-                <Filter />
+                <Filter
+                  filters={filters.uniqIps}
+                  onConfirm={applyUserIpFilters}
+                />
               </div>
             </div>
           );
         },
-        accessor: "1",
+        accessor: "user_ip",
       },
       {
-        Header: "Система",
-        accessor: "2",
+        Header: () => {
+          return (
+            <div className={styles.headerWrapper}>
+              <div className={styles.headerTitle}>Система</div>
+              <div className={styles.headerFilterWrapper}>
+                <Filter
+                  filters={filters.uniqSystems}
+                  onConfirm={applySystemFilters}
+                />
+              </div>
+            </div>
+          );
+        },
+        accessor: "product",
       },
       {
-        Header: "Логин",
-        accessor: "3",
+        Header: () => {
+          return (
+            <div className={styles.headerWrapper}>
+              <div className={styles.headerTitle}>Логин</div>
+              <div className={styles.headerFilterWrapper}>
+                <Filter
+                  filters={filters.uniqLogins}
+                  onConfirm={applyLoginFilters}
+                />
+              </div>
+            </div>
+          );
+        },
+        accessor: "user_ident",
       },
+      // {
+      //   // Header: "Вход",
+      //   Header: () => {
+      //     return (
+      //       <div>
+      //         <div className={styles.headerTitle}>Вход</div>
+      //         <div className={styles.headerFilterWrapper}>
+      //           <Filter />
+      //         </div>
+      //       </div>
+      //     );
+      //   },
+      //   accessor: "4",
+      // },
+      // {
+      //   // Header: "Выход",
+      //   Header: () => {
+      //     return (
+      //       <div>
+      //         <div className={styles.headerTitle}>Выход</div>
+      //         <div className={styles.headerFilterWrapper}>
+      //           <Filter />
+      //         </div>
+      //       </div>
+      //     );
+      //   },
+      //   accessor: "5",
+      // },
       {
-        Header: "Вход",
-        accessor: "4",
-      },
-      {
-        Header: "Выход",
-        accessor: "5",
-      },
-      {
-        Header: "Результат",
-        accessor: "6",
+        Header: () => {
+          return (
+            <div className={styles.headerWrapper}>
+              <div className={styles.headerTitle}>Результат</div>
+              <div className={styles.headerFilterWrapper}></div>
+            </div>
+          );
+        },
+        accessor: "outcome",
       },
     ],
-    []
+    [filters.uniqIps, filters.uniqLogins, filters.uniqSystems]
   );
 
-  const memoData = React.useMemo(() => data, []);
+  const memoData = React.useMemo(() => data, [data]);
 
   return (
     <div className={styles.table}>
       <Table columns={columns} data={memoData} />
     </div>
   );
-}
+};
 
-export default App;
+export default TableComponent;
