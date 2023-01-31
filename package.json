@@ -13,7 +13,11 @@
     "build:dev": "rimraf dist_development && yarn test && webpack --env development",
     "build:prod": "rimraf dist_production && yarn test && webpack --env production",
     "_push:dev": "node scripts/push.js --env development",
-    "_push:prod": "node scripts/push.js --env production"
+    "_push:prod": "node scripts/push.js --env production",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json}'  --config ./.prettierrc",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -89,6 +93,8 @@
     "@types/react": "^18.0.17",
     "@types/rison": "0.0.7",
     "@types/zipcelx": "1.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
     "axios": "0.21.1",
     "axios-cookiejar-support": "1.0.1",
     "babel-jest": "26.6.3",
@@ -106,11 +112,22 @@
     "cross-env": "7.0.3",
     "css-loader": "6.3.0",
     "current-git-branch": "1.1.0",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.1",
     "file-loader": "6.2.0",
+    "husky": "^8.0.3",
     "jest": "26.6.3",
+    "lint-staged": "^13.1.0",
     "md5": "2.3.0",
     "mime": "2.5.2",
     "mocha": "4.0.1",
+    "prettier": "^2.8.3",
     "process": "0.11.10",
     "prompt-confirm": "2.0.4",
     "react-test-renderer": "17.0.2",
@@ -130,5 +147,11 @@
     "websocket": "1.0.34",
     "ws": "8.0.0",
     "yargs": "10.0.3"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
