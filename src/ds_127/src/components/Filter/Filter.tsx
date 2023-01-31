@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Filter.module.scss";
 import { DropdownArrow } from "../../../../ds_res/components/Dropdown/icons";
 import Button from "../../../../ds_res/components/Button";
@@ -8,9 +8,10 @@ import { useOnClickOutside } from "../../../../ds_res/hooks/useOnCLickOutside";
 
 const Filter: React.FC<{
   filters: string[];
+  initialValues: string[];
   onConfirm: (selectedFilters: string[]) => void;
-  onCancel: () => void;
-}> = ({ filters, onCancel, onConfirm }) => {
+  onCancel?: () => void;
+}> = ({ filters, initialValues, onCancel, onConfirm }) => {
   const [isOpen, setOpen] = useState(false);
 
   const showDropdown = () => {
@@ -22,7 +23,7 @@ const Filter: React.FC<{
       <div className={styles.filterBtn} onClick={showDropdown}>
         <div className={styles.filterBtnWrapper}>
           <button className={styles.filterBtnSubBtn} type="button">
-            {"BCE"}
+            {initialValues.length === 0 ? "Все" : initialValues.toString()}
           </button>
           <div className={styles.filterBtnArrow}>
             <DropdownArrow />
@@ -36,6 +37,7 @@ const Filter: React.FC<{
           setOpen={setOpen}
           onConfirm={onConfirm}
           onCancel={onCancel}
+          initialValues={initialValues}
         />
       )}
     </div>
@@ -45,11 +47,13 @@ const Filter: React.FC<{
 const Dropdown = ({
   setOpen,
   filters,
+  initialValues,
   onConfirm,
   onCancel,
 }: {
   setOpen: (isOpen: boolean) => void;
   filters: string[];
+  initialValues: string[];
   onConfirm: (selectedFilters: string[]) => void;
   onCancel: () => void;
 }) => {
@@ -69,7 +73,14 @@ const Dropdown = ({
     }
   }, [searchValue, filters]);
 
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState(
+    initialValues || []
+  );
+  console.log(
+    "🚀 ~ file: Filter.tsx:79 ~ selectedCheckboxes",
+    selectedCheckboxes,
+    initialValues
+  );
   const [allCheckboxValue, setAllCheckboxValue] = useState(
     selectedCheckboxes.length === filters.length
   );
@@ -106,10 +117,13 @@ const Dropdown = ({
 
   const confirmHandler = () => {
     onConfirm(selectedCheckboxes);
+    setOpen(false);
   };
 
   const cancelHandler = () => {
-    // onCancel();
+    setSelectedCheckboxes([]);
+    setSearchValue("");
+    onCancel();
   };
 
   return (

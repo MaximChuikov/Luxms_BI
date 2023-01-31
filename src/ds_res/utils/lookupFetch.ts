@@ -1,5 +1,5 @@
 export type Column = { idx: number; name: number; title: number };
-type DataResponse = {
+export type DataResponse = {
   columns: Column[];
   rows: string[][];
   config: any;
@@ -7,6 +7,7 @@ type DataResponse = {
 };
 
 export const getData = async (
+  dsId: number,
   lookupId: number,
   data: any = {}
 ): Promise<DataResponse> => {
@@ -25,14 +26,15 @@ export const getData = async (
   };
 
   try {
-    const response = await fetch(`../../../api/lookup/ds_127/${lookupId}`, {
+    const response = await fetch(`../../../api/lookup/ds_${dsId}/${lookupId}`, {
       credentials: "include",
       headers: HEADERS_FOR_FETCH,
       body: JSON.stringify(body),
       method: "POST",
       mode: "cors",
     });
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.log(`fetch data ${lookupId} is not load`);
   }

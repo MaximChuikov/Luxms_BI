@@ -4,10 +4,12 @@ $vertical-spacing: 0.1rem;
 $horizontal-spacing: 0.2rem;
 
 .table {
+  overflow-y: scroll;
   table {
     border-collapse: separate;
     border-spacing: $horizontal-spacing $vertical-spacing;
     color: $white;
+    width: 100%;
 
     th {
       padding: 0;
@@ -16,9 +18,9 @@ $horizontal-spacing: 0.2rem;
 
     tbody {
       td {
-        // width: 13rem;
         height: 3.3rem;
         padding: 0.3rem;
+        text-align: center;
       }
       tr {
         background: $marengo;
@@ -40,6 +42,7 @@ $horizontal-spacing: 0.2rem;
   background: $dark-blue;
   padding: 0.6rem;
   margin-bottom: $vertical-spacing;
+  cursor: pointer;
 
   text-align: center;
   font-size: 10px;
@@ -53,4 +56,12 @@ $horizontal-spacing: 0.2rem;
   padding: 0.5rem;
 
   background: $marengo;
+}
+
+.dateCellWrapper {
+  text-align: center;
+
+  :nth-child(3) {
+    color: $d909CAA;
+  }
 }

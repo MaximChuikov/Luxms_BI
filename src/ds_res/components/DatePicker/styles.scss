@@ -1,5 +1,7 @@
 @import "../../styles/variables.scss";
-
+.custom-wrapper {
+  min-width: 14rem;
+}
 .custom-calendar {
   background: $dark-gray;
 
@@ -52,10 +54,6 @@
       margin: 0.05rem;
       color: $white;
       background: $light-blue;
-
-      // &--today {
-      //   font-weight: normal;
-      // }
     }
   }
 

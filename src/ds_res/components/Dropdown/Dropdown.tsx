@@ -1,6 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import classNames from "classnames";
-import "./Dropdown.scss";
+import styles from "./Dropdown.module.scss";
 
 import { DropdownArrow } from "./icons";
 import { useOnClickOutside } from "../../hooks/useOnCLickOutside";
@@ -33,27 +32,24 @@ export const Dropdown: FC<ISelect> = ({ data, onChange }) => {
     setIsOptionsOpen(false);
   };
   return (
-    <div className={"customSelect"} ref={ref}>
-      <div
-        className={classNames("customSelect__wrapper")}
-        onClick={toggleOptions}
-      >
-        <button className="customSelect__btn" type="button">
+    <div className={styles.customSelect} ref={ref}>
+      <div className={styles.wrapper} onClick={toggleOptions}>
+        <button className={styles.btn} type="button">
           {selectedOption && selectedOption.name}
         </button>
-        <div className="customSelect__arrow">
+        <div className={styles.arrow}>
           <DropdownArrow />
         </div>
         <ul
-          className={classNames("customSelect__options scroller", {
-            show: isOptionsOpen,
-          })}
+          className={`${styles.options} scroller ${
+            isOptionsOpen && styles.show
+          }`}
         >
           {data.map((option, index) => {
             return (
               <li
                 key={option.id}
-                className="customSelect__options-item"
+                className={styles.optionsItem}
                 onClick={() => onSelectOption(data[index])}
               >
                 {option.name}

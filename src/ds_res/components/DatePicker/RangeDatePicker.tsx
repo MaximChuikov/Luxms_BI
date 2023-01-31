@@ -1,12 +1,8 @@
 import React, { forwardRef, useState } from "react";
 import "./styles.scss";
 import DatePicker from "react-datepicker";
-import { CalendarIcon } from "../../../components/NewDatePicker/tools/constants";
-import {
-  getDayShortName,
-  getMonthName,
-  getYear,
-} from "../../../components/NewDatePicker/tools/utils";
+import { CalendarIcon } from "./tools/constants";
+import { getDayShortName, getMonthName, getYear } from "./tools/utils";
 
 type RangeDatePickerProps = {
   onChange?: (newValue: [Date, Date]) => void;
@@ -47,7 +43,6 @@ const RangeDatePicker: React.FC<RangeDatePickerProps> = ({
       selectsRange={true}
       startDate={startDate}
       endDate={endDate}
-      value={[new Date(), new Date().setMonth(3)]}
       monthsShown={2}
       onChange={changeHandler}
       dateFormat="dd.MM.yyyy"
@@ -55,6 +50,7 @@ const RangeDatePicker: React.FC<RangeDatePickerProps> = ({
       maxDate={maxDate}
       formatWeekDay={getDayShortName}
       calendarClassName="custom-calendar"
+      wrapperClassName="custom-wrapper"
       customInput={<CustomInput />}
       renderCustomHeader={({
         date,

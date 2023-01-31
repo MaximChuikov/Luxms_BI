@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styles from "./Table.module.scss";
+import { format } from "date-fns";
 import { useTable } from "react-table";
 import Filter from "../Filter/Filter";
 import Context from "../../context";
+import SuccessCircle from "../../icons/successCircle";
+import ErrorCircle from "../../icons/errorCircle";
 
 function Table({ columns, data }) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -38,10 +41,80 @@ function Table({ columns, data }) {
   );
 }
 
+const Header: React.FC<{
+  columnId: string;
+  columnName: string;
+  filters?: string[];
+  initialValues?: string[];
+  orderBy: string;
+  orderDirection: "asc" | "desc";
+  onConfirm?: (selectedFilters: string[]) => void;
+  onSort: (orderBy: string, orderDirection: "asc" | "desc") => void;
+  noFilter?: boolean;
+}> = ({
+  columnId,
+  columnName,
+  filters,
+  initialValues,
+  orderBy,
+  orderDirection,
+  onConfirm,
+  onSort,
+  noFilter,
+}) => {
+  const isSorted = useMemo(() => {
+    return orderBy === columnId;
+  }, [orderBy, columnId, orderDirection]);
+  const sortHandler = () => {
+    if (isSorted) {
+      if (orderDirection === "asc") {
+        onSort(columnId, "desc");
+      }
+      if (orderDirection === "desc") {
+        onSort("login", "asc");
+      }
+    } else {
+      onSort(columnId, "asc");
+    }
+  };
+  return (
+    <div className={styles.headerWrapper}>
+      <div className={styles.headerTitle} onClick={sortHandler}>
+        {isSorted ? (orderDirection === "asc" ? "▼ " : "▲ ") : ""}
+        {columnName}
+      </div>
+      <div className={styles.headerFilterWrapper}>
+        {!noFilter && (
+          <Filter
+            filters={filters}
+            initialValues={initialValues}
+            onConfirm={onConfirm}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
 const TableComponent: React.FC<{
   data: any[];
   filters: { uniqIps: string[]; uniqSystems: string[]; uniqLogins: string[] };
-}> = ({ data, filters }) => {
+  selectedFilters: {
+    selectedUserIpFilters: string[];
+    selectedSystemFilters: string[];
+    selectedLoginFilters: string[];
+  };
+  orderBy: string;
+  orderDirection: "asc" | "desc";
+  changeOrder: (newOrderBy: string, newOrderDirection: string) => void;
+}> = ({
+  data,
+  filters,
+  selectedFilters,
+  orderBy,
+  orderDirection,
+  changeOrder,
+}) => {
   const { applyUserIpFilters, applySystemFilters, applyLoginFilters } =
     useContext(Context);
 
@@ -50,15 +123,16 @@ const TableComponent: React.FC<{
       {
         Header: () => {
           return (
-            <div className={styles.headerWrapper}>
-              <div className={styles.headerTitle}>IP</div>
-              <div className={styles.headerFilterWrapper}>
-                <Filter
-                  filters={filters.uniqIps}
-                  onConfirm={applyUserIpFilters}
-                />
-              </div>
-            </div>
+            <Header
+              columnId={"user_ip"}
+              columnName={"IP"}
+              filters={filters.uniqIps}
+              initialValues={selectedFilters.selectedUserIpFilters}
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              onConfirm={applyUserIpFilters}
+              onSort={changeOrder}
+            />
           );
         },
         accessor: "user_ip",
@@ -66,15 +140,16 @@ const TableComponent: React.FC<{
       {
         Header: () => {
           return (
-            <div className={styles.headerWrapper}>
-              <div className={styles.headerTitle}>Система</div>
-              <div className={styles.headerFilterWrapper}>
-                <Filter
-                  filters={filters.uniqSystems}
-                  onConfirm={applySystemFilters}
-                />
-              </div>
-            </div>
+            <Header
+              columnId={"product"}
+              columnName={"Система"}
+              filters={filters.uniqSystems}
+              initialValues={selectedFilters.selectedSystemFilters}
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              onConfirm={applySystemFilters}
+              onSort={changeOrder}
+            />
           );
         },
         accessor: "product",
@@ -82,60 +157,109 @@ const TableComponent: React.FC<{
       {
         Header: () => {
           return (
-            <div className={styles.headerWrapper}>
-              <div className={styles.headerTitle}>Логин</div>
-              <div className={styles.headerFilterWrapper}>
-                <Filter
-                  filters={filters.uniqLogins}
-                  onConfirm={applyLoginFilters}
-                />
-              </div>
-            </div>
+            <Header
+              columnId={"user_ident"}
+              columnName={"Логин"}
+              filters={filters.uniqLogins}
+              initialValues={selectedFilters.selectedLoginFilters}
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              onConfirm={applyLoginFilters}
+              onSort={changeOrder}
+            />
           );
         },
         accessor: "user_ident",
       },
-      // {
-      //   // Header: "Вход",
-      //   Header: () => {
-      //     return (
-      //       <div>
-      //         <div className={styles.headerTitle}>Вход</div>
-      //         <div className={styles.headerFilterWrapper}>
-      //           <Filter />
-      //         </div>
-      //       </div>
-      //     );
-      //   },
-      //   accessor: "4",
-      // },
-      // {
-      //   // Header: "Выход",
-      //   Header: () => {
-      //     return (
-      //       <div>
-      //         <div className={styles.headerTitle}>Выход</div>
-      //         <div className={styles.headerFilterWrapper}>
-      //           <Filter />
-      //         </div>
-      //       </div>
-      //     );
-      //   },
-      //   accessor: "5",
-      // },
       {
         Header: () => {
           return (
-            <div className={styles.headerWrapper}>
-              <div className={styles.headerTitle}>Результат</div>
-              <div className={styles.headerFilterWrapper}></div>
+            <Header
+              columnId={"login"}
+              columnName={"Вход"}
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              onSort={changeOrder}
+              noFilter
+            />
+          );
+        },
+        accessor: "login",
+        Cell: ({ value }) => {
+          const date = new Date(value);
+          const firstRow = format(date, "hh:mm:ss");
+          const secondRow = format(date, "dd.MM.yyyy");
+          return (
+            <div className={styles.dateCellWrapper}>
+              <span>{firstRow}</span>
+              <br />
+              <span>{secondRow}</span>
             </div>
+          );
+        },
+      },
+      {
+        Header: () => {
+          return (
+            <Header
+              columnId={"logout"}
+              columnName={"Выход"}
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              onSort={changeOrder}
+              noFilter
+            />
+          );
+        },
+        accessor: "logout",
+        Cell: ({ value }) => {
+          const date = new Date(value);
+          const firstRow = format(date, "hh:mm:ss");
+          const secondRow = format(date, "dd.MM.yyyy");
+          return (
+            <div className={styles.dateCellWrapper}>
+              <span>{firstRow}</span>
+              <br />
+              <span>{secondRow}</span>
+            </div>
+          );
+        },
+      },
+      {
+        Header: () => {
+          return (
+            <Header
+              columnId={"outcome"}
+              columnName={"Результат"}
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              onSort={changeOrder}
+              noFilter
+            />
+          );
+        },
+        Cell: ({ value }) => {
+          return value === "success" ? (
+            <SuccessCircle />
+          ) : value === "failure" ? (
+            <ErrorCircle />
+          ) : (
+            value
           );
         },
         accessor: "outcome",
       },
     ],
-    [filters.uniqIps, filters.uniqLogins, filters.uniqSystems]
+    [
+      filters.uniqIps,
+      filters.uniqLogins,
+      filters.uniqSystems,
+      selectedFilters.selectedUserIpFilters,
+      selectedFilters.selectedSystemFilters,
+      selectedFilters.selectedLoginFilters,
+      orderBy,
+      orderDirection,
+    ]
   );
 
   const memoData = React.useMemo(() => data, [data]);

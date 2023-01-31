@@ -6,7 +6,7 @@
 
 .filterBtnWrapper {
   display: flex;
-  background: #455d70;
+  background: $light-marengo;
   height: 2.3rem;
   border: 1px solid $white;
   border-radius: 0.3rem;
@@ -28,6 +28,8 @@
   border: none;
   color: $white;
   cursor: pointer;
+
+  max-width: 13rem;
 }
 
 .filterBtnArrow {

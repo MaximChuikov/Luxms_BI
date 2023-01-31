@@ -1,15 +1,8 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import "./styles.scss";
 import DatePicker from "react-datepicker";
-import {
-  CalendarIcon,
-  months,
-} from "../../../components/NewDatePicker/tools/constants";
-import {
-  getDayShortName,
-  getMonthName,
-  getYear,
-} from "../../../components/NewDatePicker/tools/utils";
+import { CalendarIcon, months } from "./tools/constants";
+import { getDayShortName, getMonthName, getYear } from "./tools/utils";
 
 type MultipleDatePickerProps = {
   onChange?: (selectedDates: Date[]) => void;
@@ -26,24 +19,7 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
 }) => {
   // TODO: normalize date timestamp
   const [highlighted, setHighlighted] = useState<Date[]>(initialValue || []);
-  const [selected, setSelected] = useState<Date>(highlighted[0] || null);
-
-  const changeHandler = (selectedDate: Date) => {
-    let newHighlightedValue;
-    if (highlighted.find((date) => date.getTime() === selectedDate.getTime())) {
-      newHighlightedValue = [
-        ...highlighted.filter(
-          (date) => date.getTime() !== selectedDate.getTime()
-        ),
-      ];
-    } else {
-      newHighlightedValue = [...highlighted, selectedDate];
-      setSelected(selectedDate);
-    }
-
-    setHighlighted(newHighlightedValue);
-    onChange(newHighlightedValue);
-  };
+  const [selected, setSelected] = useState<Date>(initialValue?.[0] || null);
 
   // @ts-ignore
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
@@ -60,24 +36,25 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
     );
   });
 
+  useEffect(() => {
+    onChange(highlighted);
+  }, [highlighted]);
+
   const changeHandlerRaw = (date: Date) => {
-    if (date?.getTime() === selected?.getTime()) {
-      if (highlighted?.[0]?.getTime() === selected?.getTime()) {
-        if (highlighted.length === 1) {
-          setSelected(null);
-          setHighlighted([]);
-        } else {
-          setSelected(highlighted[1]);
-          setHighlighted(
-            highlighted.filter((d) => d.getTime() !== date.getTime())
-          );
-        }
-      } else {
-        setSelected(highlighted[0]);
-        setHighlighted(
-          highlighted.filter((d) => d.getTime() !== date.getTime())
-        );
-      }
+    const alreadyPickedIndex = highlighted.findIndex(
+      (item) => item.getTime() === date.getTime()
+    );
+    if (alreadyPickedIndex > -1) {
+      const newArr = [...highlighted];
+      newArr.splice(alreadyPickedIndex, 1);
+      setHighlighted(newArr);
+      setSelected(newArr.at(-1) || null);
+    } else {
+      const newArr = [...highlighted, date].sort(function (a, b) {
+        return a - b;
+      });
+      setHighlighted(newArr);
+      setSelected(newArr.at(-1));
     }
   };
 
@@ -85,7 +62,6 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
     <DatePicker
       highlightDates={highlighted}
       selected={selected}
-      onChange={changeHandler}
       onSelect={changeHandlerRaw}
       shouldCloseOnSelect={false}
       minDate={minDate}
@@ -93,6 +69,7 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
       dateFormat="dd.MM.yyyy"
       formatWeekDay={getDayShortName}
       calendarClassName="custom-calendar"
+      wrapperClassName="custom-wrapper"
       customInput={<CustomInput />}
       renderCustomHeader={({
         date,
