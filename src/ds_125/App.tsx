@@ -49,10 +49,61 @@ function App() {
             ])
         )
     }
+    const clickHandler = () => {
+      const HEADERS_FOR_FETCH = {
+        accept: 'application/json, text/javascript, */*; q=0.01',
+        'accept-language': 'en-US,en;q=0.9,ru;q=0.8',
+        'cache-control': 'no-cache',
+        'content-type': 'application/json',
+        pragma: 'no-cache',
+        'x-requested-with': 'XMLHttpRequest'
+      }
+      const body = {
+        lookupId: 1,
+        user_ip: '',
+        product: '',
+        user_ident: 'adm;bi',
+        orderBy: '',
+        orderDirection: 'asc',
+        from: '9999-01-01',
+        to: '9999-01-01'
+      }
+
+      const b2 = {
+        from: "9999-01-01",
+        lookupId: 1,
+        orderBy: "login",
+        orderDirection: "asc",
+        product: "",
+        to: "9999-01-01",
+        user_ident: "",
+        user_ip: ""
+      }
+
+      // eslint-disable-next-line no-undef
+      try {
+        fetch(`../../../api/lookup/ds_125/1`, {
+          credentials: 'include',
+          headers: HEADERS_FOR_FETCH,
+          body: JSON.stringify(b2),
+          method: 'POST',
+          mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(response => {
+          console.log(response)
+        })
+      } catch (error) {
+        console.error('error', error)
+      }
+    }
 
     return (
         <Context.Provider value={{ removeTodo }}>
             <div className="wrapper">
+              <button
+                onClick={() => {clickHandler()}}
+              >Нажми меня</button>
                 <h1>React Tutorial</h1>
                 <React.Suspense fallback={<p>Loading...</p>}>
                     <Modal/>
