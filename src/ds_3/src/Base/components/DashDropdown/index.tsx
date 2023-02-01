@@ -37,7 +37,6 @@ export const DashDropdown = ({ className, name, classNameDropdownButton, options
             background={Color.darkThemeDropdownBackground}
           />
         }
-        id="DropdownButton"
         onClick={() => setIsOpen(!isOpen)}
         className={classNameDropdownButton}
         dropdownChildren={

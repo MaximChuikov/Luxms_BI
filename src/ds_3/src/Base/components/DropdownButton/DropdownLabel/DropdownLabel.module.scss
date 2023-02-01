@@ -6,11 +6,17 @@
   display: flex;
   align-items: center;
   border: 2px solid Colors.$border-color;
-  width: fit-content;
   border-radius: 0.5rem;
   border: 2px solid Colors.$border-color;
   cursor: pointer;
   color: Colors.$font-color;
+  width: inherit;
+
+  .contentBox {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 
   .iconBox,
   .contentBox {

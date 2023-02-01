@@ -4,7 +4,6 @@ import styles from './DropdownButton.module.scss'
 
 type TDropdownButton = {
   className?: string
-  id: string
   dropdownChildren: JSX.Element
   dropdownLabel: JSX.Element
   isOpen: boolean
@@ -14,7 +13,6 @@ type TDropdownButton = {
 
 const DropdownButton = ({
   className,
-  id,
   dropdownChildren,
   dropdownLabel,
   isOpen,
@@ -37,7 +35,7 @@ const DropdownButton = ({
   }, [isOpen, elementRef])
 
   return (
-    <div is={id} className={[styles.dropdownButtonWrapper, className].join(' ')}>
+    <div className={[styles.dropdownButtonWrapper, className].join(' ')}>
       <button
         className={styles.dropdownButton}
         onClick={handleOnClick}

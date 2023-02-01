@@ -1,9 +1,8 @@
 .dropdownButtonWrapper {
   position: relative;
+  width: 100%;
 
   .dropdownButton {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    width: inherit;
   }
 }
