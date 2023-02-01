@@ -1,0 +1,34 @@
+// SKIM-IT start
+// Charts colors
+
+$positive-trend-chart-color: #78D64B;
+$negative-trend-chart-color: #FF6900;
+$undefined-chart-color: #68798B;
+
+
+$medium-dashlet-background: #455D70;
+$light-dashlet-background: #364654;
+$page-background: #394A58;
+$service-bar-background: #394A58;
+$navigation-bar-background: #394A58;
+$toggler-background: #455D70;
+$dropdown-list-background: black;
+$page-background: #394A58;
+$dropdown-list: #000;
+$font-color: white;
+$border-color: white;
+
+// Logo colors
+
+$main-logo-color: #F15140;
+
+
+// Border colors
+
+
+:export {
+  positiveTrendChartColor: $positive-trend-chart-color;
+  negativeTrendChartColor: $negative-trend-chart-color;
+  undefinedChartColor: $undefined-chart-color;
+}
+// SKIM IT end
