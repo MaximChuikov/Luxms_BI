@@ -1,0 +1,14 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_res/styles/Colors.module.scss';
+
+.dropdownOption {
+  @include mixins.toRem('font-size', 14);
+  @include mixins.toRem('line-height', 28);
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+
+  &.reversed {
+    flex-direction: row-reverse;
+  }
+}
