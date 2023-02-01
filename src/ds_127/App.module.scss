@@ -1,0 +1,20 @@
+@use "../ds_res/styles/_variables.scss";
+
+.wrapper {
+  background: variables.$light-marengo;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.datePickerWrapper {
+  width: 100%;
+  background: variables.$d3D5263;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
