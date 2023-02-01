@@ -25,6 +25,7 @@ const datePickerSelectData: { id: DatePickerVariants; name: string }[] = [
   { id: MONTH_PICKER_ID, name: "За месяц" },
 ];
 
+//TODO: в будущем возможно вынести в отдельный хук
 const convertToTableData = (rows: string[][], columns: Column[]) => {
   const tableData = rows.map((row) => {
     let convertedRow = {};

@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import "./styles.scss";
+import styles from "./DatePicker.module.scss"
 import DatePicker from "react-datepicker";
 import { CalendarIcon } from "./tools/constants";
 import { getDayShortName, getYear } from "./tools/utils";
@@ -29,11 +29,11 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     return (
       // @ts-ignore
-      <div className="custom-input" onClick={onClick} ref={ref}>
-        <div className="custom-input__value">
+      <div className={styles.customInput} onClick={onClick} ref={ref}>
+        <div className={styles.customInputValue}>
           {value ? value : "Выберите месяц"}
         </div>
-        <div className="custom-input__icon">
+        <div className={styles.customInputIcon}>
           <CalendarIcon />
         </div>
       </div>
@@ -48,8 +48,8 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
       maxDate={maxDate}
       dateFormat="MM.yyyy"
       formatWeekDay={getDayShortName}
-      calendarClassName="custom-calendar"
-      wrapperClassName="custom-wrapper"
+      calendarClassName={styles.customCalendar}
+      wrapperClassName={styles.customWrapper}
       customInput={<CustomInput />}
       showMonthYearPicker
       useShortMonthInDropdown={true}
@@ -63,26 +63,26 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
         nextYearButtonDisabled,
       }) => {
         return (
-          <div className="custom-header">
-            <div className="custom-header__row">
+          <div className={styles.customHeader}>
+          <div className={styles.customHeaderRow}>
               <button
                 onClick={decreaseYear}
                 disabled={prevYearButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
               >
                 {"<"}
               </button>
-              <div className="custom-header__select">{getYear(date)}</div>
+              <div className={styles.customHeaderSelect}>{getYear(date)}</div>
               <button
                 onClick={increaseYear}
                 disabled={nextYearButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
               >
                 {">"}
               </button>
             </div>
             <div
-              className="custom-header__row"
+              className={styles.customHeaderRow}
               style={{ justifyContent: "center" }}
             >
               <span>Выбор месяца</span>

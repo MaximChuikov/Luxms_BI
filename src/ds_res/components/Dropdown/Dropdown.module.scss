@@ -1,4 +1,4 @@
-@import "../../../ds_res/styles/variables.scss";
+@use "../../../ds_res/styles/_variables.scss";
 
 .customSelect {
   position: relative;
@@ -7,16 +7,16 @@
 
 .wrapper {
   display: flex;
-  background: $light-marengo;
+  background: variables.$light-marengo;
   height: 2.3rem;
-  border: 1px solid $white;
+  border: 1px solid variables.$white;
   border-radius: 0.3rem;
   align-items: center;
   cursor: pointer;
-  color: $white;
+  color: variables.$white;
 
   &.disabled {
-    background: $light-marengo;
+    background: variables.$light-marengo;
     border-color: #758a9c;
     cursor: default;
   }
@@ -34,7 +34,7 @@
   font-weight: 400;
   background: transparent;
   border: none;
-  color: $white;
+  color: variables.$white;
   cursor: pointer;
 
   &::before {
@@ -55,9 +55,9 @@
   overflow: auto;
   max-height: 30rem;
   min-height: 1rem;
-  background: black;
-  color: white;
-  border: 1px solid $dB0DCF4;
+  background: variables.$black;
+  color: variables.$white;
+  border: 1px solid variables.$dB0DCF4;
   z-index: 20;
   display: none;
   text-transform: uppercase;
@@ -71,7 +71,7 @@
   padding: 0.5rem 1rem;
   cursor: pointer;
   &:hover {
-    background: $light-marengo;
+    background: variables.$light-marengo;
   }
 }
 
@@ -85,7 +85,7 @@
   position: relative;
   width: 2.2rem;
   height: 100%;
-  border-left: solid 1px white;
+  border-left: solid 1px variables.$white;
   display: flex;
   align-items: center;
   justify-content: center;

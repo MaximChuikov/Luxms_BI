@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import "./styles.scss";
+import styles from "./DatePicker.module.scss"
 import DatePicker from "react-datepicker";
 import { CalendarIcon } from "./tools/constants";
 import { getDayShortName, getMonthName, getYear } from "./tools/utils";
@@ -23,11 +23,11 @@ const RangeDatePicker: React.FC<RangeDatePickerProps> = ({
   // @ts-ignore
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
     // @ts-ignore
-    <div className="custom-input" onClick={onClick} ref={ref}>
-      <div className="custom-input__value">
+    <div className={styles.customInput} onClick={onClick} ref={ref}>
+      <div className={styles.customInputValue}>
         {value ? value : "Выберите дату"}
       </div>
-      <div className="custom-input__icon">
+      <div className={styles.customInputIcon}>
         <CalendarIcon />
       </div>
     </div>
@@ -49,8 +49,8 @@ const RangeDatePicker: React.FC<RangeDatePickerProps> = ({
       minDate={minDate}
       maxDate={maxDate}
       formatWeekDay={getDayShortName}
-      calendarClassName="custom-calendar"
-      wrapperClassName="custom-wrapper"
+      calendarClassName={styles.customCalendar}
+      wrapperClassName={styles.customWrapper}
       customInput={<CustomInput />}
       renderCustomHeader={({
         date,
@@ -66,43 +66,43 @@ const RangeDatePicker: React.FC<RangeDatePickerProps> = ({
         customHeaderCount,
       }) => {
         return (
-          <div className="custom-header">
-            <div className="custom-header__row">
+          <div className={styles.customHeader}>
+            <div className={styles.customHeaderRow}>
               <button
                 onClick={decreaseYear}
                 disabled={prevYearButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
                 style={customHeaderCount === 1 ? { display: "none" } : null}
               >
                 {"<"}
               </button>
-              <div className="custom-header__select">{getYear(date)}</div>
+              <div className={styles.customHeaderSelect}>{getYear(date)}</div>
               <button
                 onClick={increaseYear}
                 disabled={nextYearButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
                 style={customHeaderCount === 0 ? { display: "none" } : null}
               >
                 {">"}
               </button>
             </div>
 
-            <div className="custom-header__row">
+            <div className={styles.customHeaderRow}>
               <button
                 onClick={decreaseMonth}
                 disabled={prevMonthButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
                 style={customHeaderCount === 1 ? { display: "none" } : null}
               >
                 {"<"}
               </button>
-              <div className="custom-header__select">
+              <div className={styles.customHeaderSelect}>
                 {getMonthName(monthDate)}
               </div>
               <button
                 onClick={increaseMonth}
                 disabled={nextMonthButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
                 style={customHeaderCount === 0 ? { display: "none" } : null}
               >
                 {">"}

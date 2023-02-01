@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import "./styles.scss";
+import styles from "./DatePicker.module.scss"
 import DatePicker from "react-datepicker";
 import { CalendarIcon, months } from "./tools/constants";
 import { getDayShortName, getMonthName, getYear } from "./tools/utils";
@@ -25,11 +25,11 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     return (
       // @ts-ignore
-      <div className="custom-input" onClick={onClick} ref={ref}>
-        <div className="custom-input__value">
+      <div className={styles.customInput} onClick={onClick} ref={ref}>
+        <div className={styles.customInputValue}>
           {value ? value : "Выберите дату"}
         </div>
-        <div className="custom-input__icon">
+        <div className={styles.customInputIcon}>
           <CalendarIcon />
         </div>
       </div>
@@ -68,8 +68,8 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
       maxDate={maxDate}
       dateFormat="dd.MM.yyyy"
       formatWeekDay={getDayShortName}
-      calendarClassName="custom-calendar"
-      wrapperClassName="custom-wrapper"
+      calendarClassName={styles.customCalendar}
+      wrapperClassName={styles.customWrapper}
       customInput={<CustomInput />}
       renderCustomHeader={({
         date,
@@ -84,30 +84,30 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
         nextYearButtonDisabled,
       }) => {
         return (
-          <div className="custom-header">
-            <div className="custom-header__row">
+          <div className={styles.customHeader}>
+            <div className={styles.customHeaderRow}>
               <button
                 onClick={decreaseYear}
                 disabled={prevYearButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
               >
                 {"<"}
               </button>
-              <div className="custom-header__select">{getYear(date)}</div>
+              <div className={styles.customHeaderSelect}>{getYear(date)}</div>
               <button
                 onClick={increaseYear}
                 disabled={nextYearButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
               >
                 {">"}
               </button>
             </div>
 
-            <div className="custom-header__row">
+            <div className={styles.customHeaderRow}>
               <button
                 onClick={decreaseMonth}
                 disabled={prevMonthButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
               >
                 {"<"}
               </button>
@@ -116,7 +116,7 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
                 onChange={({ target: { value } }) =>
                   changeMonth(months.indexOf(value))
                 }
-                className="custom-header__select"
+                className={styles.customHeaderSelect}
               >
                 {months.map((option) => (
                   <option key={option} value={option}>
@@ -127,7 +127,7 @@ const MultipleDatePicker: React.FC<MultipleDatePickerProps> = ({
               <button
                 onClick={increaseMonth}
                 disabled={nextMonthButtonDisabled}
-                className="custom-header__button"
+                className={styles.customHeaderButton}
               >
                 {">"}
               </button>

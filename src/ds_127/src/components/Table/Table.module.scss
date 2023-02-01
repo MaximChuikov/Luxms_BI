@@ -1,4 +1,4 @@
-@import "../../../../ds_res/styles/variables.scss";
+@use "../../../../ds_res/styles/_variables.scss";
 
 $vertical-spacing: 0.1rem;
 $horizontal-spacing: 0.2rem;
@@ -8,7 +8,7 @@ $horizontal-spacing: 0.2rem;
   table {
     border-collapse: separate;
     border-spacing: $horizontal-spacing $vertical-spacing;
-    color: $white;
+    color: variables.$white;
     width: 100%;
 
     th {
@@ -23,10 +23,10 @@ $horizontal-spacing: 0.2rem;
         text-align: center;
       }
       tr {
-        background: $marengo;
+        background: variables.$marengo;
       }
       tr:nth-child(odd) {
-        background: $dark-marengo;
+        background: variables.$dark-marengo;
       }
     }
   }
@@ -39,7 +39,7 @@ $horizontal-spacing: 0.2rem;
 }
 
 .headerTitle {
-  background: $dark-blue;
+  background: variables.$dark-blue;
   padding: 0.6rem;
   margin-bottom: $vertical-spacing;
   cursor: pointer;
@@ -55,13 +55,13 @@ $horizontal-spacing: 0.2rem;
   justify-content: center;
   padding: 0.5rem;
 
-  background: $marengo;
+  background: variables.$marengo;
 }
 
 .dateCellWrapper {
   text-align: center;
 
   :nth-child(3) {
-    color: $d909CAA;
+    color: variables.$d909CAA;
   }
 }

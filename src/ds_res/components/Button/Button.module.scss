@@ -1,15 +1,15 @@
-@import "../../../ds_res/styles/variables.scss";
+@use "../../../ds_res/styles/_variables.scss";
 
 .button {
-  background: $light-blue;
-  color: $white;
-  border: 1px solid $white;
+  background: variables.$light-blue;
+  color: variables.$white;
+  border: 1px solid variables.$white;
   border-radius: 5px;
   padding: 5px;
 
   text-transform: uppercase;
 
   &:hover {
-    background: $blue;
+    background: variables.$blue;
   }
 }

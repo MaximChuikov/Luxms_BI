@@ -1,4 +1,4 @@
-@import "../../../../ds_res/styles/variables.scss";
+@use "../../../../ds_res/styles/_variables.scss";
 
 .filterBtn {
   margin-right: 1rem;
@@ -6,9 +6,9 @@
 
 .filterBtnWrapper {
   display: flex;
-  background: $light-marengo;
+  background: variables.$light-marengo;
   height: 2.3rem;
-  border: 1px solid $white;
+  border: 1px solid variables.$white;
   border-radius: 0.3rem;
   align-items: center;
   cursor: pointer;
@@ -26,7 +26,7 @@
   font-weight: 400;
   background: transparent;
   border: none;
-  color: $white;
+  color: variables.$white;
   cursor: pointer;
 
   max-width: 13rem;
@@ -38,7 +38,7 @@
   position: relative;
   width: 2.2rem;
   height: 100%;
-  border-left: solid 1px $white;
+  border-left: solid 1px variables.$white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +50,7 @@
   left: 0;
   padding: 0.5rem;
 
-  background: $black;
+  background: variables.$black;
 }
 
 .buttonsWrapper {
