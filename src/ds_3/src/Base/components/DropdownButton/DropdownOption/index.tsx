@@ -1,16 +1,16 @@
 import React, { ReactNode } from 'react'
 import styles from './DropdownOption.module.scss'
 
-export type TObject = {
+export type TOptionObject = {
   label: string
   icon?: ReactNode
 }
 
 export type TOption = {
-  option: TObject
+  option: TOptionObject
   index: number
   reversed?: boolean
-  onClick: (arg: { option: TObject; index: number }) => void
+  onClick: (arg: { option: TOptionObject; index: number }) => void
 }
 
 const Option = ({ option, index, onClick, reversed }: TOption) => (
