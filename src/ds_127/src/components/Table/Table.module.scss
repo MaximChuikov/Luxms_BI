@@ -1,0 +1,67 @@
+@use "../../../../ds_res/styles/_variables.scss";
+
+$vertical-spacing: 0.1rem;
+$horizontal-spacing: 0.2rem;
+
+.table {
+  overflow-y: scroll;
+  table {
+    border-collapse: separate;
+    border-spacing: $horizontal-spacing $vertical-spacing;
+    color: variables.$white;
+    width: 100%;
+
+    th {
+      padding: 0;
+      height: 100px;
+    }
+
+    tbody {
+      td {
+        height: 3.3rem;
+        padding: 0.3rem;
+        text-align: center;
+      }
+      tr {
+        background: variables.$marengo;
+      }
+      tr:nth-child(odd) {
+        background: variables.$dark-marengo;
+      }
+    }
+  }
+}
+
+.headerWrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.headerTitle {
+  background: variables.$dark-blue;
+  padding: 0.6rem;
+  margin-bottom: $vertical-spacing;
+  cursor: pointer;
+
+  text-align: center;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.headerFilterWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+
+  background: variables.$marengo;
+}
+
+.dateCellWrapper {
+  text-align: center;
+
+  :nth-child(3) {
+    color: variables.$d909CAA;
+  }
+}

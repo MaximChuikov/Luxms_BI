@@ -1,0 +1,92 @@
+@use "../../../ds_res/styles/_variables.scss";
+
+.customSelect {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.wrapper {
+  display: flex;
+  background: variables.$light-marengo;
+  height: 2.3rem;
+  border: 1px solid variables.$white;
+  border-radius: 0.3rem;
+  align-items: center;
+  cursor: pointer;
+  color: variables.$white;
+
+  &.disabled {
+    background: variables.$light-marengo;
+    border-color: #758a9c;
+    cursor: default;
+  }
+}
+
+.btn {
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-transform: uppercase;
+  margin: 0 0.5rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  color: variables.$white;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 7px;
+    width: 21px;
+    height: 20px;
+  }
+}
+
+.options {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 2px);
+  min-width: 100%;
+  overflow: auto;
+  max-height: 30rem;
+  min-height: 1rem;
+  background: variables.$black;
+  color: variables.$white;
+  border: 1px solid variables.$dB0DCF4;
+  z-index: 20;
+  display: none;
+  text-transform: uppercase;
+
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.optionsItem {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  &:hover {
+    background: variables.$light-marengo;
+  }
+}
+
+.show {
+  display: block;
+}
+
+.arrow {
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  width: 2.2rem;
+  height: 100%;
+  border-left: solid 1px variables.$white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
