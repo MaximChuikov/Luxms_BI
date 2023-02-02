@@ -86,6 +86,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /\.module\.s[ac]ss$/i,
         use: [
           "style-loader", // Creates `style` nodes from JS strings
           {
@@ -93,6 +94,22 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: "[local]--[hash:base64:5]"
+              }
+            }
+          }, // Translates CSS into CommonJS
+          "sass-loader" // Compiles Sass to CSS
+        ]
+      },
+      {
+        test: /\.module\.s[ac]ss$/i,
+        use: [
+          "style-loader", // Creates `style` nodes from JS strings
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: "[name]__[local]___[hash:base64:5]"
               }
             }
           }, // Translates CSS into CommonJS
