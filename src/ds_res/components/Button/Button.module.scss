@@ -1,0 +1,15 @@
+@use "../../../ds_res/styles/_variables.scss";
+
+.button {
+  background: variables.$light-blue;
+  color: variables.$white;
+  border: 1px solid variables.$white;
+  border-radius: 5px;
+  padding: 5px;
+
+  text-transform: uppercase;
+
+  &:hover {
+    background: variables.$blue;
+  }
+}
