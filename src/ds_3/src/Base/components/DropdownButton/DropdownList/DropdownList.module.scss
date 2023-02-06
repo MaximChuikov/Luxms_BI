@@ -1,0 +1,13 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_res/styles/Colors.module.scss';
+
+.dropdownList {
+  @include mixins.toRem('padding', 10);
+  @include mixins.toRem('gap', 5);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: Colors.$dropdown-list-background;
+  z-index: 1;
+  width: max-content;
+}

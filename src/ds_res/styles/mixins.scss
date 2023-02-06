@@ -1,0 +1,12 @@
+@mixin toRem($property, $value) {
+  #{$property}: ($value / 16) + rem;
+}
+
+// Перевод величин типа margin и padding в rem с нативным правилом записи 1/2/4 значения
+@mixin trblProp($prop, $toRem: 'false', $top, $right: $top, $bottom: $top, $left: $right) {
+  @if $toRem == 'true'{
+    #{$prop}: ($top / 16) + rem ($right / 16) + rem ($bottom / 16) + rem ($left / 16) + rem;
+  } @else {
+    #{$prop}: ($top + px) ($right + px) ($bottom + px) ($left + px);
+  }
+}

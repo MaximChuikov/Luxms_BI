@@ -55,6 +55,7 @@
     "jquery": "3.6.0",
     "mime-types": "2.1.32",
     "next-tick": "1.1.0",
+    "object-hash": "^3.0.0",
     "react": "17.0.1",
     "react-datepicker": "4.8.0",
     "react-dom": "17.0.1",

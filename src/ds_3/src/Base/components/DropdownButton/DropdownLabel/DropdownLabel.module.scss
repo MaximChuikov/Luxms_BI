@@ -1,0 +1,69 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_res/styles/Colors.module.scss';
+
+.dropdownBasic {
+  @include mixins.toRem('gap', 6);
+  display: flex;
+  align-items: center;
+  border: 2px solid Colors.$border-color;
+  border-radius: 0.5rem;
+  border: 2px solid Colors.$border-color;
+  cursor: pointer;
+  color: Colors.$font-color;
+  width: inherit;
+
+  .contentBox {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .iconBox,
+  .contentBox {
+    @include mixins.toRem('padding-top', 11);
+    @include mixins.toRem('padding-bottom', 11);
+  }
+
+  .iconBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.reversed {
+      transform: rotateX(180deg);
+    }
+  }
+
+  &.dropdownLabelSecondary {
+    .iconBox,
+    .contentBox {
+      @include mixins.toRem('padding-top', 8);
+      @include mixins.toRem('padding-bottom', 8);
+    }
+  }
+
+  &.dropdownLabelStraight {
+    @include mixins.toRem('padding-left', 12);
+    @include mixins.toRem('padding-right', 16);
+
+    &.separated {
+      .contentBox {
+        @include mixins.toRem('padding-left', 6);
+        border-left: 2px solid Colors.$border-color;
+      }
+    }
+  }
+
+  &.dropdownLabelReversed {
+    @include mixins.toRem('padding-left', 8);
+    @include mixins.toRem('padding-right', 8);
+    flex-direction: row-reverse;
+
+    &.separated {
+      .contentBox {
+        @include mixins.toRem('padding-right', 6);
+        border-right: 2px solid Colors.$border-color;
+      }
+    }
+  }
+}
