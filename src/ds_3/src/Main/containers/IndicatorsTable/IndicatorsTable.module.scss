@@ -1,0 +1,25 @@
+@use 'ds_res/styles/mixins.scss';
+
+.indicatorsTable {
+  & table {
+    border-collapse: separate;
+    border-spacing: 2px 5px;
+
+    & tr {
+      &:nth-of-type(odd) {
+        background-color: rgba($color: #000000, $alpha: 0.05);
+      } 
+      &:nth-of-type(even) {
+        background-color: rgba($color: #000000, $alpha: 0.1);
+      }
+    }
+    & th, td {
+      @include mixins.toRem('height', 60);
+      @include mixins.trblProp('padding', true, 15, 5);
+      &:last-of-type {
+        width: 60px;
+        text-align: center;
+      }
+    }
+  }
+}
