@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
 
 type TLink = {
-  className: string
+  className?: string
   href: string
   children: ReactElement | string
 }
 
-const Link = ({ className, href, children }: TLink) => {
+export const Link = ({ className, href, children }: TLink) => {
   const handleClick = (e: React.MouseEvent) => {
     if (e.metaKey || e.ctrlKey) return // открытие в новой вкладке при клике с зажатым ctrl
     e.preventDefault()
@@ -20,5 +20,3 @@ const Link = ({ className, href, children }: TLink) => {
     </a>
   )
 }
-
-export default Link

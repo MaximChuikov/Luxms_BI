@@ -11,7 +11,7 @@ type TDropdownButton = {
   onClick: (arg: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const DropdownButton = ({
+export const DropdownButton = ({
   className,
   dropdownChildren,
   dropdownLabel,
@@ -68,5 +68,3 @@ const DropdownButton = ({
     </div>
   )
 }
-
-export default DropdownButton
