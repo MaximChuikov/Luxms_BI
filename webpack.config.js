@@ -86,7 +86,6 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        exclude: /\.module\.s[ac]ss$/i,
         use: [
           "style-loader", // Creates `style` nodes from JS strings
           {
