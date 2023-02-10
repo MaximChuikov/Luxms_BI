@@ -1,5 +1,5 @@
 @use 'ds_res/styles/mixins.scss';
-@use 'ds_res/styles/Colors.module.scss';
+@use 'ds_res/styles/Colors.module.scss' as Colors;
 
 .dropdownList {
   @include mixins.toRem('padding', 10);
