@@ -1,5 +1,5 @@
 @use 'ds_res/styles/mixins.scss';
-@use 'ds_res/styles/Colors.module.scss';
+@use 'ds_res/styles/Colors.module.scss' as Colors;
 
 .dropdownBasic {
   @include mixins.toRem('gap', 6);
@@ -7,7 +7,6 @@
   align-items: center;
   border: 2px solid Colors.$border-color;
   border-radius: 0.5rem;
-  border: 2px solid Colors.$border-color;
   cursor: pointer;
   color: Colors.$font-color;
   width: inherit;
@@ -37,8 +36,8 @@
   &.dropdownLabelSecondary {
     .iconBox,
     .contentBox {
-      @include mixins.toRem('padding-top', 8);
-      @include mixins.toRem('padding-bottom', 8);
+      @include mixins.toRem('padding-top', 9);
+      @include mixins.toRem('padding-bottom', 9);
     }
   }
 
