@@ -1,0 +1,45 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_res/styles/Colors.module.scss' as Colors;
+
+
+.contentWrapper {
+  width: 100%;
+  background-color: Colors.$page-background;
+  transition: all 0.3s ease-in;
+  position: relative;
+  z-index: 10;
+  
+  &.containerExpanded {
+    @include mixins.toRem('margin-top', -292);
+  }
+
+  .controlsContainer {
+    @include mixins.trblProp('padding', true, 15);
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    .selectorsWithTableControlBtnContainer {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-content: center;
+
+      .selectorsContainer {
+        display: flex;
+        justify-content: space-between;
+        @include mixins.toRem('gap', 10);
+      }
+
+      .tableControlBtn {
+        border: 2px solid Colors.$border-color;
+        @include mixins.trblProp('padding', true, 8);
+        border-radius: 0.5rem;
+        
+        & svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
