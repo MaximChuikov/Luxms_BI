@@ -45,7 +45,7 @@ export const Table = <T,>({ columns, data, withTHead, onClick, typeTable = 'defa
               {row.cells.map((cell) => {
                 return (
                   <td
-                    style={cell.column.width !== 150 ? { width: `${cell.column.width}px` } : undefined}
+                    style={cell.column.width !== 150 ? { width: `${cell.column.width}rem` } : undefined}
                     {...cell.getCellProps()}
                     onClick={handleOnClick}
                     key={hash(cell)}
