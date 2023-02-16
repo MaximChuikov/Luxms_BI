@@ -15,9 +15,9 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-
+    gap: 10px;
     .dashletDropdown {
-      width: 33.3%;
+      max-width: calc((100% - 20px)/ 3);
     }
   }
 

@@ -44,8 +44,8 @@
   &.dropdownLabelSecondary {
     .iconBox,
     .contentBox {
-      @include mixins.toRem('padding-top', 8);
-      @include mixins.toRem('padding-bottom', 8);
+      @include mixins.toRem('padding-top', 9);
+      @include mixins.toRem('padding-bottom', 9);
     }
   }
 
