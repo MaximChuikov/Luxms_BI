@@ -3,7 +3,7 @@
 .indicatorsTable {
   & table {
     border-collapse: separate;
-    border-spacing: 2px 5px;
+    border-spacing: 0.125rem 0.3125rem;
 
     & tr {
       &:nth-of-type(odd) {
@@ -17,7 +17,7 @@
       @include mixins.toRem('height', 60);
       @include mixins.trblProp('padding', true, 15, 5);
       &:last-of-type {
-        width: 60px;
+        @include mixins.toRem('width', 60);
         text-align: center;
       }
     }
