@@ -1,0 +1,22 @@
+@use 'ds_res/styles/Colors.module.scss' as Colors;
+@use 'ds_res/styles/mixins.scss';
+
+.indicatorsPageWrapper {
+  grid-template-rows: 1fr 1.71fr;
+  background-color: Colors.$page-background;
+  height: 100%;
+  @include mixins.trblProp('padding', true, 0, 17);
+  & section {
+    min-width: 0;
+  }
+  .topDashboardsLine {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 2fr;
+    // transition: all 0.3s ease-in;
+    &.hide{
+      visibility: hidden;
+    }
+  }
+}
+

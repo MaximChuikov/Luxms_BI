@@ -40,7 +40,6 @@ export const indicatorsTableColumns: Column<Partial<TIndicatorsTableRowData>>[] 
   {
     Header: 'Chart data',
     accessor: 'chartData',
-    width: 30.625, // в rem
     Cell: ({ value, row }: CellProps<Partial<TIndicatorsTableRowData>, TCustomChartData | undefined>) => {
       const indicatorType: number = row.original.indicator_type_id as number
       return value ? (
@@ -65,7 +64,6 @@ export const indicatorsTableColumns: Column<Partial<TIndicatorsTableRowData>>[] 
   {
     Header: 'Link',
     accessor: 'link',
-    width: 3.75, // в rem
     // TODO: описать логику перехода на страницу показателя
     Cell: () => (
       <Link href={'/'}>
