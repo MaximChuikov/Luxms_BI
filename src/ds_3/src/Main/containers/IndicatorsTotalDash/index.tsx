@@ -3,10 +3,12 @@ import Color from 'ds_res/styles/Colors.module.scss'
 import { DashDropdown } from 'src/Base/components/DashDropdown'
 import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
 import { PieChartWithCustomLabel } from 'src/Base/components/PieChartWithCustomLabel'
-import { data, labelSettings, options } from 'src/Main/containers/IndicatorsTotalDash/mockData'
+import { data, labelSettings } from 'src/Main/containers/IndicatorsTotalDash/mockData'
+import { UrlState } from 'bi-internal/core'
+import { evaluationPerspectives, indicatorsTypes, periodTypes } from 'src/Base/constants/options'
 import styles from './IndicatorsTotalDash.module.scss'
 
-const chartColors = [Color.positiveTrendChartColor, Color.negativeTrendChartColor, Color.undefinedChartColor]
+const chartColors = [Color.positiveTrendChartColor, Color.negativeTrendChartColor, Color.neutralChartColor]
 
 enum AssignmentsTrends {
   positite = 0,
@@ -28,10 +30,14 @@ type TIndicatorsTotalDash = {
 }
 
 const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
+  const urlState = UrlState.getInstance()
+  urlState.subscribeUpdatesAndNotify(() => {})
+  const stateCharts = UrlState.getModel()
+
   const [dashState, setDashState] = useState({
-    perspectiveDropdown: options[0],
-    indicatorsType: options[0],
-    periods: options[0]
+    perspectiveDropdown: { label: stateCharts.perspectiveDropdown ?? evaluationPerspectives[0].label },
+    indicatorsType: { label: stateCharts.indicatorsType ?? indicatorsTypes[0].label },
+    periods: { label: stateCharts.periods ?? periodTypes[0].label }
   })
 
   const onSelect = ({ name, value }: { name: string; value: TOptionObject }) => {
@@ -39,6 +45,7 @@ const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
       ...dashState,
       [name]: value
     })
+    urlState.updateModel({ [name]: value.label })
   }
 
   useEffect(() => {
@@ -51,7 +58,7 @@ const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
         <DashDropdown
           value={dashState.perspectiveDropdown}
           name="perspectiveDropdown"
-          options={options}
+          options={evaluationPerspectives}
           onChange={onSelect}
           className={styles.dashletDropdown}
         />
@@ -59,14 +66,14 @@ const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
           className={styles.dashletDropdown}
           value={dashState.indicatorsType}
           name="indicatorsType"
-          options={options}
+          options={indicatorsTypes}
           onChange={onSelect}
         />
         <DashDropdown
           className={styles.dashletDropdown}
           value={dashState.periods}
           name="periods"
-          options={options}
+          options={periodTypes}
           onChange={onSelect}
         />
       </div>
