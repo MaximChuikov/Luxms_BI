@@ -12,7 +12,7 @@ type TDropdownLabel = {
   isClicked: boolean
 }
 
-const DropdownLabel = ({
+export const DropdownLabel = ({
   reversed,
   separated,
   icon,
@@ -44,5 +44,3 @@ const DropdownLabel = ({
     </div>
   )
 }
-
-export default DropdownLabel

@@ -6,9 +6,7 @@ type TRoute = {
   path: string
 }
 
-const Route = ({ path, children }: TRoute) => {
+export const Route = ({ path, children }: TRoute) => {
   useLocationChange()
   return window.location.pathname === path ? <>{children}</> : null
 }
-
-export default Route

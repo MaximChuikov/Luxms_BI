@@ -1,0 +1,16 @@
+@use 'ds_res/styles/Colors.module.scss' as Colors;
+
+.indicatorsTable {
+  & td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(5),
+    td:nth-child(7){
+    font-size: 12px;
+  }
+  & td:last-of-type {
+    text-align: center;
+    & path {
+      fill: Colors.$font-color;
+    }
+  }
+}

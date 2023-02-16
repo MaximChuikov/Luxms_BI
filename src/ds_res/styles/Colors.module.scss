@@ -3,7 +3,10 @@
 
 $positive-trend-chart-color: #78D64B;
 $negative-trend-chart-color: #FF6900;
-$undefined-chart-color: #68798B;
+$positive-trend-chart-area: rgba(120, 214, 75, 0.5);
+$negative-trend-chart-area: rgba(255, 105, 0, 0.3);
+$neutral-chart-color: #68798B;
+$neutral-chart-area: rgba(104, 121, 139, 0.3);
 
 
 $medium-dashlet-background: #455D70;
@@ -28,7 +31,10 @@ $main-logo-color: #F15140;
 
 :export {
   positiveTrendChartColor: $positive-trend-chart-color;
+  positiveTrendChartArea: $positive-trend-chart-area;
   negativeTrendChartColor: $negative-trend-chart-color;
-  undefinedChartColor: $undefined-chart-color;
+  negativeTrendChartArea: $negative-trend-chart-area;
+  neutralChartColor: $neutral-chart-color;
+  neutralChartArea: $neutral-chart-area;
 }
 // SKIM IT end

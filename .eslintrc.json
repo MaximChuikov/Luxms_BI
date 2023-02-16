@@ -34,6 +34,13 @@
         "allowTemplateLiterals": true
       }
     ],
+    "@typescript-eslint/naming-convention": [
+        "off",
+      {
+        "selector": "variables",
+        "format": ["camelCase"]
+      }
+    ],
     "prettier/prettier": [
       "error",
       {
@@ -44,7 +51,8 @@
     ],
     "indent": [
       "error",
-      2
+      2,
+      { "SwitchCase": 1 }
     ],
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
     "import/prefer-default-export": "off",

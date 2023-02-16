@@ -1,6 +1,6 @@
 @use  'ds_res/styles/Indents.module.scss';
 @use  'ds_res/styles/mixins.scss';
-@use  'ds_res/styles/Colors.module.scss';
+@use  'ds_res/styles/Colors.module.scss' as Colors;
 
 .indicatorsTotalDashWrapper {
   @include mixins.toRem('padding', 15);
