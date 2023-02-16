@@ -1,13 +1,21 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
+
 .chartLabelDescription {
   width: 40px;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
-  color: #FFFFFF;
+  @include themeUtils.themify(themes.$themes) {
+    fill: themeUtils.themed('fontColor');
+  }
 }
 
 .chartLabelValue {
   font-size: 30px;
   line-height: 14px;
-  color: #FFFFFF;
+  @include themeUtils.themify(themes.$themes) {
+    fill: themeUtils.themed('fontColor');
+  }
 }

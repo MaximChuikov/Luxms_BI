@@ -1,14 +1,16 @@
-@use  'ds_res/styles/Indents.module.scss';
 @use  'ds_res/styles/mixins.scss';
-@use  'ds_res/styles/Colors.module.scss' as Colors;
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
 
 .indicatorsTotalDashWrapper {
   @include mixins.toRem('padding', 15);
   @include mixins.toRem('gap', 15);
+  @include themeUtils.themify(themes.$themes) {
+    background: themeUtils.themed('primaryDashBackground');
+    border: 1px solid themeUtils.themed('primaryDashBorder');
+  }
   display: flex;
   flex-direction: column;
-  background: Colors.$medium-dashlet-background;
-
   .filtersContainer {
     display: flex;
     justify-content: space-between;
@@ -29,7 +31,6 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      color: Colors.$font-color;
 
       .legendItem {
         @include mixins.toRem('gap', 10);

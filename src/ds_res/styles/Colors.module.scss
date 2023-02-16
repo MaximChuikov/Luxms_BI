@@ -1,6 +1,44 @@
 // SKIM-IT start
 // Charts colors
 
+$darkTheme: (
+  pageBackground: #394A58,
+  fontColor: white,
+  borderColor: white,
+  primaryDashBorder: transparent,
+  secondaryDashBorder: #68798B,
+  rowOddBackground: rgba($color: #000000, $alpha: 0.05),
+  rowEvenBackground: rgba($color: #000000, $alpha: 0.05),
+  selectBackground: rgba(0, 0, 0, 0.25),
+  primaryDashBackground: #455D70,
+  secondaryDashBackground: rgba(0, 0, 0, 0.05),
+  dropdownListBackground: black,
+);
+
+
+$lightTheme: (
+  pageBackground: #FFFFFF,
+  fontColor: #000,
+  borderColor: #000,
+  primaryDashBorder: #909CAA,
+  secondaryDashBorder: #68798B,
+  rowOddBackground: rgba($color: #000000, $alpha: 0.05),
+  rowEvenBackground: rgba($color: #000000, $alpha: 0.1),
+  selectBackground: #B0DCF4,
+  primaryDashBackground: #FFF,
+  secondaryDashBackground: rgba(0, 0, 0, 0.05),
+  dropdownListBackground: #BFC5CE,
+);
+
+$chartColors: (
+  positiveTrendStroke: #78D64B,
+  negativeTrendStroke: #FF6900,
+  positiveTrendArea: rgba(120, 214, 75, 0.5),
+  negativeTrendArea: rgba(255, 105, 0, 0.3),
+  neutralTrendStroke: #68798B,
+  neutralTrendArea: rgba(104, 121, 139, 0.3),
+);
+
 $positive-trend-chart-color: #78D64B;
 $negative-trend-chart-color: #FF6900;
 $positive-trend-chart-area: rgba(120, 214, 75, 0.5);
@@ -9,32 +47,15 @@ $neutral-chart-color: #68798B;
 $neutral-chart-area: rgba(104, 121, 139, 0.3);
 
 
-$medium-dashlet-background: #455D70;
-$light-dashlet-background: #364654;
-$page-background: #394A58;
-$service-bar-background: #394A58;
-$navigation-bar-background: #394A58;
-$toggler-background: #455D70;
-$dropdown-list-background: black;
-$page-background: #394A58;
-$dropdown-list: #000;
-$font-color: white;
-$border-color: white;
-
-// Logo colors
-
-$main-logo-color: #F15140;
-
-
 // Border colors
 
 
 :export {
-  positiveTrendChartColor: $positive-trend-chart-color;
-  positiveTrendChartArea: $positive-trend-chart-area;
-  negativeTrendChartColor: $negative-trend-chart-color;
-  negativeTrendChartArea: $negative-trend-chart-area;
-  neutralChartColor: $neutral-chart-color;
-  neutralChartArea: $neutral-chart-area;
+  positiveTrendChartColor: map_get($chartColors, positiveTrendStroke);
+  positiveTrendChartArea: map_get($chartColors, positiveTrendArea);
+  negativeTrendChartColor: map_get($chartColors, negativeTrendStroke);
+  negativeTrendChartArea: map_get($chartColors, negativeTrendArea);
+  neutralChartColor: map_get($chartColors, neutralTrendStroke);
+  neutralChartArea: map_get($chartColors, neutralTrendArea);
 }
 // SKIM IT end
