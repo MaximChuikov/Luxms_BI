@@ -11,8 +11,8 @@ export type TPeriodValues = {
 export type TCustomChartData = TPeriodValues[]
 
 export type TChartAreaSettings = {
-  width: number
-  height: number
+  width: number // в px
+  height: number // в px
   areaChartType?: CurveType
   percentsOfSpaceBetweenBars?: number
   positiveFill?: string
