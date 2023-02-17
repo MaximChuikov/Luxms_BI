@@ -1,6 +1,7 @@
 import React from 'react'
 import { PieChart, Pie, Label, Cell } from 'recharts'
 import { CustomChartLabel, TChartLabelInfo } from 'src/Base/components/CustomChartLabel'
+import styles from './PieChartWithCustomLabel.module.scss'
 
 type TPieChartConfig = {
   outerRadius: number
@@ -58,7 +59,7 @@ export const PieChartWithCustomLabel = ({
             <text
               x={x}
               y={y}
-              fill="#FFF"
+              className={styles.labelFont}
               fontWeight="400"
               fontSize="16px"
               fontFamily="Arial"

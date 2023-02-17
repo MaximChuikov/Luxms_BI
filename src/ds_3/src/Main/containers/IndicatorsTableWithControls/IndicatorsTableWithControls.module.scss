@@ -1,14 +1,17 @@
 @use 'ds_res/styles/mixins.scss';
-@use 'ds_res/styles/Colors.module.scss' as Colors;
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
 
 
 .contentWrapper {
+  @include themeUtils.themify(themes.$themes) {
+    background-color: themeUtils.themed('pageBackground');
+  }
   width: 100%;
-  background-color: Colors.$page-background;
   transition: all 0.3s ease-in;
   position: relative;
   z-index: 10;
-  
+
   &.containerExpanded {
     @include mixins.toRem('margin-top', -292);
   }
@@ -32,10 +35,17 @@
       }
 
       .tableControlBtn {
-        border: 2px solid Colors.$border-color;
         @include mixins.trblProp('padding', true, 8);
+        @include themeUtils.themify(themes.$themes) {
+          border: 2px solid themeUtils.themed('borderColor');
+        }
         border-radius: 0.5rem;
-        
+
+        & path {
+          @include themeUtils.themify(themes.$themes) {
+            fill: themeUtils.themed('fontColor');
+          }
+        }
         & svg {
           vertical-align: middle;
         }

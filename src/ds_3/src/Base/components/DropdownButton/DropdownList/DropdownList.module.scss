@@ -1,13 +1,16 @@
 @use 'ds_res/styles/mixins.scss';
-@use 'ds_res/styles/Colors.module.scss' as Colors;
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
 
 .dropdownList {
   @include mixins.toRem('padding', 10);
   @include mixins.toRem('gap', 5);
+  @include themeUtils.themify(themes.$themes) {
+    background-color: themeUtils.themed('dropdownListBackground');
+  }
   position: absolute;
   display: flex;
   flex-direction: column;
-  background: Colors.$dropdown-list-background;
   z-index: 1;
   width: max-content;
 }

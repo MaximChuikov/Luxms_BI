@@ -1,4 +1,5 @@
-@use 'ds_res/styles/Colors.module.scss' as Colors;
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
 
 .indicatorsTable {
   & td:nth-child(2),
@@ -9,8 +10,14 @@
   }
   & td:last-of-type {
     text-align: center;
+    & svg {
+      vertical-align: middle;
+    }
+
     & path {
-      fill: Colors.$font-color;
+      @include themeUtils.themify(themes.$themes) {
+        fill: themeUtils.themed('fontColor');
+      }
     }
   }
 }

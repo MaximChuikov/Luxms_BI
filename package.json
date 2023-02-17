@@ -43,6 +43,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/react-table": "7.7.14",
     "bi-internal": "git+https://github.com/luxms/bi-internal.git",
+    "classnames": "^2.3.2",
     "copy-webpack-plugin": "9.0.1",
     "date-fns": "2.29.3",
     "dateformat": "5.0.2",

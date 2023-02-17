@@ -1,14 +1,18 @@
 @use 'ds_res/styles/mixins.scss';
-@use 'ds_res/styles/Colors.module.scss' as Colors;
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
 
 .dropdownBasic {
   @include mixins.toRem('gap', 6);
+  @include themeUtils.themify(themes.$themes) {
+    border-color: themeUtils.themed('borderColor');
+    color: themeUtils.themed('fontColor');
+  }
   display: flex;
   align-items: center;
-  border: 2px solid Colors.$border-color;
+  border: 2px solid;
   border-radius: 0.5rem;
   cursor: pointer;
-  color: Colors.$font-color;
   width: inherit;
 
   .contentBox {
@@ -27,7 +31,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    & path {
+      @include themeUtils.themify(themes.$themes) {
+        fill: themeUtils.themed('fontColor');
+      }
+    }
     &.reversed {
       transform: rotateX(180deg);
     }
@@ -48,7 +56,10 @@
     &.separated {
       .contentBox {
         @include mixins.toRem('padding-left', 6);
-        border-left: 2px solid Colors.$border-color;
+        @include themeUtils.themify(themes.$themes) {
+          border-left-color: themeUtils.themed('borderColor');
+        }
+        border-left: 2px solid;
       }
     }
   }
@@ -61,7 +72,10 @@
     &.separated {
       .contentBox {
         @include mixins.toRem('padding-right', 6);
-        border-right: 2px solid Colors.$border-color;
+        @include themeUtils.themify(themes.$themes) {
+          border-right-color: themeUtils.themed('borderColor');
+        }
+        border-right: 2px solid;
       }
     }
   }

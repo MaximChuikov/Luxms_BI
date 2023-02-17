@@ -1,0 +1,9 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
+
+.labelFont{
+  @include themeUtils.themify(themes.$themes) {
+    fill: themeUtils.themed('fontColor');
+  }
+}

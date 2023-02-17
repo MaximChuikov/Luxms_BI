@@ -4,14 +4,15 @@ import { IndicatorsTable } from 'src/Main/containers/IndicatorsTable'
 import { ExpandIcon } from 'ds_res/icons/ExpandIcon'
 import { CollapseIcon } from 'ds_res/icons/CollapseIcon'
 import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
+import { UrlState } from 'bi-internal/core'
 import {
   deviationOptions,
   deviationTypesOptions,
   evaluationPerspectives,
   indicatorsTypes,
-  periodOptions,
+  periodTypes,
   sortingOptions
-} from './options'
+} from '../../../Base/constants/options'
 import styles from './IndicatorsTableWithControls.module.scss'
 
 type TIndicatorsTableWithControls = {
@@ -19,14 +20,18 @@ type TIndicatorsTableWithControls = {
   position: boolean
 }
 export const IndicatorsTableWithControls = ({ onExpandClick, position }: TIndicatorsTableWithControls) => {
+  const urlState = UrlState.getInstance()
+  urlState.subscribeUpdatesAndNotify(() => {})
+  const stateCharts = UrlState.getModel()
+
   const [isSelectorsExpanded, setSelectorsExpanded] = useState<boolean>(false)
   const [dropdownsState, setDropdownsState] = useState({
-    evaluationPerspectives: evaluationPerspectives[0],
-    indicatorsTypes: indicatorsTypes[0],
-    periodOptions: periodOptions[0],
-    deviationTypesOptions: deviationTypesOptions[0],
-    deviationOptions: deviationOptions[0],
-    sortingOptions: sortingOptions[0]
+    perspectiveDropdown: { label: stateCharts.evaluationPerspectives ?? evaluationPerspectives[0].label },
+    indicatorsType: { label: stateCharts.indicatorsTypes ?? indicatorsTypes[0].label },
+    periods: { label: stateCharts.periodTypes ?? periodTypes[0].label },
+    deviationTypesOptions: { label: stateCharts.deviationTypesOptions ?? deviationTypesOptions[0].label },
+    deviationOptions: { label: stateCharts.deviationOptions ?? deviationOptions[0].label },
+    sortingOptions: { label: stateCharts.sortingOptions ?? sortingOptions[0].label }
   })
   const handleExpandBtnClick = () => {
     onExpandClick()
@@ -38,6 +43,7 @@ export const IndicatorsTableWithControls = ({ onExpandClick, position }: TIndica
       ...dropdownsState,
       [name]: value
     })
+    urlState.updateModel({ [name]: value.label })
   }
   return (
     <section className={[styles.contentWrapper, position ? styles.containerExpanded : ''].join(' ')}>
@@ -51,19 +57,19 @@ export const IndicatorsTableWithControls = ({ onExpandClick, position }: TIndica
                   options={evaluationPerspectives}
                   onChange={onSelect}
                   name="evaluationPerspectives"
-                  value={dropdownsState.evaluationPerspectives}
+                  value={dropdownsState.perspectiveDropdown}
                 />
                 <DashDropdown
                   options={indicatorsTypes}
                   onChange={onSelect}
                   name="indicatorsTypes"
-                  value={dropdownsState.indicatorsTypes}
+                  value={dropdownsState.indicatorsType}
                 />
                 <DashDropdown
-                  options={periodOptions}
+                  options={periodTypes}
                   onChange={onSelect}
-                  name="periodOptions"
-                  value={dropdownsState.periodOptions}
+                  name="periodTypes"
+                  value={dropdownsState.periods}
                 />
                 <DashDropdown
                   options={deviationTypesOptions}
