@@ -5,7 +5,6 @@
 .chartLabelDescription {
   width: 40px;
   font-weight: 700;
-  font-size: 14px;
   line-height: 14px;
   @include themeUtils.themify(themes.$themes) {
     fill: themeUtils.themed('fontColor');
@@ -13,7 +12,6 @@
 }
 
 .chartLabelValue {
-  font-size: 30px;
   line-height: 14px;
   @include themeUtils.themify(themes.$themes) {
     fill: themeUtils.themed('fontColor');

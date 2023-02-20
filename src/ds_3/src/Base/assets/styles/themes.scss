@@ -14,7 +14,10 @@ $themes: (
     primaryDashBackground: map_get(Colors.$lightTheme, primaryDashBackground),
     secondaryDashBackground: map_get(Colors.$lightTheme, secondaryDashBackground),
     dropdownListBackground: map_get(Colors.$lightTheme, dropdownListBackground),
-  ),
+    tabBackground: map_get(Colors.$lightTheme, tabBackground),
+    tabFontOffFocus: map_get(Colors.$lightTheme, tabFontOffFocus),
+    buttonBackground: map_get(Colors.$lightTheme, buttonBackground),
+    ),
   dark: (
     pageBackground: map_get(Colors.$darkTheme, pageBackground),
     fontColor: map_get(Colors.$darkTheme, fontColor),
@@ -27,5 +30,8 @@ $themes: (
     primaryDashBackground: map_get(Colors.$darkTheme, primaryDashBackground),
     secondaryDashBackground: map_get(Colors.$darkTheme, secondaryDashBackground),
     dropdownListBackground: map_get(Colors.$darkTheme, dropdownListBackground),
+    tabBackground: map_get(Colors.$darkTheme, tabBackground),
+    tabFontOffFocus: map_get(Colors.$darkTheme, tabFontOffFocus),
+    buttonBackground: map_get(Colors.$darkTheme, buttonBackground),
   ),
 );
