@@ -13,7 +13,10 @@ $darkTheme: (
   primaryDashBackground: #455D70,
   secondaryDashBackground: rgba(0, 0, 0, 0.05),
   dropdownListBackground: black,
-);
+  tabBackground: rgba(57, 74, 88, 0.5),
+  tabFontOffFocus: #A2AEB8,
+  buttonBackground: #2F87B6,
+  );
 
 
 $lightTheme: (
@@ -28,6 +31,9 @@ $lightTheme: (
   primaryDashBackground: #FFF,
   secondaryDashBackground: rgba(0, 0, 0, 0.05),
   dropdownListBackground: #BFC5CE,
+  tabBackground: #B0DCF4,
+  tabFontOffFocus: #7F7F7F,
+  buttonBackground: #0066A1,
 );
 
 $chartColors: (
@@ -39,15 +45,9 @@ $chartColors: (
   neutralTrendArea: rgba(104, 121, 139, 0.3),
 );
 
-$positive-trend-chart-color: #78D64B;
-$negative-trend-chart-color: #FF6900;
-$positive-trend-chart-area: rgba(120, 214, 75, 0.5);
-$negative-trend-chart-area: rgba(255, 105, 0, 0.3);
-$neutral-chart-color: #68798B;
-$neutral-chart-area: rgba(104, 121, 139, 0.3);
-
-
-// Border colors
+$staticColors: (
+  legendBorder: #00A3E0,
+);
 
 
 :export {
