@@ -7,6 +7,7 @@ import Option, { TOptionObject } from 'src/Base/components/DropdownButton/Dropdo
 import hash from 'object-hash'
 
 type TDropdown = {
+  isLast?: boolean
   className?: string
   classNameDropdownButton?: string
   options: Array<TOptionObject>
@@ -15,7 +16,15 @@ type TDropdown = {
   value: TOptionObject
 }
 
-export const DashDropdown = ({ className, name, classNameDropdownButton, options, onChange, value }: TDropdown) => {
+export const DashDropdown = ({
+  className,
+  name,
+  classNameDropdownButton,
+  isLast,
+  options,
+  onChange,
+  value
+}: TDropdown) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleOnClick = (arg: TOptionObject) => {
     setIsOpen(!isOpen)
@@ -24,6 +33,7 @@ export const DashDropdown = ({ className, name, classNameDropdownButton, options
   return (
     <div className={className}>
       <DropdownButton
+        isLast={isLast}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         dropdownLabel={

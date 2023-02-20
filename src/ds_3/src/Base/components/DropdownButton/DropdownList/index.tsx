@@ -1,35 +1,28 @@
-import React, { LegacyRef, ReactNode } from 'react'
+import React, { ReactNode, useRef } from 'react'
+import { useOutsideClick } from 'src/Base/hooks/useClickOutside'
+import classes from 'classnames'
 import styles from './DropdownList.module.scss'
 
 type TDropdownList = {
   className?: string
   children?: ReactNode
   isOpen?: boolean
-  onMouseOut: (event: React.MouseEvent<HTMLInputElement>) => void
-  onMouseOver: (event: React.MouseEvent<HTMLInputElement>) => void
-  onBlur: (event: React.FocusEvent<HTMLDivElement>) => void
-  elementRef: LegacyRef<HTMLDivElement> | undefined
+  setIsOpen: (arg: boolean) => void
+  isLast?: boolean
 }
 
-const DropdownList = ({
-  className,
-  children,
-  isOpen = false,
-  onMouseOut,
-  onMouseOver,
-  onBlur,
-  elementRef
-}: TDropdownList) => {
+export const DropdownList = ({ className, children, isLast, isOpen, setIsOpen }: TDropdownList) => {
+  const impactRef = useRef(null)
+  useOutsideClick(impactRef, () => {
+    setIsOpen(false)
+  })
   return (
     <>
       {isOpen && (
         <div
           tabIndex={0}
-          ref={elementRef}
-          className={className || styles.dropdownList}
-          onMouseOut={onMouseOut}
-          onMouseOver={onMouseOver}
-          onBlur={onBlur}
+          ref={impactRef}
+          className={classes(className, styles.dropdownList, isLast && styles.lastDropdown)}
         >
           {children}
         </div>
@@ -37,5 +30,3 @@ const DropdownList = ({
     </>
   )
 }
-
-export default DropdownList

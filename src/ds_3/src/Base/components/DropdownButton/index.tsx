@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import DropdownList from 'src/Base/components/DropdownButton/DropdownList'
+import React, { useEffect, useRef } from 'react'
+import { DropdownList } from 'src/Base/components/DropdownButton/DropdownList'
 import styles from './DropdownButton.module.scss'
 
 type TDropdownButton = {
@@ -9,6 +9,7 @@ type TDropdownButton = {
   isOpen: boolean
   setIsOpen: (arg: boolean) => void
   onClick: (arg: React.MouseEvent<HTMLButtonElement>) => void
+  isLast?: boolean
 }
 
 export const DropdownButton = ({
@@ -17,10 +18,9 @@ export const DropdownButton = ({
   dropdownLabel,
   isOpen,
   setIsOpen,
-  onClick
+  onClick,
+  isLast
 }: TDropdownButton) => {
-  const [isDropdownMouseOut, setIsDropdownMouseOut] = useState(false)
-  const [isDropdownButtonMouseOut, setIsDropdownButtonMouseOut] = useState(false)
   const elementRef = useRef<HTMLDivElement>(null)
 
   const handleOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,33 +36,10 @@ export const DropdownButton = ({
 
   return (
     <div className={[styles.dropdownButtonWrapper, className].join(' ')}>
-      <button
-        className={styles.dropdownButton}
-        onClick={handleOnClick}
-        type="button"
-        onMouseOut={() => {
-          setIsDropdownButtonMouseOut(false)
-        }}
-        onMouseOver={() => {
-          setIsDropdownButtonMouseOut(true)
-        }}
-      >
+      <button className={styles.dropdownButton} onClick={handleOnClick} type="button">
         {dropdownLabel}
       </button>
-      <DropdownList
-        className=""
-        isOpen={isOpen}
-        elementRef={elementRef}
-        onMouseOut={() => {
-          setIsDropdownMouseOut(false)
-        }}
-        onMouseOver={() => {
-          setIsDropdownMouseOut(true)
-        }}
-        onBlur={() => {
-          if (setIsOpen && !isDropdownButtonMouseOut) setIsOpen(isDropdownMouseOut)
-        }}
-      >
+      <DropdownList isLast={isLast} setIsOpen={setIsOpen} isOpen={isOpen}>
         {dropdownChildren}
       </DropdownList>
     </div>
