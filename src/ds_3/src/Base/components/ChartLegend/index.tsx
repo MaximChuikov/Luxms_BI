@@ -1,0 +1,55 @@
+import React, { useRef, useState } from 'react'
+import hash from 'object-hash'
+import classes from 'classnames'
+import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
+import { useOutsideClick } from 'src/Base/hooks/useClickOutside'
+import styles from './ChartLegend.module.scss'
+
+interface TChartLegend<T extends { label: string; value: number; color: string }> {
+  items: T[]
+  indent?: number
+  name: string
+  onSelect: ({ name, value }: { name: string; value: TOptionObject }) => void
+}
+
+export const ChartLegend = <T extends { label: string; value: number; color: string }>({
+  items,
+  name,
+  onSelect
+}: TChartLegend<T>) => {
+  const [selectedLabel, setSelectedLabel] = useState('')
+  const impactRef = useRef(null)
+  const handleLegendItemSelect = (item: TOptionObject) => {
+    onSelect({ name, value: item })
+    setSelectedLabel(item.label)
+  }
+
+  useOutsideClick(impactRef, () => {
+    setSelectedLabel('')
+    onSelect({ name, value: { label: '' } })
+  })
+  return (
+    <div ref={impactRef} title={name} className={styles.legendContainer}>
+      {items.map((item) => {
+        return (
+          <div
+            onClick={() => handleLegendItemSelect(item)}
+            key={hash(item)}
+            className={classes(
+              styles.legendItem,
+              selectedLabel !== '' && selectedLabel !== item.label && styles.shadowed
+            )}
+          >
+            <div
+              className={classes(styles.indicatorValueBox, selectedLabel === item.label && styles.boxBorder)}
+              style={{ background: item.color }}
+            >
+              {item.value}
+            </div>
+            <p>{item.label}</p>
+          </div>
+        )
+      })}
+    </div>
+  )
+}

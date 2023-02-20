@@ -1,0 +1,33 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
+
+.dashWrapper {
+  @include mixins.trblProp('padding', 'true', 13, 16);
+  @include themeUtils.themify(themes.$themes) {
+    background: themeUtils.themed('primaryDashBackground');
+    border: 2px solid themeUtils.themed('primaryDashBorder');
+    color: themeUtils.themed('fontColor');
+  }
+  width: max-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .filtersContainer {
+    @include mixins.toRem('gap', 10);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+  }
+
+  .contentContainer {
+    @include mixins.trblProp('padding', 'true', 57, 95, 199, 230);
+    @include mixins.toRem('gap', 75);
+    display: flex;
+    flex-direction: column;
+  }
+}

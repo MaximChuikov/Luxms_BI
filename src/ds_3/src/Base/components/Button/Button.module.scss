@@ -1,0 +1,24 @@
+@use 'ds_res/styles/mixins.scss';
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
+
+.button {
+  @include mixins.toRem('gap', 15);
+  @include mixins.trblProp('padding', true, 8, 12);
+  @include themeUtils.themify(themes.$themes) {
+    background-color: themeUtils.themed('buttonBackground');
+  }
+  color: white;
+  width: fit-content;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  text-transform: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  &.reversed {
+    flex-direction: row-reverse;
+  }
+}
