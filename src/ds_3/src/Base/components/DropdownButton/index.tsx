@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { DropdownList } from 'src/Base/components/DropdownButton/DropdownList'
+import { useOutsideClick } from 'src/Base/hooks/useClickOutside'
+import Option, { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
+import hash from 'object-hash'
 import styles from './DropdownButton.module.scss'
 
 type TDropdownButton = {
   className?: string
-  dropdownChildren: JSX.Element
+  dropdownChildren: TOptionObject[]
   dropdownLabel: JSX.Element
-  isOpen: boolean
-  setIsOpen: (arg: boolean) => void
-  onClick: (arg: React.MouseEvent<HTMLButtonElement>) => void
+  handleClick: (arg: TOptionObject) => void
   isLast?: boolean
 }
 
@@ -16,32 +17,36 @@ export const DropdownButton = ({
   className,
   dropdownChildren,
   dropdownLabel,
-  isOpen,
-  setIsOpen,
-  onClick,
-  isLast
+  isLast,
+  handleClick
 }: TDropdownButton) => {
-  const elementRef = useRef<HTMLDivElement>(null)
-
+  const [isOpen, setIsOpen] = useState(false)
+  const impactRef = useRef(null)
   const handleOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
-    onClick(event)
+    setIsOpen((prev) => !prev)
+  }
+  const handleSelect = (arg: TOptionObject) => {
+    handleClick(arg)
+    setIsOpen(false)
   }
 
-  useEffect(() => {
-    if (!isOpen) return
-    const element = elementRef.current as HTMLDivElement
-    if (element) element.focus()
-  }, [isOpen, elementRef])
+  useOutsideClick(impactRef, () => {
+    setIsOpen(false)
+  })
 
   return (
-    <div className={[styles.dropdownButtonWrapper, className].join(' ')}>
+    <div id={hash(dropdownLabel)} ref={impactRef} className={[styles.dropdownButtonWrapper, className].join(' ')}>
       <button className={styles.dropdownButton} onClick={handleOnClick} type="button">
         {dropdownLabel}
       </button>
-      <DropdownList isLast={isLast} setIsOpen={setIsOpen} isOpen={isOpen}>
-        {dropdownChildren}
-      </DropdownList>
+      {isOpen && (
+        <DropdownList isLast={isLast}>
+          {dropdownChildren.map((item, index) => (
+            <Option onClick={handleSelect} index={index} option={item} key={hash(index)} />
+          ))}
+        </DropdownList>
+      )}
     </div>
   )
 }

@@ -1,10 +1,8 @@
 import { ArrowIcon } from 'ds_res/icons/ArrowIcon'
-import React, { useState } from 'react'
+import React from 'react'
 import { DropdownButton } from 'src/Base/components'
 import { DropdownLabel } from 'src/Base/components/DropdownButton/DropdownLabel'
-import Color from 'ds_res/styles/Colors.module.scss'
-import Option, { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
-import hash from 'object-hash'
+import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
 
 type TDropdown = {
   isLast?: boolean
@@ -16,46 +14,19 @@ type TDropdown = {
   value: TOptionObject
 }
 
-export const DashDropdown = ({
-  className,
-  name,
-  classNameDropdownButton,
-  isLast,
-  options,
-  onChange,
-  value
-}: TDropdown) => {
-  const [isOpen, setIsOpen] = useState(false)
+export const DashDropdown = (props: TDropdown) => {
+  const { className, name, classNameDropdownButton, isLast, options, onChange, value } = props
   const handleOnClick = (arg: TOptionObject) => {
-    setIsOpen(!isOpen)
     onChange({ name, value: arg })
   }
   return (
     <div className={className}>
       <DropdownButton
         isLast={isLast}
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        dropdownLabel={
-          <DropdownLabel
-            reversed
-            separated
-            content={value.label}
-            icon={<ArrowIcon />}
-            type="secondary"
-            isClicked={isOpen}
-            background={Color.darkThemeDropdownBackground}
-          />
-        }
-        onClick={() => setIsOpen(!isOpen)}
+        dropdownLabel={<DropdownLabel reversed separated content={value.label} icon={<ArrowIcon />} type="secondary" />}
         className={classNameDropdownButton}
-        dropdownChildren={
-          <>
-            {options.map((item, index) => (
-              <Option onClick={() => handleOnClick(item)} index={index} option={item} key={hash(index)} />
-            ))}
-          </>
-        }
+        dropdownChildren={options}
+        handleClick={handleOnClick}
       />
     </div>
   )

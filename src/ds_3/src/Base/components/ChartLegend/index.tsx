@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import hash from 'object-hash'
 import classes from 'classnames'
 import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
-import { useOutsideClick } from 'src/Base/hooks/useClickOutside'
+import { UrlState } from 'bi-internal/core'
 import styles from './ChartLegend.module.scss'
 
 interface TChartLegend<T extends { label: string; value: number; color: string }> {
@@ -17,19 +17,19 @@ export const ChartLegend = <T extends { label: string; value: number; color: str
   name,
   onSelect
 }: TChartLegend<T>) => {
-  const [selectedLabel, setSelectedLabel] = useState('')
-  const impactRef = useRef(null)
+  const stateCharts = UrlState.getModel()
+  const [selectedLabel, setSelectedLabel] = useState(stateCharts[name] || '')
   const handleLegendItemSelect = (item: TOptionObject) => {
-    onSelect({ name, value: item })
-    setSelectedLabel(item.label)
+    if (item.label === selectedLabel) {
+      setSelectedLabel('')
+      onSelect({ name, value: { label: '' } })
+    } else {
+      onSelect({ name, value: item })
+      setSelectedLabel(item.label)
+    }
   }
-
-  useOutsideClick(impactRef, () => {
-    setSelectedLabel('')
-    onSelect({ name, value: { label: '' } })
-  })
   return (
-    <div ref={impactRef} title={name} className={styles.legendContainer}>
+    <div title={name} className={styles.legendContainer}>
       {items.map((item) => {
         return (
           <div

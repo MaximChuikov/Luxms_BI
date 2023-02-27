@@ -24,7 +24,7 @@ type TIndicatorsTotalDash = {
   gridArea?: string
 }
 
-const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
+export const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
   const urlState = UrlState.getInstance()
   urlState.subscribeUpdatesAndNotify(() => {})
   const stateCharts = UrlState.getModel()
@@ -89,5 +89,3 @@ const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
     </section>
   )
 }
-
-export default IndicatorsTotalDash
