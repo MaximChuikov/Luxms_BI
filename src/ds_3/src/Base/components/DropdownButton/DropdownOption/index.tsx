@@ -10,14 +10,13 @@ export type TOption = {
   option: TOptionObject
   index: number
   reversed?: boolean
-  onClick: (arg: { option: TOptionObject; index: number }) => void
+  onClick: (arg: TOptionObject) => void
 }
 
-const Option = ({ option, index, onClick, reversed }: TOption) => (
+const Option = ({ option, onClick, reversed }: TOption) => (
   <button
     className={[styles.dropdownOption, reversed ? styles.reversed : ''].join(' ')}
-    key={index}
-    onClick={() => onClick({ option, index })}
+    onClick={() => onClick(option)}
   >
     {option.label}
     {option.icon || null}

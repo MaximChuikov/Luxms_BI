@@ -6,15 +6,10 @@ import { PieChartWithCustomLabel } from 'src/Base/components/PieChartWithCustomL
 import { data, labelSettings } from 'src/Main/containers/IndicatorsTotalDash/mockData'
 import { UrlState } from 'bi-internal/core'
 import { evaluationPerspectives, indicatorsTypes, periodTypes } from 'src/Base/constants/options'
+import { ChartLegend } from 'src/Base/components/ChartLegend'
 import styles from './IndicatorsTotalDash.module.scss'
 
 const chartColors = [Color.positiveTrendChartColor, Color.negativeTrendChartColor, Color.neutralChartColor]
-
-enum AssignmentsTrends {
-  positite = 0,
-  negative = 1,
-  undefined = 2
-}
 
 const chartConfig = {
   outerRadius: 80,
@@ -29,7 +24,7 @@ type TIndicatorsTotalDash = {
   gridArea?: string
 }
 
-const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
+export const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
   const urlState = UrlState.getInstance()
   urlState.subscribeUpdatesAndNotify(() => {})
   const stateCharts = UrlState.getModel()
@@ -39,6 +34,8 @@ const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
     indicatorsType: { label: stateCharts.indicatorsType ?? indicatorsTypes[0].label },
     periods: { label: stateCharts.periods ?? periodTypes[0].label }
   })
+
+  const activeBar = stateCharts.deviationTypes || ''
 
   const onSelect = ({ name, value }: { name: string; value: TOptionObject }) => {
     setDashState({
@@ -75,39 +72,20 @@ const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
           name="periods"
           options={periodTypes}
           onChange={onSelect}
+          isLast={true}
         />
       </div>
       <div className={styles.contentContainer}>
         <PieChartWithCustomLabel
+          activeBar={activeBar}
           withSideIndication
           chartLabelInfo={labelSettings}
           segmentColors={chartColors}
           chartData={data}
           chartConfig={chartConfig}
         />
-        <div className={styles.legendContainer}>
-          <div className={styles.legendItem}>
-            <div className={styles.indicatorValueBox} style={{ background: chartColors[AssignmentsTrends.negative] }}>
-              {data[AssignmentsTrends.negative].value}
-            </div>
-            <p>Негативные отклонения</p>
-          </div>
-          <div className={styles.legendItem}>
-            <div className={styles.indicatorValueBox} style={{ background: chartColors[AssignmentsTrends.positite] }}>
-              {data[AssignmentsTrends.positite].value}
-            </div>
-            <p>Позитивные отклонения</p>
-          </div>
-          <div className={styles.legendItem}>
-            <div className={styles.indicatorValueBox} style={{ background: chartColors[AssignmentsTrends.undefined] }}>
-              {data[AssignmentsTrends.undefined].value}
-            </div>
-            <p>Индикация не предусмотрена</p>
-          </div>
-        </div>
+        <ChartLegend name="deviationTypes" items={data} onSelect={onSelect} />
       </div>
     </section>
   )
 }
-
-export default IndicatorsTotalDash

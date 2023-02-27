@@ -1,0 +1,10 @@
+@use 'ds_res/styles/mixins.scss';
+
+.tabs {
+  @include mixins.toRem('top', 70);
+  @include mixins.toRem('gap', 3);
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+  left: 0;
+}

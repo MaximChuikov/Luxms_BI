@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useRef, useState } from 'react'
+import { useOutsideClick } from 'src/Base/hooks/useClickOutside'
 import styles from './DropdownLabel.module.scss'
 
 type TDropdownLabel = {
@@ -8,27 +9,18 @@ type TDropdownLabel = {
   className?: string
   icon: ReactNode
   content: ReactNode
-  background: string
-  isClicked: boolean
 }
 
-export const DropdownLabel = ({
-  reversed,
-  separated,
-  icon,
-  type,
-  content,
-  background,
-  isClicked,
-  className
-}: TDropdownLabel) => {
-  const backgroundColor = {
-    background
-  } as React.CSSProperties
-
+export const DropdownLabel = ({ reversed, separated, icon, type, content, className }: TDropdownLabel) => {
+  const impactRef = useRef(null)
+  const [isClicked, setIsClicked] = useState(false)
+  useOutsideClick(impactRef, () => {
+    setIsClicked(false)
+  })
   return (
     <div
-      style={backgroundColor}
+      ref={impactRef}
+      onClick={() => setIsClicked(!isClicked)}
       className={
         className ||
         [

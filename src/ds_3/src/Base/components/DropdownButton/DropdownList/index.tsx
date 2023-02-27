@@ -1,41 +1,17 @@
-import React, { LegacyRef, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
+import classes from 'classnames'
 import styles from './DropdownList.module.scss'
 
 type TDropdownList = {
   className?: string
-  children?: ReactNode
-  isOpen?: boolean
-  onMouseOut: (event: React.MouseEvent<HTMLInputElement>) => void
-  onMouseOver: (event: React.MouseEvent<HTMLInputElement>) => void
-  onBlur: (event: React.FocusEvent<HTMLDivElement>) => void
-  elementRef: LegacyRef<HTMLDivElement> | undefined
+  children?: ReactNode[]
+  isLast?: boolean
 }
 
-const DropdownList = ({
-  className,
-  children,
-  isOpen = false,
-  onMouseOut,
-  onMouseOver,
-  onBlur,
-  elementRef
-}: TDropdownList) => {
+export const DropdownList = ({ className, children, isLast }: TDropdownList) => {
   return (
-    <>
-      {isOpen && (
-        <div
-          tabIndex={0}
-          ref={elementRef}
-          className={className || styles.dropdownList}
-          onMouseOut={onMouseOut}
-          onMouseOver={onMouseOver}
-          onBlur={onBlur}
-        >
-          {children}
-        </div>
-      )}
-    </>
+    <div tabIndex={0} className={classes(className, styles.dropdownList, isLast && styles.lastDropdown)}>
+      {children}
+    </div>
   )
 }
-
-export default DropdownList

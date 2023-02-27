@@ -13,7 +13,7 @@ type TPieChartConfig = {
 }
 
 type TPieChartSegmentData = {
-  name: string
+  label: string
   value: number
 }
 
@@ -23,6 +23,7 @@ type TPieChart = {
   chartConfig: TPieChartConfig
   chartLabelInfo: TChartLabelInfo
   withSideIndication?: boolean
+  activeBar?: string
 }
 
 export const PieChartWithCustomLabel = ({
@@ -30,7 +31,8 @@ export const PieChartWithCustomLabel = ({
   chartData,
   chartConfig,
   chartLabelInfo,
-  withSideIndication
+  withSideIndication,
+  activeBar = ''
 }: TPieChart) => {
   const { outerRadius, innerRadius, cx, cy, charHeight, chartWidth } = chartConfig
 
@@ -79,9 +81,16 @@ export const PieChartWithCustomLabel = ({
           ) : null
         }}
       >
-        {chartData.map((_entry, index) => (
-          <Cell key={`cell-${index}`} fill={segmentColors[index % segmentColors.length]} />
-        ))}
+        {chartData.map((_entry, index) => {
+          const isShadowed = activeBar !== '' && activeBar !== _entry.label
+          return (
+            <Cell
+              key={`cell-${index}`}
+              opacity={isShadowed ? 0.3 : 1}
+              fill={segmentColors[index % segmentColors.length]}
+            />
+          )
+        })}
         <Label
           width={300}
           position="inside"
