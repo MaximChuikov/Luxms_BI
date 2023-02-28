@@ -46,3 +46,5 @@ export const evaluationPerspectives = [
   { label: 'Персонал и развитие' },
   { label: 'Цифровая зрелость' }
 ]
+
+export const perspectivesOrTypes = [{ label: 'По перспективам оценки' }, { label: 'По типам показателей' }]
