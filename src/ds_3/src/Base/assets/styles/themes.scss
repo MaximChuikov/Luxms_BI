@@ -17,6 +17,9 @@ $themes: (
     tabBackground: map_get(Colors.$lightTheme, tabBackground),
     tabFontOffFocus: map_get(Colors.$lightTheme, tabFontOffFocus),
     buttonBackground: map_get(Colors.$lightTheme, buttonBackground),
+    pentagonBackgroundStroke: map_get(Colors.$lightTheme, pentagonBackgroundStroke),
+    pentagonBackgroundFill: map_get(Colors.$lightTheme, pentagonBackgroundFill),
+    secondaryDropdownBackground: map_get(Colors.$lightTheme, secondaryDropdownBackground),
     ),
   dark: (
     pageBackground: map_get(Colors.$darkTheme, pageBackground),
@@ -33,5 +36,8 @@ $themes: (
     tabBackground: map_get(Colors.$darkTheme, tabBackground),
     tabFontOffFocus: map_get(Colors.$darkTheme, tabFontOffFocus),
     buttonBackground: map_get(Colors.$darkTheme, buttonBackground),
+    pentagonBackgroundStroke: map_get(Colors.$darkTheme, pentagonBackgroundStroke),
+    pentagonBackgroundFill: map_get(Colors.$darkTheme, pentagonBackgroundFill),
+    secondaryDropdownBackground: map_get(Colors.$darkTheme, secondaryDropdownBackground),
   ),
 );
