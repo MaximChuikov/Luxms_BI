@@ -16,6 +16,9 @@ $darkTheme: (
   tabBackground: rgba(57, 74, 88, 0.5),
   tabFontOffFocus: #A2AEB8,
   buttonBackground: #2F87B6,
+  pentagonBackgroundStroke: #364654,
+  pentagonBackgroundFill: #3E5262,
+  secondaryDropdownBackground: rgba(0, 0, 0, 0.25),
   );
 
 
@@ -34,6 +37,9 @@ $lightTheme: (
   tabBackground: #B0DCF4,
   tabFontOffFocus: #7F7F7F,
   buttonBackground: #0066A1,
+  pentagonBackgroundStroke: #D2D5D8,
+  pentagonBackgroundFill: #E1E3E5,
+  secondaryDropdownBackground: #B0DCF4,
 );
 
 $chartColors: (
@@ -43,6 +49,7 @@ $chartColors: (
   negativeTrendArea: rgba(255, 105, 0, 0.3),
   neutralTrendStroke: #68798B,
   neutralTrendArea: rgba(104, 121, 139, 0.3),
+  allIndicatorsStroke: #00A3E0,
 );
 
 $staticColors: (
@@ -57,5 +64,6 @@ $staticColors: (
   negativeTrendChartArea: map_get($chartColors, negativeTrendArea);
   neutralChartColor: map_get($chartColors, neutralTrendStroke);
   neutralChartArea: map_get($chartColors, neutralTrendArea);
+  allIndicatorsStroke: map_get($chartColors, allIndicatorsStroke);
 }
 // SKIM IT end
