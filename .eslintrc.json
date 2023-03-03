@@ -52,7 +52,7 @@
     "indent": [
       "error",
       2,
-      { "SwitchCase": 1 }
+      { "SwitchCase": 1, "offsetTernaryExpressions": true }
     ],
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
     "import/prefer-default-export": "off",
