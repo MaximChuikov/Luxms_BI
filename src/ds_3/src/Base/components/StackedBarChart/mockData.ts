@@ -1,44 +1,50 @@
 export const mockData = [
   {
-    label: 'Page A',
+    label: 'ГВЦ',
     positiveIndicators: 590,
     // negativeIndicators: 800,
-    neutralIndicators: 1400,
-    cnt: 490
+    neutralIndicators: 1400
   },
   {
-    label: 'Page B',
+    label: 'ТТ',
     positiveIndicators: 868,
     negativeIndicators: 967,
-    neutralIndicators: 1506,
-    cnt: 590
+    neutralIndicators: 1506
   },
   {
-    label: 'Page C',
+    label: 'ПКТБ-ЦЦТ',
     positiveIndicators: 1397,
     negativeIndicators: 1098,
-    neutralIndicators: 989,
-    cnt: 350
+    neutralIndicators: 989
   },
   {
-    label: 'Page D',
+    label: 'РЖД-ТС',
     positiveIndicators: 1480,
     negativeIndicators: 1700,
-    neutralIndicators: 1228,
-    cnt: 480
+    neutralIndicators: 1228
   },
   {
-    label: 'Page E',
+    label: 'РЖДТ',
     positiveIndicators: 1520,
     negativeIndicators: 1108,
-    neutralIndicators: 1100,
-    cnt: 460
+    neutralIndicators: 1100
   },
   {
-    label: 'Page F',
+    label: 'ТИ',
     positiveIndicators: 1400,
     negativeIndicators: 680,
-    neutralIndicators: 1700,
-    cnt: 380
+    neutralIndicators: 1700
+  },
+  {
+    label: 'ЦСС',
+    positiveIndicators: 1050,
+    negativeIndicators: 650,
+    neutralIndicators: 800
+  },
+  {
+    label: 'ЦЧУ',
+    positiveIndicators: 300,
+    negativeIndicators: 200,
+    neutralIndicators: 500
   }
 ]

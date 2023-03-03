@@ -1,0 +1,8 @@
+@use 'ds_3/src/Base/assets/styles/themes.scss';
+@use 'ds_3/src/Base/assets/styles/themeUtils.scss';
+
+.barContainer {
+  @include themeUtils.themify(themes.$themes) {
+    fill: themeUtils.themed('pageBackground');
+  }
+}
