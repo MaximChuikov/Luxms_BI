@@ -11,15 +11,6 @@ import styles from './IndicatorsTotalDash.module.scss'
 
 const chartColors = [Color.positiveTrendChartColor, Color.negativeTrendChartColor, Color.neutralChartColor]
 
-const chartConfig = {
-  outerRadius: 80,
-  innerRadius: 60,
-  cx: 80,
-  cy: 80,
-  chartWidth: 160,
-  charHeight: 160
-}
-
 type TIndicatorsTotalDash = {
   gridArea?: string
 }
@@ -82,7 +73,6 @@ export const IndicatorsTotalDash = ({ gridArea }: TIndicatorsTotalDash) => {
           chartLabelInfo={labelSettings}
           segmentColors={chartColors}
           chartData={data}
-          chartConfig={chartConfig}
         />
         <ChartLegend name="deviationTypes" items={data} onSelect={onSelect} />
       </div>

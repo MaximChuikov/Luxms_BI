@@ -9,6 +9,7 @@
     border: 2px solid themeUtils.themed('primaryDashBorder');
     color: themeUtils.themed('fontColor');
   }
+  border-left: 0;
   width: max-content;
   position: relative;
   display: flex;

@@ -4,6 +4,7 @@ import styles from './DropdownOption.module.scss'
 export type TOptionObject = {
   label: string
   icon?: ReactNode
+  value?: string
 }
 
 export type TOption = {

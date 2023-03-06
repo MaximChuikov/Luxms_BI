@@ -31,7 +31,7 @@ export const PerspectiveDashWithRadarChart = () => {
         options={perspectivesOrTypes}
         className={styles.dashletDropdown}
       />
-      <RadarChartWithLabel width={590} height={335} chartData={mockRadarChartData} />
+      <RadarChartWithLabel chartData={mockRadarChartData} />
     </section>
   )
 }

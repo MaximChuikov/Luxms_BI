@@ -3,35 +3,38 @@
 @use 'ds_3/src/Base/assets/styles/themes.scss';
 @use 'ds_3/src/Base/assets/styles/themeUtils.scss';
 
-.axisLabel {
-  @include mixins.toRem('gap', 7);
+.labelContainer {
   @include mixins.toRem('width', 144);
-  @include themeUtils.themify(themes.$themes) {
-    color: themeUtils.themed('fontColor');
-  }
-  @include mixins.toRem('font-size', 14);
-  @include mixins.toRem('line-height', 16);
-  position: absolute;
-  display: flex;
-  align-items: center;
-  & .valuesContainer {
-    @include mixins.toRem('gap', 2);
+  @include mixins.toRem('height', 60);
+  .axisLabel {
+    @include mixins.toRem('gap', 7);
+    @include themeUtils.themify(themes.$themes) {
+      color: themeUtils.themed('fontColor');
+    }
+    @include mixins.toRem('font-size', 14);
+    @include mixins.toRem('line-height', 16);
+    position: absolute;
     display: flex;
-    flex-direction: column;
-    @include mixins.toRem('font-size', 12);
-    @include mixins.toRem('line-height', 14);
-    & .allIndicatorsBox {
-      @include mixins.trblProp('padding', 'true', 2.22, 7);
-      background-color: map_get(Colors.$chartColors, allIndicatorsStroke);
-      color: map_get(Colors.$darkTheme, fontColor);
-      text-align: center;
-    }
-    & .negativeIndicatorsBox {
-      @include mixins.trblProp('padding', 'true', 2.22, 7);
-      background-color: map_get(Colors.$chartColors, negativeTrendStroke);
-      color: map_get(Colors.$darkTheme, fontColor);
-      text-align: center;
+    align-items: center;
+    & .valuesContainer {
+      @include mixins.toRem('gap', 2);
+      display: flex;
+      flex-direction: column;
+      @include mixins.toRem('font-size', 12);
+      @include mixins.toRem('line-height', 14);
+      & .allIndicatorsBox {
+        @include mixins.trblProp('padding', 'true', 2.22, 7);
+        background-color: map_get(Colors.$chartColors, allIndicatorsStroke);
+        color: map_get(Colors.$darkTheme, fontColor);
+        text-align: center;
+      }
+      & .negativeIndicatorsBox {
+        @include mixins.trblProp('padding', 'true', 2.22, 7);
+        background-color: map_get(Colors.$chartColors, negativeTrendStroke);
+        color: map_get(Colors.$darkTheme, fontColor);
+        text-align: center;
+      }
     }
   }
-
 }
+
