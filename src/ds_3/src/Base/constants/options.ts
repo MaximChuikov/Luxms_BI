@@ -14,10 +14,10 @@ export const deviationOptions = [
 ]
 
 export const deviationTypesOptions = [
-  { label: 'Все отклонения' },
-  { label: 'Негативные отклонения' },
-  { label: 'Позитивные отклонения' },
-  { label: 'Индикация не предусмотрена' }
+  { label: 'Все отклонения', value: 'allIndicators' },
+  { label: 'Негативные отклонения', value: 'negativeIndicators' },
+  { label: 'Позитивные отклонения', value: 'positiveIndicators' },
+  { label: 'Индикация не предусмотрена', value: 'neutralIndicators' }
 ]
 
 export const periodTypes = [
@@ -48,3 +48,8 @@ export const evaluationPerspectives = [
 ]
 
 export const perspectivesOrTypes = [{ label: 'По перспективам оценки' }, { label: 'По типам показателей' }]
+
+export const dataFormat = [
+  { label: 'Абс. знач.', value: 'absolute' },
+  { label: 'Доли', value: 'relative' }
+]

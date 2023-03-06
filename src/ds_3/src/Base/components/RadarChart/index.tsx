@@ -1,40 +1,35 @@
-import React, { useEffect } from 'react'
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from 'recharts'
+import React from 'react'
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
 import Color from 'ds_res/styles/Colors.module.scss'
-import { LabelsLayer } from 'src/Base/components/RadarChart/LabelsLayer'
-import { TRadarChartWithLabel, TRadarAxis, RadarAxisData, TRadarLabel } from 'src/Base/components/RadarChart/types'
+import { TRadarChartWithLabel, RadarAxisData } from 'src/Base/components/RadarChart/types'
+import { RadarLabel } from 'src/Base/components/RadarChart/PolarAngleAxisLabel'
 import styles from './RadarChart.module.scss'
 
-export const RadarChartWithLabel = ({ width, height, chartData }: TRadarChartWithLabel) => {
-  const radarLabelData: TRadarLabel[] = []
-  const renderPolarAngleAxis = ({ payload, x, y, cx, cy }: TRadarAxis) => {
-    const [perspective, allIndicators, unfulfilledIndicators] = payload.value.split(',')
-    const item = {
-      perspective,
-      allIndicators,
-      unfulfilledIndicators,
-      coordinates: {
-        x,
-        y,
-        cx,
-        cy
-      }
+export const RadarChartWithLabel = ({ chartData }: TRadarChartWithLabel) => {
+  const arrayRefined = (props: any) => {
+    const item = { ...props }
+    switch (true) {
+      case item.index > 2:
+        item.x -= 130
+        break
+      case item.index === 0:
+        item.y -= 30
+        item.x -= 60
+        break
+      default:
+        break
     }
-    radarLabelData.push(item)
-    return <></>
+    return item
   }
-  useEffect(() => {
-    const parent = document.querySelector('.recharts-polar-grid-concentric') as HTMLElement
-    Array.from(parent.childNodes)
-      .reverse()
-      .forEach((el: HTMLElement) => parent.appendChild(el)) // изменение порядка отображения многоугольников подложки графика для корректного отображения
-  }, [])
   return (
-    <div className={styles.offset}>
-      <RadarChart className={styles.radarChart} outerRadius={90} width={width} height={height} data={chartData}>
-        <PolarGrid strokeWidth={3} gridType="polygon" radialLines={false} polarRadius={[25, 50, 75, 100]} />
+    <ResponsiveContainer aspect={2}>
+      <RadarChart className={styles.radarChart} data={chartData}>
+        <PolarGrid strokeWidth={3} gridType="polygon" radialLines={false} />
         <PolarAngleAxis
-          tick={(props) => renderPolarAngleAxis(props)}
+          tick={(props) => {
+            console.log(props)
+            return <RadarLabel {...arrayRefined(props)} />
+          }}
           dataKey={(data: RadarAxisData) => Object.values(data).join()}
         />
         <Radar
@@ -56,7 +51,6 @@ export const RadarChartWithLabel = ({ width, height, chartData }: TRadarChartWit
           fillOpacity={0.6}
         />
       </RadarChart>
-      <LabelsLayer radarLabelData={radarLabelData} />
-    </div>
+    </ResponsiveContainer>
   )
 }

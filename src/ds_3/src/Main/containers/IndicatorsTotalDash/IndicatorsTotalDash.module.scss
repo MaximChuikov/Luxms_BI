@@ -23,8 +23,12 @@
 
   .contentContainer {
     @include mixins.toRem('padding-left', 54);
+    @include mixins.toRem('gap', 70);
     display: flex;
-
+    align-items: center;
+    & > div {
+      width: 29% !important;
+    }
     .legendContainer{
       @include mixins.trblProp('padding', true, 40, 15);
       @include mixins.toRem('gap', 10);
