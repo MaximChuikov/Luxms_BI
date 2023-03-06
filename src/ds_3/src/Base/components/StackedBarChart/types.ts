@@ -5,15 +5,12 @@ export type TStackedBarChartData = {
   neutralIndicators?: number
 }
 
+export type TSelectedIndicatorBar = keyof Omit<TStackedBarChartData, 'label'> | '' | 'allIndicators'
 export type TStackedBarChart = {
   chartData: TStackedBarChartData[]
   isRelative: boolean
   horizontallyOriented: boolean
-  dimensions: {
-    width: number
-    height: number
-  }
-  selectedBar: keyof Omit<TStackedBarChartData, 'label'> | '' | 'allIndicators'
+  selectedBar: TSelectedIndicatorBar
 }
 
 export type TStackedBarExtendedChartData = TStackedBarChartData & {
