@@ -10,6 +10,7 @@ const pkg = require("./package.json")
 const env = yargs.argv.env ? yargs.argv.env : "none"
 const ds = yargs.argv.name ? yargs.argv.name : null
 const { filterSchemaNames } = require("./scripts/lib/utils")
+const hash = require("object-hash")
 function getFiles(dir, prefix = "") {
   const dirents = fs.readdirSync(dir, { withFileTypes: true })
   const files = dirents.map((dirent) => {
@@ -92,7 +93,12 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: {
-                localIdentName: "[local]"
+                localIdentName: "[name]__[local]___[hash:base64:5]",
+                getLocalIdent: (context, localIdentName, localName, options) => {
+                  return localName.includes("theme-")
+                    ? "ds_root__".concat(localName, "____", hash(localName).substring(0, 4))
+                    : null
+                }
               }
             }
           }, // Translates CSS into CommonJS

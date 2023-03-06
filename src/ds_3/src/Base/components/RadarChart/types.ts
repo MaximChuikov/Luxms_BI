@@ -22,8 +22,6 @@ export type TRadarAxis = {
 }
 
 export type TRadarChartWithLabel = {
-  width: number
-  height: number
   chartData: Array<RadarAxisData>
 }
 
@@ -42,5 +40,4 @@ export type TRadarLabel = {
   perspective: string
   allIndicators: string
   unfulfilledIndicators: string
-  coordinates: TCoordinates
 }

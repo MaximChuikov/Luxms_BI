@@ -15,15 +15,6 @@ import styles from './SummaryTotalDashWithTabs.module.scss'
 
 const chartColors = [Color.positiveTrendChartColor, Color.negativeTrendChartColor, Color.neutralChartColor]
 
-const chartConfig = {
-  outerRadius: 125,
-  innerRadius: 89,
-  cx: 125,
-  cy: 125,
-  chartWidth: 250,
-  charHeight: 250
-}
-
 export const labelSettings: TChartLabelInfo = {
   labelHeader: 'Всего отклонений:',
   labelData: 'XXX',
@@ -83,7 +74,6 @@ export const SummaryTotalDashWithTabs = () => {
           chartLabelInfo={labelSettings}
           segmentColors={chartColors}
           chartData={data}
-          chartConfig={chartConfig}
         />
         <ChartLegend items={data} name="deviationTypes" onSelect={onSelect} />
       </div>

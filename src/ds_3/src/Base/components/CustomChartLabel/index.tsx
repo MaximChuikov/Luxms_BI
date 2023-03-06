@@ -2,8 +2,8 @@ import React from 'react'
 import styles from './CustomChartLabel.module.scss'
 
 type TCustomChartLabel = {
-  cx: number
-  cy: number
+  cx?: number
+  cy?: number
   labelSetting: TChartLabelInfo
 }
 
@@ -14,10 +14,10 @@ export type TChartLabelInfo = {
   labellabelDataFontSize?: number
 }
 
-export const CustomChartLabel = ({ cx, cy, labelSetting }: TCustomChartLabel) => {
+export const CustomChartLabel = ({ cx = 0, cy = 0, labelSetting }: TCustomChartLabel) => {
   const { labelHeader, labelData, labelHeaderFontSize = 14, labellabelDataFontSize = 30 } = labelSetting
   return (
-    <>
+    <g>
       <>
         {labelHeader.split(' ').map((text, index) => (
           <text key={text} x={cx} y={cy - 30 + 15 * index} textAnchor="middle" dominantBaseline="central">
@@ -38,6 +38,6 @@ export const CustomChartLabel = ({ cx, cy, labelSetting }: TCustomChartLabel) =>
           </tspan>
         </text>
       ) : null}
-    </>
+    </g>
   )
 }
