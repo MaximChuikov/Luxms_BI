@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { DashDropdown } from 'src/Base/components'
 import { IndicatorsTable } from 'src/Main/containers/IndicatorsTable'
-import { ExpandIcon } from 'ds_res/icons/ExpandIcon'
-import { CollapseIcon } from 'ds_res/icons/CollapseIcon'
+import { CollapseIcon, ExpandIcon } from 'ds_res/icons'
 import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
 import { UrlState } from 'bi-internal/core'
 import {
