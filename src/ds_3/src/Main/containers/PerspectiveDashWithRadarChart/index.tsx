@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { DashDropdown } from 'src/Base/components'
-import { RadarChartWithLabel } from 'src/Base/components/RadarChart'
+import { DashDropdown, RadarChartWithLabel } from 'src/Base/components'
 import { mockRadarChartData } from 'src/Base/components/RadarChart/mockData'
 import { perspectivesOrTypes } from 'src/Base/constants/options'
 import { UrlState } from 'bi-internal/core'
