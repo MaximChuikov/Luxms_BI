@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
-import { DashDropdown, Link, PieChartWithCustomLabel } from 'src/Base/components'
+import { DashDropdown, Link, PieChartWithCustomLabel, Tabs, Tab, Button, ChartLegend } from 'src/Base/components'
 import { TOptionObject } from 'src/Base/components/DropdownButton/DropdownOption'
-import { Tabs } from 'src/Base/components/Tabs'
-import { Tab } from 'src/Base/components/Tab'
 import { UrlState } from 'bi-internal/core'
 import { evaluationPerspectives, indicatorsTypes, periodTypes } from 'src/Base/constants/options'
-import { Button } from 'src/Base/components/Button'
-import { ButtonArrowIcon } from 'ds_res/icons/ButtonArrowIcon'
+import { ButtonArrowIcon } from 'ds_res/icons'
 import Color from 'ds_res/styles/Colors.module.scss'
 import { data } from 'src/Main/containers/IndicatorsTotalDash/mockData'
 import { TChartLabelInfo } from 'src/Base/components/CustomChartLabel'
-import { ChartLegend } from 'src/Base/components/ChartLegend'
 import styles from './SummaryTotalDashWithTabs.module.scss'
 
 const chartColors = [Color.positiveTrendChartColor, Color.negativeTrendChartColor, Color.neutralChartColor]

@@ -27,7 +27,6 @@ export const RadarChartWithLabel = ({ chartData }: TRadarChartWithLabel) => {
         <PolarGrid strokeWidth={3} gridType="polygon" radialLines={false} />
         <PolarAngleAxis
           tick={(props) => {
-            console.log(props)
             return <RadarLabel {...arrayRefined(props)} />
           }}
           dataKey={(data: RadarAxisData) => Object.values(data).join()}

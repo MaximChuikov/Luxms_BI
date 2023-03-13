@@ -5,7 +5,7 @@ import { BarOrAreaChart, Link, Table } from 'src/Base/components'
 import Color from 'ds_res/styles/Colors.module.scss'
 import { indicatorsTableMock } from 'src/Main/containers/IndicatorsTable/mockData'
 import { TCustomChartData } from 'src/Base/components/BarOrAreaChart'
-import { BigRightArrowLink } from 'ds_res/icons/BigRightArrowLink'
+import { BigRightArrowLink } from 'ds_res/icons'
 import styles from './IndicatorsTable.module.scss'
 
 export const indicatorsTableColumns: Column<Partial<TIndicatorsTableRowData>>[] = [

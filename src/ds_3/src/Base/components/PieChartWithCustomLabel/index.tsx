@@ -4,7 +4,7 @@ import { PolarViewBox } from 'recharts/types/util/types'
 import { CustomChartLabel, TChartLabelInfo } from 'src/Base/components/CustomChartLabel'
 import styles from './PieChartWithCustomLabel.module.scss'
 
-type TPieChartSegmentData = {
+export type TPieChartSegmentData = {
   label: string
   value: number
 }

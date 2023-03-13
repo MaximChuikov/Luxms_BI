@@ -53,3 +53,18 @@ export const dataFormat = [
   { label: 'Абс. знач.', value: 'absolute' },
   { label: 'Доли', value: 'relative' }
 ]
+
+export const EASDOptions = [
+  { label: 'ЕАСД Ц', value: 'easdC' },
+  { label: 'ЕАСД ЦЗ', value: 'easdCZ' }
+]
+
+export const EASDСOptions = [
+  { label: 'Поручения Президента РФ и Правительства РФ', value: 'gorernmentAssignments' },
+  { label: 'Прочие поручения Ц', value: 'otherAssignments' }
+]
+
+export const EASDСZOptions = [
+  { label: 'Поручения Ц', value: 'cAssignments' },
+  { label: 'Прочие поручения Ц', value: 'otherCAssignments' }
+]

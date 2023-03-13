@@ -1,4 +1,4 @@
-import { ArrowIcon } from 'ds_res/icons/ArrowIcon'
+import { ArrowIcon } from 'ds_res/icons'
 import React from 'react'
 import { DropdownButton } from 'src/Base/components'
 import { DropdownLabel } from 'src/Base/components/DropdownButton/DropdownLabel'
