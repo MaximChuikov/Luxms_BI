@@ -78,7 +78,7 @@
     "arrow-body-style": "off", // не наставивает на синтаксисе стрелочной (return-ы)
     "max-len": [
       "warn",
-      { 
+      {
         "code": 120,
         "tabWidth": 2,
         "ignoreComments": false,
@@ -108,7 +108,7 @@
   "settings": {
     "import/resolver": {
       "typescript": true,
-      "node": true            
+      "node": true
     },
     "react": {
       "version": "detect"

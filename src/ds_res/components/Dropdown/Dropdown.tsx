@@ -1,36 +1,36 @@
-import React, { FC, useRef, useState } from "react";
-import styles from "./Dropdown.module.scss";
+import React, { FC, useRef, useState } from 'react'
+import { useOnClickOutside } from '../../hooks/useOnCLickOutside'
+import styles from './Dropdown.module.scss'
 
-import { DropdownArrow } from "./icons";
-import { useOnClickOutside } from "../../hooks/useOnCLickOutside";
+import { DropdownArrow } from './icons'
 
 interface IOption {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 interface ISelect {
-  data: IOption[];
-  onChange: (obj: any) => void;
-  selectedOption?: { id: string; name: string };
+  data: IOption[]
+  onChange: (obj: any) => void
+  selectedOption?: { id: string; name: string }
 }
 
 export const Dropdown: FC<ISelect> = ({ data, onChange }) => {
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(data[0] || null);
+  const [isOptionsOpen, setIsOptionsOpen] = useState(false)
+  const [selectedOption, setSelectedOption] = useState(data[0] || null)
 
-  const ref = useRef(null);
-  useOnClickOutside(ref, () => setIsOptionsOpen(false));
+  const ref = useRef(null)
+  useOnClickOutside(ref, () => setIsOptionsOpen(false))
 
   const toggleOptions = () => {
-    setIsOptionsOpen(!isOptionsOpen);
-  };
+    setIsOptionsOpen(!isOptionsOpen)
+  }
 
   const onSelectOption = (selectedObj: any) => {
-    setSelectedOption(selectedObj);
-    onChange(selectedObj);
-    setIsOptionsOpen(false);
-  };
+    setSelectedOption(selectedObj)
+    onChange(selectedObj)
+    setIsOptionsOpen(false)
+  }
   return (
     <div className={styles.customSelect} ref={ref}>
       <div className={styles.wrapper} onClick={toggleOptions}>
@@ -40,24 +40,16 @@ export const Dropdown: FC<ISelect> = ({ data, onChange }) => {
         <div className={styles.arrow}>
           <DropdownArrow />
         </div>
-        <ul
-          className={`${styles.options} scroller ${
-            isOptionsOpen && styles.show
-          }`}
-        >
+        <ul className={`${styles.options} scroller ${isOptionsOpen && styles.show}`}>
           {data.map((option, index) => {
             return (
-              <li
-                key={option.id}
-                className={styles.optionsItem}
-                onClick={() => onSelectOption(data[index])}
-              >
+              <li key={option.id} className={styles.optionsItem} onClick={() => onSelectOption(data[index])}>
                 {option.name}
               </li>
-            );
+            )
           })}
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}

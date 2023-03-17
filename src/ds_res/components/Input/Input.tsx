@@ -1,19 +1,19 @@
-import React, { ChangeEvent, useState } from "react";
-import styles from "./Input.module.scss";
+import React, { ChangeEvent, useState } from 'react'
+import styles from './Input.module.scss'
 
 type InputProps = {
-  onChange?: (evt: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  width?: string | number;
-};
+  onChange?: (evt: ChangeEvent<HTMLInputElement>) => void
+  placeholder?: string
+  width?: string | number
+}
 
 const Input: React.FC<InputProps> = ({ placeholder, onChange, width }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('')
 
   const changeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
-    setValue(evt.target.value);
-    onChange(evt);
-  };
+    setValue(evt.target.value)
+    onChange(evt)
+  }
 
   return (
     <input
@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({ placeholder, onChange, width }) => {
       className={styles.input}
       style={{ width }}
     />
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

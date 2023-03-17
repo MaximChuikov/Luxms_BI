@@ -23,10 +23,10 @@ function getFiles(dir, prefix = "") {
 
 // наполняем объект entry записями о jsx/tsx файлах из директорий типа ds_xxx
 // для serv:
-//  'srv/resources/ds_xxx/File': './src/ds_xxx/File.tsx',
+//  'srv/resources/ds_xxx/File': './Todo/ds_xxx/File.tsx',
 // Для production (build)
-//  'ds_xxx/File': './src/ds_xxx/File.tsx',
-const entry = {} //  __dirname + '/src/index.jsx',
+//  'ds_xxx/File': './Todo/ds_xxx/File.tsx',
+const entry = {} //  __dirname + '/Todo/index.jsx',
 const SRC = path.resolve(__dirname, "src")
 const SCHEMA_NAMES = filterSchemaNames(
   fs.readdirSync(SRC).filter((fileName) => fs.statSync(path.resolve(SRC, fileName)).isDirectory())
@@ -37,7 +37,7 @@ SCHEMA_NAMES.forEach((schema_name) => {
   )
   files.forEach((fileName) => {
     const fileNameWithoutExtension = fileName.replace(/\.[^/.]+$/, "")
-    if (!(fileName.indexOf("src/") + 1)) {
+    if (!(fileName.indexOf("Todo/") + 1)) {
       console.log(`Register file: /${schema_name}/${fileNameWithoutExtension}`)
       if (env === "production" || env === "development") {
         entry[`${schema_name}/${fileNameWithoutExtension}`] = `./src/${schema_name}/${fileName}`
@@ -137,9 +137,9 @@ module.exports = {
 
                 console.log("resourcePath => ", resourcePath)
 
-                if (resourcePath[0] !== "src") throw new Error("Cannot get image outside ot src", resourcePath)
+                if (resourcePath[0] !== "src") throw new Error("Cannot get image outside ot Todo", resourcePath)
                 // todo: не уверен в правильности решения строчкой ниже, нужно смотреть на последствия
-                // if (resourcePath.filter(f => f === 'src').length > 1) throw new Error('Cannot get image in src in ds_*', resourcePath);
+                // if (resourcePath.filter(f => f === 'Todo').length > 1) throw new Error('Cannot get image in Todo in ds_*', resourcePath);
 
                 resourcePath = resourcePath.slice(1)
 
@@ -161,7 +161,7 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: [path.resolve("./node_modules"), path.resolve("./src")],
+    modules: [path.resolve("./node_modules"), path.resolve("./Todo")],
     extensions: [".json", ".js", ".ts", ".jsx", ".tsx", ".css", ".scss", ".sass", ".svg"],
     alias: {
       process: "process/browser",
@@ -169,7 +169,7 @@ module.exports = {
     }
   },
   plugins: [
-    // new HtmlWebpackPlugin({ template: path.resolve('src/ds_52', 'index.html') }),
+    // new HtmlWebpackPlugin({ template: path.resolve('Todo/ds_52', 'index.html') }),
 
     new webpack.ProvidePlugin({
       process: "process/browser"

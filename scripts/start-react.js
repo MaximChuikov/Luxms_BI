@@ -250,7 +250,7 @@ commands.loginWithSpinner().then(() => {
       }
 
       // поскольку есть copy plugin, теперь не нужно сервить статику специальным образом
-      // app.use('/srv/resources/', express.static(path.resolve(__dirname, '..', 'src')));
+      // app.use('/srv/resources/', express.static(path.resolve(__dirname, '..', 'Todo')));
     },
     // after: function (app, server, compiler) {
     // },

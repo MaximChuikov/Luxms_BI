@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.tabsContainer {
+  display: flex;
+  .tab {
+    padding: 0 16px 10px;
+    font-size: 16px;
+    &.selected {
+      border-bottom: 3px solid rgba($light-blue, 1);
+      animation: bottom-line-appear ease-out 0.3s;
+      @keyframes bottom-line-appear {
+        from {
+          border-bottom: 3px solid rgba($light-blue, 0);
+        }
+        to {
+          border-bottom: 3px solid rgba($light-blue, 1);
+        }
+      }
+    }
+  }
+}
