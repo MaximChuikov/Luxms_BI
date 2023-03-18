@@ -7,9 +7,8 @@ export interface ITab {
 }
 
 const Tabs = (props: { tabs: ITab[]; onChange: (tab: ITab) => void; selectedTabId: () => number }) => {
-  const a = style.tabsContainer
   return (
-    <div className={a}>
+    <div className={style.tabsContainer}>
       {props.tabs.map((e: ITab) => (
         <div
           key={e.tabId}

@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.autocompleteContainer {
+  .autocomplete {
+    display: inline-block;
+    min-width: 200px;
+    * {
+      color: inherit
+    }
+  }
+}

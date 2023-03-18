@@ -1,13 +1,44 @@
-import { KoobDataService } from 'bi-internal/services'
+import useFetch from '../../../ds_res/hooks/useFetch'
 
-const { koobDataRequest3 } = KoobDataService
-
-export async function getEmployeeTitles() {
-  const data = await koobDataRequest3('luxmsbi.Sales_Demo', ['emp_title'], [], [], {}, 'category name')
-  return data
+export function getCountries() {
+  return useFetch<
+    {
+      customer_country: string
+      order_quantity: number
+      vol: number
+    }[]
+  >({
+    dimensions: ['customer_country'],
+    allFilters: {},
+    measures: ['sum(vol)', 'sum(order_quantity)'],
+    request: {
+      sort: ['-vol']
+    }
+  })
 }
 
-export async function helo() {
-  const data = await koobDataRequest3('luxmsbi.Sales_Demo', ['sum(empid)'], [], [], {}, 'category name')
-  return data
+export function productsVolumes() {
+  return useFetch<
+    {
+      productname: string
+      vol: number
+    }[]
+  >({
+    dimensions: ['productname'],
+    allFilters: {},
+    measures: ['sum(vol)']
+  })
+}
+
+export function customerCompanyNames() {
+  return useFetch<
+    {
+      customer_companyname: string
+      vol: number
+    }[]
+  >({
+    dimensions: ['customer_companyname'],
+    allFilters: {},
+    measures: ['sum(vol)']
+  })
 }
