@@ -1,6 +1,7 @@
 @import "../../../../ds_res/styles/variables";
 .dashboardContainer {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   gap: 20px;
   align-items: stretch;
