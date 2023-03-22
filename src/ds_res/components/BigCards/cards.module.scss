@@ -22,12 +22,11 @@
     .stats {
       display: flex;
       .arrow {
-        > path {
-          fill: $d78D64B;
+        fill: $d78D64B;
+        &.redArr {
+          rotate: 180deg;
+          fill: $dE21A1A;
         }
-      }
-      .text {
-
       }
     }
   }

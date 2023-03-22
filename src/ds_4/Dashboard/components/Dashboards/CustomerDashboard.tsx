@@ -1,54 +1,46 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Autocomplete from '../../../../ds_res/components/Autocomplete/Autocomplete'
-import { customerCompanyNames, getCountries, productsVolumes } from '../../controllers/Category'
+import { getAllDashboardData, getCountries, IAllCustomerData } from '../../controllers/customer-controller'
 import { DashboardContext } from '../DashboardProvider'
-import Cards from '../../../../ds_res/components/Cards/Cards'
+import ManyCards from '../../../../ds_res/components/ManyCards/ManyCards'
+import { companiesToCards } from '../../utils/formatter'
 import style from './dashboard.module.scss'
 
 const CustomerDashboard = () => {
   const dashboard = useContext(DashboardContext)
-  const [data, loading] = getCountries()
-  const [data1] = customerCompanyNames()
-  const [dat2] = productsVolumes()
-  // Data tests
-  console.log('Страны', data[0]?.customer_country)
-  console.log('Компании', data1[0]?.customer_companyname)
-  console.log('Товары', dat2[0]?.productname)
-  const autoArr =
-    !loading &&
-    data.map((e, index) => {
-      return {
-        label: e.customer_country,
-        id: index
-      }
-    })
+  const [countries, countriesLoading] = getCountries()
+  const [dashboardData, setDashboardData] = useState({} as IAllCustomerData)
+  const [dataLoading, setDataLoading] = useState(true)
+  useEffect(() => {
+    async function fetch() {
+      const country = dashboard.getCountry()
+      const data = await getAllDashboardData(country)
+      setDashboardData(data)
+      setDataLoading(false)
+    }
+
+    if (!dataLoading) setDataLoading(true)
+    fetch().then()
+  }, [dashboard.getCountry()])
+  if (countriesLoading) {
+    return <div>Загрузка....</div>
+  }
+  const countriesArray = countries.map((country, index) => {
+    return {
+      label: country.customer_country,
+      id: index
+    }
+  })
   return (
     <div className={style.dashboardContainer}>
-      {loading ? (
+      <Autocomplete labels={countriesArray} onChangeValue={(country) => dashboard.setCountry(country.label)} />
+      {dataLoading ? (
         <div>Загрузка....</div>
       ) : (
-        <Autocomplete labels={autoArr} onChangeValue={(e) => dashboard.setCountry(e.label)} />
+        <>
+          <ManyCards cardsData={companiesToCards(dashboardData.companies)} />
+        </>
       )}
-      <Cards
-        cardsData={[
-          {
-            title: 'Lorem ipsaidn ldsanann dsnaun dn asj',
-            value: '12312 человек.',
-            stats: {
-              isIncrease: true,
-              text: '2% к 2023 году'
-            }
-          },
-          {
-            title: 'Lorem ipsaidn ldsanann dsnaun dn asj',
-            value: '12312 человек.',
-            stats: {
-              isIncrease: false,
-              text: '2% к 2023 году'
-            }
-          }
-        ]}
-      />
     </div>
   )
 }
