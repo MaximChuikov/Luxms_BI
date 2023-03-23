@@ -11,11 +11,14 @@ export interface ISmallCard {
     text: string
   }
 }
+export interface ISmallCardsProps {
+  cardsData: ISmallCard[]
+}
 
-const ManyCards = (props: { cardsData: ISmallCard[] }) => {
+const ManyCards = ({ cardsData }: ISmallCardsProps) => {
   return (
     <div className={style.cardsContainer}>
-      {props.cardsData.map((info, index) => (
+      {cardsData.map((info, index) => (
         <div key={index} className={classNames(style.card, !info.stats.isIncrease && style.redCard)}>
           <div className={style.title}>{info.title}</div>
           <div className={style.stats}>

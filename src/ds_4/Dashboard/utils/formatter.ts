@@ -1,5 +1,7 @@
-import { ICustomerCompanyResults } from '../controllers/customer-controller'
+import { ICountries, ICustomerCompanyResults, IProductVolumes } from '../controllers/customer-controller'
 import { ISmallCard } from '../../../ds_res/components/ManyCards/ManyCards'
+import { IRoundDiagramData } from '../../../ds_res/components/RoundDiagram/RoundDiagram'
+import { IAutocompleteText } from '../../../ds_res/components/Autocomplete/Autocomplete'
 
 export function companiesToCards(companiesResults: ICustomerCompanyResults[]): ISmallCard[] {
   return companiesResults.map((comp) => {
@@ -10,6 +12,40 @@ export function companiesToCards(companiesResults: ICustomerCompanyResults[]): I
         isIncrease: comp.growResult,
         text: `${comp.growNumber} продаж`
       }
+    }
+  })
+}
+
+export function productsToRoundDiagramData(products: IProductVolumes): IRoundDiagramData {
+  const result = {} as IRoundDiagramData
+  result.diagram = products.map((pr) => {
+    return {
+      title: pr.productname,
+      value: pr.vol,
+      stats: {
+        isIncrease: pr.vol > 8000,
+        text: '21% к 2008 году'
+      }
+    }
+  })
+  const allVol = products.map((pr) => pr.vol).reduce((pr, curr) => pr + curr)
+  result.centerDiagram = {
+    title: 'Всего продаж',
+    value: allVol,
+    stats: {
+      isIncrease: allVol > 150000,
+      text: '11% к 2008 году'
+    }
+  }
+  result.valuePostfix = 'шт.'
+  return result
+}
+
+export function countriesArrToAutocomplete(countries: ICountries): IAutocompleteText[] {
+  return countries.map((country, index) => {
+    return {
+      label: country.customer_country,
+      id: index
     }
   })
 }

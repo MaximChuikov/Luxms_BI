@@ -8,12 +8,15 @@ export enum Tabs {
 export interface IDashboardContext {
   changeTab: (tab: Tabs) => void
   getTab: () => Tabs
-  getCountry: () => string | null
+  getCountry: string | null
   setCountry: (country: string) => void
 }
 export const DashboardContext = React.createContext<IDashboardContext | null>(null)
+export interface IAppProps {
+  children: React.ReactNode
+}
 
-const DashboardProvider = (props: { children: React.ReactNode }) => {
+const DashboardProvider = ({ children }: IAppProps) => {
   const [tab, setTab] = useState(Tabs.sellers)
   const [country, setCountry] = useState(null)
   return (
@@ -25,15 +28,13 @@ const DashboardProvider = (props: { children: React.ReactNode }) => {
         getTab() {
           return tab
         },
-        getCountry(): null | string {
-          return country
-        },
+        getCountry: country,
         setCountry(c: string) {
           setCountry(c)
         }
       }}
     >
-      <div>{props.children}</div>
+      <div>{children}</div>
     </DashboardContext.Provider>
   )
 }

@@ -28,6 +28,9 @@ export async function getProductsVolumes(county: string): Promise<IProductVolume
     allFilters: {
       supplier_country: ['=', county]
     },
+    request: {
+      sort: ['-vol']
+    },
     measures: ['sum(vol)']
   })
   return data
@@ -59,7 +62,7 @@ export async function getCustomerCompanyNames(county: string): Promise<ICustomer
     },
     request: {
       sort: ['-vol'],
-      limit: 10
+      limit: 12
     },
     measures: ['sum(vol)']
   })
@@ -98,7 +101,6 @@ export interface IAllCustomerData {
 export async function getAllDashboardData(country: string): Promise<IAllCustomerData> {
   const products = await getProductsVolumes(country)
   const companies = await getCustomerCompanyNames(country)
-  console.log(companies, 'компании')
   return {
     products,
     companies

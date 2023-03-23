@@ -2,15 +2,18 @@ import React from 'react'
 import DashboardProvider from './Dashboard/components/DashboardProvider'
 import TabsBar from './Dashboard/components/TabsBar/TabsBar'
 import DashboardRouter from './Dashboard/components/Dashboards/DashboardRouter'
+import style from './app.module.scss'
 
 function App() {
   return (
-    <DashboardProvider>
-      <div>
-        <TabsBar />
-        <DashboardRouter />
+    <span>
+      <div className={style.app}>
+        <DashboardProvider>
+          <TabsBar />
+          <DashboardRouter />
+        </DashboardProvider>
       </div>
-    </DashboardProvider>
+    </span>
   )
 }
 

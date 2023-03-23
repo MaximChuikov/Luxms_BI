@@ -7,8 +7,13 @@ export interface IAutocompleteText {
   id: number
 }
 
-const Autocomplete = (props: { labels: IAutocompleteText[]; onChangeValue?: (label: IAutocompleteText) => void }) => {
-  const [value, setValue] = useState(props.labels[0])
+export interface IAutocompleteProps {
+  labels: IAutocompleteText[]
+  onChangeValue?: (label: IAutocompleteText) => void
+}
+const Autocomplete = ({ labels, onChangeValue }: IAutocompleteProps) => {
+  onChangeValue(labels[0])
+  const [value, setValue] = useState(labels[0])
   return (
     <div className={style.autocompleteContainer}>
       <AutocompleteMUI
@@ -19,11 +24,11 @@ const Autocomplete = (props: { labels: IAutocompleteText[]; onChangeValue?: (lab
         }}
         noOptionsText={'Не найдено'}
         className={style.autocomplete}
-        options={props.labels}
+        options={labels}
         value={value}
         renderInput={(params) => <TextField className={style.textField} {...params} label="Страна" />}
         onChange={(e, newValue) => {
-          props.onChangeValue(newValue)
+          onChangeValue(newValue)
           setValue(newValue)
         }}
         isOptionEqualToValue={(option, val) => {

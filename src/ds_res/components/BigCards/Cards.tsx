@@ -10,11 +10,13 @@ export interface ICard {
     text: string
   }
 }
-
-const Cards = (props: { cardsData: ICard[] }) => {
+export interface ICardsProps {
+  cardsData: ICard[]
+}
+const Cards = ({ cardsData }: ICardsProps) => {
   return (
     <div className={style.cardsContainer}>
-      {props.cardsData.map((e, index) => (
+      {cardsData.map((e, index) => (
         <div key={index} className={style.card}>
           <div className={style.title}>{e.title}</div>
           <div className={style.value}>{e.value}</div>

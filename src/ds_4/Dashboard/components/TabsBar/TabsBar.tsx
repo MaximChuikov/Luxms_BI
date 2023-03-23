@@ -22,7 +22,7 @@ const TabsBar = () => {
   function clickHandler(tabClicked: ITab) {
     dashboard.changeTab(tabClicked.tabId)
   }
-  return <Tabs tabs={tabsNames} onChange={clickHandler} selectedTabId={dashboard.getTab} />
+  return <Tabs tabs={tabsNames} onChange={clickHandler} selectedTabId={dashboard.getTab()} />
 }
 
 export default TabsBar

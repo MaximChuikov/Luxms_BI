@@ -6,14 +6,14 @@ export interface ITab {
   tabId: number
 }
 
-const Tabs = (props: { tabs: ITab[]; onChange: (tab: ITab) => void; selectedTabId: () => number }) => {
+const Tabs = (props: { tabs: ITab[]; onChange: (tab: ITab) => void; selectedTabId: number }) => {
   return (
     <div className={style.tabsContainer}>
       {props.tabs.map((e: ITab) => (
         <div
           key={e.tabId}
           onClick={() => props.onChange(e)}
-          className={[style.tab, props.selectedTabId() === e.tabId && style.selected].join(' ')}
+          className={[style.tab, props.selectedTabId === e.tabId && style.selected].join(' ')}
         >
           {e.name}
         </div>
