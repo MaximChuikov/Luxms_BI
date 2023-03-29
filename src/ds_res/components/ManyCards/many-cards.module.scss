@@ -5,39 +5,40 @@
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  .card {
-    min-height: 180px;
-    min-width: 250px;
-    border-radius: 8px;
-    box-shadow: $boxShadow;
+}
+
+.card {
+  min-height: 180px;
+  min-width: 250px;
+  border-radius: 8px;
+  box-shadow: $boxShadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  border: 1px solid transparent;
+  &.redCard {
+    border: 1px solid $dE21A1A;
+  }
+  .title {
+  }
+  .stats {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 30px;
-    border: 1px solid transparent;
-    &.redCard {
-      border: 1px solid $dE21A1A;
-    }
-    .title {
-    }
-    .stats {
-      display: flex;
-      font-size: 15px;
-      align-items: flex-end;
-      .value {
-        font-size: 24px;
-        font-weight: bold;
-        &.redValue {
-          color: $dE21A1A
-        }
+    font-size: 15px;
+    align-items: flex-end;
+    .value {
+      font-size: 24px;
+      font-weight: bold;
+      &.redValue {
+        color: $dE21A1A
       }
-      .arrow {
-        fill: $d78D64B;
-        height: 18px;
-        &.redArr {
-          rotate: 180deg;
-          fill: $dE21A1A;
-        }
+    }
+    .arrow {
+      fill: $d78D64B;
+      height: 18px;
+      &.redArr {
+        rotate: 180deg;
+        fill: $dE21A1A;
       }
     }
   }

@@ -1,0 +1,50 @@
+@import "../../../styles/variables";
+
+.pieContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 450px;
+  .pie {
+  }
+  .centerText {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+  }
+}
+
+.legend {
+  .title {
+    font-size: 15px;
+  }
+  .value {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .stats {
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    .arrow {
+      fill: $d78D64B;
+      height: 18px;
+      &.redArr {
+        rotate: 180deg;
+        fill: $dE21A1A;
+      }
+    }
+  }
+}

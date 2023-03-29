@@ -1,54 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Autocomplete from '../../../../ds_res/components/Autocomplete/Autocomplete'
+import React, { useEffect, useState } from 'react'
+import Autocomplete, { IAutocompleteText } from '../../../../ds_res/components/Autocomplete/Autocomplete'
 import { getAllDashboardData, getCountries, IAllCustomerData } from '../../controllers/customer-controller'
-import { DashboardContext } from '../DashboardProvider'
-import ManyCards from '../../../../ds_res/components/ManyCards/ManyCards'
-import { companiesToCards, countriesArrToAutocomplete, productsToRoundDiagramData } from '../../utils/formatter'
-import RoundDiagram from '../../../../ds_res/components/RoundDiagram/RoundDiagram'
+import { countriesArrToAutocomplete } from '../../utils/formatter'
+import ManyCardsLoading from '../../../../ds_res/components/Loading/ManyCardsLoading'
+import SmallLoading from '../../../../ds_res/components/Loading/SmallLoading'
+import TableRoundCardsDiagrams from '../../../../ds_res/components/Diagrams/TableRoundCardsDiagrams'
 import style from './dashboard.module.scss'
 
 const CustomerDashboard = () => {
-  const dashboard = useContext(DashboardContext)
-  const [countries, countriesLoading] = getCountries()
   const [dashboardData, setDashboardData] = useState({} as IAllCustomerData)
   const [dataLoading, setDataLoading] = useState(true)
+  const [selectedCountry, setSelectedCounty] = useState(null as IAutocompleteText)
+  const [countries, countriesLoading] = getCountries((data) => setSelectedCounty(countriesArrToAutocomplete(data)[0]))
 
   // Load data when county has changed
   useEffect(() => {
-    async function fetch() {
-      const country = dashboard.getCountry
-      const data = await getAllDashboardData(country)
-      setDashboardData(data)
+    if (selectedCountry === null) return
+    setDataLoading(true)
+    getAllDashboardData(selectedCountry.label).then((res) => {
+      setDashboardData(res)
       setDataLoading(false)
-    }
-    if (dashboard.getCountry !== null) {
-      if (!dataLoading) setDataLoading(true)
-      fetch().then()
-    }
-  }, [countries, dashboard.getCountry])
+    })
+  }, [selectedCountry])
 
   if (countriesLoading) {
-    return <div>Загрузка стран....</div>
+    return <SmallLoading />
   }
 
-  const countriesArray = countriesArrToAutocomplete(countries)
+  const countryChangeHandler = (country) => setSelectedCounty(country)
 
-  const Loading = () => <div>Загрузка...</div>
-  const Diagrams = () =>
-    dashboardData?.products?.length === 0 ?? true ? (
-      <div>Данные отсутсвуют</div>
-    ) : (
-      <>
-        <h4>Статистика по товарам</h4>
-        <RoundDiagram {...productsToRoundDiagramData(dashboardData.products)} />
-        <h4>Лучшие компании страны</h4>
-        <ManyCards cardsData={companiesToCards(dashboardData.companies)} />
-      </>
-    )
   return (
     <div className={style.dashboardContainer}>
-      <Autocomplete labels={countriesArray} onChangeValue={(country) => dashboard.setCountry(country.label)} />
-      {dataLoading ? Loading() : Diagrams()}
+      <Autocomplete labels={countries} onChangeValue={countryChangeHandler} selectedValue={selectedCountry} />
+      {dataLoading ? <ManyCardsLoading /> : TableRoundCardsDiagrams({ dashboardData })}
     </div>
   )
 }

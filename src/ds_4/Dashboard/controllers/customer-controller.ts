@@ -1,20 +1,26 @@
 import useKoobFetch, { fetchKoobData } from '../../../ds_res/hooks/useKoobFetch'
+// eslint-disable-next-line import/no-cycle
+import { countriesArrToAutocomplete } from '../utils/formatter'
+import { IAutocompleteText } from '../../../ds_res/components/Autocomplete/Autocomplete'
 
 export type ICountries = {
   customer_country: string
-  order_quantity: number
   vol: number
 }[]
 
-export function getCountries() {
-  return useKoobFetch<ICountries>({
-    dimensions: ['customer_country'],
-    allFilters: {},
-    measures: ['sum(vol)', 'sum(order_quantity)'],
-    request: {
-      sort: ['-vol']
-    }
-  })
+export function getCountries(callback: (data: ICountries) => void = () => {}): [IAutocompleteText[], boolean] {
+  const [data, loading] = useKoobFetch<ICountries>(
+    {
+      dimensions: ['customer_country'],
+      allFilters: {},
+      measures: ['sum(vol)'],
+      request: {
+        sort: ['-vol']
+      }
+    },
+    callback
+  )
+  return [Object.keys(data).length !== 0 ? countriesArrToAutocomplete(data) : ({} as IAutocompleteText[]), loading]
 }
 
 export type IProductVolumes = {

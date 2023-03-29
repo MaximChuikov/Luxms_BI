@@ -8,8 +8,6 @@ export enum Tabs {
 export interface IDashboardContext {
   changeTab: (tab: Tabs) => void
   getTab: () => Tabs
-  getCountry: string | null
-  setCountry: (country: string) => void
 }
 export const DashboardContext = React.createContext<IDashboardContext | null>(null)
 export interface IAppProps {
@@ -18,7 +16,6 @@ export interface IAppProps {
 
 const DashboardProvider = ({ children }: IAppProps) => {
   const [tab, setTab] = useState(Tabs.sellers)
-  const [country, setCountry] = useState(null)
   return (
     <DashboardContext.Provider
       value={{
@@ -27,10 +24,6 @@ const DashboardProvider = ({ children }: IAppProps) => {
         },
         getTab() {
           return tab
-        },
-        getCountry: country,
-        setCountry(c: string) {
-          setCountry(c)
         }
       }}
     >

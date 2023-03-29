@@ -12,14 +12,21 @@ export interface koobRequest {
   comment?: string
 }
 
-export default function useKoobFetch<T>(req: koobRequest, koobId = 'luxmsbi.Sales_Demo'): [T, boolean] {
+export default function useKoobFetch<T>(
+  req: koobRequest,
+  callback: (T) => void = () => {},
+  koobId = 'luxmsbi.Sales_Demo'
+): [T, boolean] {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<T>({} as T)
 
   useEffect(() => {
     async function fetch() {
-      await koobDataRequest3(koobId, req.dimensions, req.measures, req.allFilters, req.request, req.comment).then((r) =>
-        setData(r)
+      await koobDataRequest3(koobId, req.dimensions, req.measures, req.allFilters, req.request, req.comment).then(
+        (r) => {
+          callback(r)
+          setData(r)
+        }
       )
       setLoading(false)
     }

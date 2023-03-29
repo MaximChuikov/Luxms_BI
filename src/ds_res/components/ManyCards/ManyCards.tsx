@@ -1,16 +1,7 @@
 import React from 'react'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
-import classNames from 'classnames'
 import style from './many-cards.module.scss'
+import SmallCard, { ISmallCard } from './SmallCard'
 
-export interface ISmallCard {
-  title: string
-  value: string
-  stats: {
-    isIncrease: boolean
-    text: string
-  }
-}
 export interface ISmallCardsProps {
   cardsData: ISmallCard[]
 }
@@ -19,14 +10,7 @@ const ManyCards = ({ cardsData }: ISmallCardsProps) => {
   return (
     <div className={style.cardsContainer}>
       {cardsData.map((info, index) => (
-        <div key={index} className={classNames(style.card, !info.stats.isIncrease && style.redCard)}>
-          <div className={style.title}>{info.title}</div>
-          <div className={style.stats}>
-            <div className={classNames(style.value, !info.stats.isIncrease && style.redValue)}>{info.value}</div>
-            <ArrowUpwardIcon className={classNames(style.arrow, !info.stats.isIncrease && style.redArr)} />
-            <div>{info.stats.text}</div>
-          </div>
-        </div>
+        <SmallCard title={info.title} value={info.value} stats={info.stats} key={index} />
       ))}
     </div>
   )

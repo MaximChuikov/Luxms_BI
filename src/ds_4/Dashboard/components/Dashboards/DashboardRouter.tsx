@@ -6,7 +6,7 @@ import EmployeeDetails from './SellerStatsDashboard'
 
 const DashboardRouter = () => {
   const dashboardContext = useContext(DashboardContext)
-  function selectedDashboard() {
+  function getSelectedDashboard() {
     switch (dashboardContext.getTab()) {
       case Tabs.customers:
         return <CustomerDashboard />
@@ -18,7 +18,7 @@ const DashboardRouter = () => {
         return <div />
     }
   }
-  return <div>{selectedDashboard()}</div>
+  return <div>{getSelectedDashboard()}</div>
 }
 
 export default DashboardRouter
