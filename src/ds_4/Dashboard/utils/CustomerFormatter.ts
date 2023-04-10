@@ -1,8 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-import { ICountries, ICustomerCompanyResults, IProductVolumes } from '../controllers/customer-controller'
+import { ICustomerCompanyResults, IProductVolumes } from '../controllers/customer-controller'
 import { ISmallCard } from '../../../ds_res/components/ManyCards/SmallCard'
 import { IRoundDiagramData } from '../../../ds_res/components/ColoredDiagrams/RoundDiagram/RoundDiagram'
-import { IAutocompleteText } from '../../../ds_res/components/Autocomplete/Autocomplete'
 import { IColoredTableData } from '../../../ds_res/components/ColoredDiagrams/ColoredTable/ColoredTable'
 
 export function companiesToCards(companiesResults: ICustomerCompanyResults[]): ISmallCard[] {
@@ -52,13 +51,4 @@ export function convertProductsToTableData(products: IProductVolumes): IColoredT
   })
   result.valuePostfix = 'шт.'
   return result
-}
-
-export function countriesArrToAutocomplete(countries: ICountries): IAutocompleteText[] {
-  return countries.map((country, index) => {
-    return {
-      label: country.customer_country,
-      id: index
-    }
-  })
 }

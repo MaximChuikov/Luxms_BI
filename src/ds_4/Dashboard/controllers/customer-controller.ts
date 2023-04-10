@@ -1,7 +1,10 @@
 import useKoobFetch, { fetchKoobData } from '../../../ds_res/hooks/useKoobFetch'
 // eslint-disable-next-line import/no-cycle
-import { countriesArrToAutocomplete } from '../utils/formatter'
+import { convertProductsToRoundDiagramData, convertProductsToTableData } from '../utils/CustomerFormatter'
 import { IAutocompleteText } from '../../../ds_res/components/Autocomplete/Autocomplete'
+import { IColoredTableData } from '../../../ds_res/components/ColoredDiagrams/ColoredTable/ColoredTable'
+import { IRoundDiagramData } from '../../../ds_res/components/ColoredDiagrams/RoundDiagram/RoundDiagram'
+import { toAutocomplete } from '../../../ds_res/utils/formate'
 
 export type ICountries = {
   customer_country: string
@@ -20,7 +23,10 @@ export function getCountries(callback: (data: ICountries) => void = () => {}): [
     },
     callback
   )
-  return [Object.keys(data).length !== 0 ? countriesArrToAutocomplete(data) : ({} as IAutocompleteText[]), loading]
+  return [
+    Object.keys(data).length !== 0 ? toAutocomplete(data, (el) => el.customer_country) : ({} as IAutocompleteText[]),
+    loading
+  ]
 }
 
 export type IProductVolumes = {
@@ -101,14 +107,16 @@ export async function getCustomerCompanyNames(county: string): Promise<ICustomer
 }
 
 export interface IAllCustomerData {
-  products: IProductVolumes
+  productsTable: IColoredTableData
+  productsRound: IRoundDiagramData
   companies: ICustomerCompanyResults[]
 }
 export async function getAllDashboardData(country: string): Promise<IAllCustomerData> {
   const products = await getProductsVolumes(country)
   const companies = await getCustomerCompanyNames(country)
   return {
-    products,
+    productsTable: convertProductsToTableData(products),
+    productsRound: convertProductsToRoundDiagramData(products),
     companies
   }
 }

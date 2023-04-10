@@ -1,0 +1,35 @@
+.tableContainer {
+  width: 100%;
+}
+
+.table {
+  border-spacing: 30px;
+  width: 100%;
+  //border-collapse: collapse;
+
+  th, td {
+    padding: 12px 15px;
+  }
+
+  thead {
+    tr {
+      background-color: #673AB7;
+      text-align: left;
+      th {
+        color: #ffffff;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #dddddd;
+    }
+    tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }
+    tr:last-of-type {
+      border-bottom: 2px solid #673AB7;
+    }
+  }
+}
