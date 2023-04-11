@@ -32,7 +32,12 @@ const SellerDashboard = () => {
 
   return (
     <div className={style.dashboardContainer}>
-      <Autocomplete labels={categories} onChangeValue={categoryChangeHandler} selectedValue={selectedCategory} />
+      <Autocomplete
+        selectedLabel={'Категория'}
+        labels={categories}
+        onChangeValue={categoryChangeHandler}
+        selectedValue={selectedCategory}
+      />
       {dataLoading ? <ManyCardsLoading /> : <SellerDiagrams dashboardData={dashboardData} />}
     </div>
   )

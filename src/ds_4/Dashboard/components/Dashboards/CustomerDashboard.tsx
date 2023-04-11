@@ -33,7 +33,12 @@ const CustomerDashboard = () => {
 
   return (
     <div className={style.dashboardContainer}>
-      <Autocomplete labels={countries} onChangeValue={countryChangeHandler} selectedValue={selectedCountry} />
+      <Autocomplete
+        selectedLabel={'Страна'}
+        labels={countries}
+        onChangeValue={countryChangeHandler}
+        selectedValue={selectedCountry}
+      />
       {dataLoading ? <ManyCardsLoading /> : CustomerDiagrams({ dashboardData })}
     </div>
   )

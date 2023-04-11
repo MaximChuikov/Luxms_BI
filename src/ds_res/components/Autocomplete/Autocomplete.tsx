@@ -7,12 +7,13 @@ export interface IAutocompleteText {
   id: number
 }
 export interface IAutocompleteProps {
+  selectedLabel: string
   labels: IAutocompleteText[]
   onChangeValue?: (label: IAutocompleteText) => void
   selectedValue: IAutocompleteText
 }
 
-const Autocomplete = ({ labels, onChangeValue, selectedValue }: IAutocompleteProps) => {
+const Autocomplete = ({ selectedLabel, labels, onChangeValue, selectedValue }: IAutocompleteProps) => {
   if (labels.length === 0) return <h3>Путой список</h3>
   return (
     <div className={style.autocompleteContainer}>
@@ -24,7 +25,7 @@ const Autocomplete = ({ labels, onChangeValue, selectedValue }: IAutocompletePro
         className={style.autocomplete}
         options={labels}
         value={selectedValue}
-        renderInput={(params) => <TextField className={style.textField} {...params} label="Страна" />}
+        renderInput={(params) => <TextField className={style.textField} {...params} label={selectedLabel} />}
         onChange={(_, newValue) => {
           onChangeValue(newValue)
         }}

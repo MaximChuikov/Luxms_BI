@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .tableContainer {
   width: 100%;
 }
@@ -13,10 +15,26 @@
 
   thead {
     tr {
-      background-color: #673AB7;
-      text-align: left;
+      text-align: right;
       th {
-        color: #ffffff;
+        cursor: pointer;
+        .arrowsContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          .upArrow {
+            &.activeArrow {
+              fill: $d78D64B;
+            }
+          }
+          .downArrow {
+            &.activeArrow {
+              fill: $dE21A1A;
+            }
+          }
+        }
       }
     }
   }
@@ -24,6 +42,18 @@
   tbody {
     tr {
       border-bottom: 1px solid #dddddd;
+      .stats {
+        display: flex;
+        font-size: 10px;
+        .arrow {
+          fill: $d78D64B;
+          font-size: 10px;
+          &.redArr {
+            rotate: 180deg;
+            fill: $dE21A1A;
+          }
+        }
+      }
     }
     tr:nth-of-type(even) {
       background-color: #f3f3f3;

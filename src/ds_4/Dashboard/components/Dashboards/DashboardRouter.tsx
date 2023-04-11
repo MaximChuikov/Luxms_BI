@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { DashboardContext, Tabs } from '../DashboardProvider'
 import CustomerDashboard from './CustomerDashboard'
 import SellerDashboard from './SellerDashboard'
-import EmployeeDetails from './SellerStatsDashboard'
+import EmployeeDetails from './EmployeeDashboard'
 
 const DashboardRouter = () => {
   const dashboardContext = useContext(DashboardContext)
