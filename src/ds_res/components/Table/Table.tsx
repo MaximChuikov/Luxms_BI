@@ -90,7 +90,9 @@ const Table = ({ headers, tableData }: ITableProps) => {
                     </div>
                     {column.stats && (
                       <div className={style.stats}>
-                        <ArrowUpwardIcon className={classNames(style.arrow, !column.stats.isIncrease && style.down)} />
+                        <ArrowUpwardIcon
+                          className={classNames(style.arrow, !column.stats.isIncrease && style.redArr)}
+                        />
                         <div>{column.stats.text}</div>
                       </div>
                     )}

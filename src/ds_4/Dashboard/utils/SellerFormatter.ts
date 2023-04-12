@@ -39,6 +39,10 @@ export function sellersStatsToTable(sellersStats: ISellersStats): ITableProps {
   const result = {} as ITableProps
   result.headers = ['Компания', 'Стоимость продаж', 'Объем продаж', 'Выплата зарплат']
   result.tableData = sellersStats.map((seller) => {
+    console.log({
+      isIncrease: seller.vol > 2000,
+      text: `${seller.vol - 2000} шт.`
+    })
     return [
       {
         value: seller.supplier_companyname
@@ -52,7 +56,7 @@ export function sellersStatsToTable(sellersStats: ISellersStats): ITableProps {
         postfix: 'шт.',
         stats: {
           isIncrease: seller.vol > 2000,
-          text: `${seller.vol - 2000} шт.`
+          text: `${Math.abs(seller.vol - 2000)} шт.`
         }
       },
       {
