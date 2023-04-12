@@ -5,9 +5,10 @@
 }
 
 .table {
-  border-spacing: 30px;
   width: 100%;
-  //border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+
 
   th, td {
     padding: 12px 15px;
@@ -15,23 +16,40 @@
 
   thead {
     tr {
-      text-align: right;
       th {
-        cursor: pointer;
-        .arrowsContainer {
+        font-weight: normal;
+
+        div {
+          white-space: nowrap;
+          cursor: pointer;
           display: flex;
-          flex-direction: column;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
-          gap: 5px;
-          .upArrow {
-            &.activeArrow {
-              fill: $d78D64B;
+
+          .arrowsContainer {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-left: 6px;
+            gap: 2px;
+            align-items: center;
+
+            .upArrow, .downArrow {
+              fill: #666F78;
             }
-          }
-          .downArrow {
-            &.activeArrow {
-              fill: $dE21A1A;
+
+            .upArrow {
+              &.activeArrow {
+                fill: $d78D64B;
+              }
+            }
+
+            .downArrow {
+              rotate: 180deg;
+
+              &.activeArrow {
+                fill: $dE21A1A;
+              }
             }
           }
         }
@@ -39,27 +57,35 @@
     }
   }
 
+
   tbody {
     tr {
-      border-bottom: 1px solid #dddddd;
-      .stats {
-        display: flex;
-        font-size: 10px;
-        .arrow {
-          fill: $d78D64B;
-          font-size: 10px;
-          &.redArr {
-            rotate: 180deg;
-            fill: $dE21A1A;
+      td {
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          .stats {
+            margin-left: 5px;
+            display: flex;
+            font-size: 14px;
+
+            .arrow {
+              fill: $d78D64B;
+              font-size: 14px;
+
+              &.redArr {
+                rotate: 180deg;
+                fill: $dE21A1A;
+              }
+            }
           }
         }
       }
     }
-    tr:nth-of-type(even) {
-      background-color: #f3f3f3;
-    }
-    tr:last-of-type {
-      border-bottom: 2px solid #673AB7;
+    tr:nth-child(odd) {
+      background-color: #e5e8f1;
     }
   }
 }

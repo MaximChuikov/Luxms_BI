@@ -45,11 +45,7 @@ export function sellersStatsToTable(sellersStats: ISellersStats): ITableProps {
       },
       {
         value: seller.order_unitprice,
-        postfix: 'руб.',
-        stats: {
-          isIncrease: seller.order_unitprice > 400,
-          text: `${seller.order_unitprice - 400} руб.`
-        }
+        postfix: 'руб.'
       },
       {
         value: seller.vol,
@@ -61,11 +57,7 @@ export function sellersStatsToTable(sellersStats: ISellersStats): ITableProps {
       },
       {
         value: seller.emp_year_salary,
-        postfix: 'руб.',
-        stats: {
-          isIncrease: seller.emp_year_salary > 40000,
-          text: `${seller.emp_year_salary - 40000} руб.`
-        }
+        postfix: 'руб.'
       }
     ]
   })

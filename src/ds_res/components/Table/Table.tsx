@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import classNames from 'classnames'
+import ArrowDropdown from '../Icons/ArrowDropdown'
 import style from './table.module.scss'
 
 export type ITableColumn = {
@@ -28,7 +27,7 @@ const Table = ({ headers, tableData }: ITableProps) => {
   useEffect(() => {
     function compareHandler(a: ITableColumn[], b: ITableColumn[]) {
       const hi = headerSort.headerIndex
-      // без этого куска неравильно работает сортировка чисел, она работает как со строками
+      // без этого кода неравильно работает сортировка чисел, она работает как со строками
       // 140 > 20 = false берется только первый символ
       if (typeof a[hi].value === 'number' && typeof b[hi].value === 'number')
         return (Number(a[hi].value) - Number(b[hi].value)) * headerSort.sortDirection
@@ -38,7 +37,7 @@ const Table = ({ headers, tableData }: ITableProps) => {
       return 0
     }
 
-    setSortedTableData(headerSort.sortDirection === 0 ? tableData : tableData.sort(compareHandler))
+    setSortedTableData(headerSort.sortDirection === 0 ? tableData : [...tableData].sort(compareHandler))
   }, [headerSort])
 
   function headerClickHandler(headerInd: number) {
@@ -65,14 +64,16 @@ const Table = ({ headers, tableData }: ITableProps) => {
           <tr>
             {headers.map((h, index) => (
               <th key={index} onClick={() => headerClickHandler(index)}>
-                <div>{h}</div>
-                <div className={style.arrowsContainer}>
-                  <ArrowDropUpIcon
-                    className={classNames(style.upArrow, isActiveArrow(index, true) && style.activeArrow)}
-                  />
-                  <ArrowDropDownIcon
-                    className={classNames(style.downArrow, isActiveArrow(index, false) && style.activeArrow)}
-                  />
+                <div>
+                  {h}
+                  <div className={style.arrowsContainer}>
+                    <ArrowDropdown
+                      className={classNames(style.upArrow, isActiveArrow(index, true) && style.activeArrow)}
+                    />
+                    <ArrowDropdown
+                      className={classNames(style.downArrow, isActiveArrow(index, false) && style.activeArrow)}
+                    />
+                  </div>
                 </div>
               </th>
             ))}
@@ -84,14 +85,16 @@ const Table = ({ headers, tableData }: ITableProps) => {
               {row.map((column, ind) => (
                 <td key={ind}>
                   <div>
-                    {column.value} {column.postfix}
-                  </div>
-                  {column.stats && (
-                    <div className={style.stats}>
-                      <ArrowUpwardIcon className={classNames(style.arrow, !column.stats.isIncrease && style.down)} />
-                      <div>{column.stats.text}</div>
+                    <div>
+                      {column.value} {column.postfix}
                     </div>
-                  )}
+                    {column.stats && (
+                      <div className={style.stats}>
+                        <ArrowUpwardIcon className={classNames(style.arrow, !column.stats.isIncrease && style.down)} />
+                        <div>{column.stats.text}</div>
+                      </div>
+                    )}
+                  </div>
                 </td>
               ))}
             </tr>
