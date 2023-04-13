@@ -49,7 +49,7 @@ export function categoriesSalesToTable(sellersStats: ICategoriesSalesVolumes): I
   result.headers = ['Категория', 'Стоимость продаж', 'Объем продаж']
   result.tableData = sellersStats.map((seller) => {
     return {
-      isIncrease: seller.units_in_order > 4000,
+      isIncrease: seller.units_in_order > 400,
       columns: [
         {
           value: seller.categoryname
@@ -58,8 +58,8 @@ export function categoriesSalesToTable(sellersStats: ICategoriesSalesVolumes): I
           value: seller.units_in_order,
           postfix: 'руб.',
           stats: {
-            isIncrease: seller.units_in_order > 4000,
-            text: `${seller.units_in_order - 4000} руб.`
+            isIncrease: seller.units_in_order > 400,
+            text: `${seller.units_in_order - 400} руб.`
           }
         },
         {
