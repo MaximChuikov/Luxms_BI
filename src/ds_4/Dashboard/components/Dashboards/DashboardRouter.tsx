@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
 import { DashboardContext, Tabs } from '../DashboardProvider'
+import TabsBar from '../TabsBar/TabsBar'
 import CustomerDashboard from './CustomerDashboard'
 import SellerDashboard from './SellerDashboard'
 import EmployeeDetails from './EmployeeDashboard'
+import style from './dashboard.module.scss'
 
 const DashboardRouter = () => {
   const dashboardContext = useContext(DashboardContext)
@@ -18,7 +20,12 @@ const DashboardRouter = () => {
         return <div />
     }
   }
-  return <div>{getSelectedDashboard()}</div>
+  return (
+    <div className={style.dashboardContainer}>
+      <TabsBar />
+      {getSelectedDashboard()}
+    </div>
+  )
 }
 
 export default DashboardRouter

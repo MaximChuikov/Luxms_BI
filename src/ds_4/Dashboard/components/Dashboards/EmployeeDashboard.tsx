@@ -5,7 +5,6 @@ import SmallLoading from '../../../../ds_res/components/Loading/SmallLoading'
 import ManyCardsLoading from '../../../../ds_res/components/Loading/ManyCardsLoading'
 import { getAllEmployeeData, getLastnamesList, IAllEmployeeData } from '../../controllers/employee-details-controller'
 import EmployeeDiagrams from '../../Diagrams/EmployeeDiagrams'
-import style from './dashboard.module.scss'
 
 const SellerStatsDashboard = () => {
   const [dashboardData, setDashboardData] = useState({} as IAllEmployeeData)
@@ -31,7 +30,7 @@ const SellerStatsDashboard = () => {
   const categoryChangeHandler = (category) => setSelectedLastname(category)
 
   return (
-    <div className={style.dashboardContainer}>
+    <>
       <Autocomplete
         selectedLabel={'Фамилия'}
         labels={categories}
@@ -39,7 +38,7 @@ const SellerStatsDashboard = () => {
         selectedValue={selectedLastname}
       />
       {dataLoading ? <ManyCardsLoading /> : <EmployeeDiagrams dashboardData={dashboardData} />}
-    </div>
+    </>
   )
 }
 

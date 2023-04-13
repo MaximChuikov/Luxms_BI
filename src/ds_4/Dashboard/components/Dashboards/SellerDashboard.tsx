@@ -5,7 +5,6 @@ import SmallLoading from '../../../../ds_res/components/Loading/SmallLoading'
 import SellerDiagrams from '../../Diagrams/SellerDiagrams'
 import ManyCardsLoading from '../../../../ds_res/components/Loading/ManyCardsLoading'
 import { toAutocomplete } from '../../../../ds_res/utils/formate'
-import style from './dashboard.module.scss'
 
 const SellerDashboard = () => {
   const [dashboardData, setDashboardData] = useState({} as IAllSellerData)
@@ -31,7 +30,7 @@ const SellerDashboard = () => {
   const categoryChangeHandler = (category) => setSelectedCategory(category)
 
   return (
-    <div className={style.dashboardContainer}>
+    <>
       <Autocomplete
         selectedLabel={'Категория'}
         labels={categories}
@@ -39,7 +38,7 @@ const SellerDashboard = () => {
         selectedValue={selectedCategory}
       />
       {dataLoading ? <ManyCardsLoading /> : <SellerDiagrams dashboardData={dashboardData} />}
-    </div>
+    </>
   )
 }
 

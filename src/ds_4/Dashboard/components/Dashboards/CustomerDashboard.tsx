@@ -5,7 +5,6 @@ import { toAutocomplete } from '../../../../ds_res/utils/formate'
 import ManyCardsLoading from '../../../../ds_res/components/Loading/ManyCardsLoading'
 import SmallLoading from '../../../../ds_res/components/Loading/SmallLoading'
 import CustomerDiagrams from '../../Diagrams/CustomerDiagrams'
-import style from './dashboard.module.scss'
 
 const CustomerDashboard = () => {
   const [dashboardData, setDashboardData] = useState({} as IAllCustomerData)
@@ -32,7 +31,7 @@ const CustomerDashboard = () => {
   const countryChangeHandler = (country) => setSelectedCounty(country)
 
   return (
-    <div className={style.dashboardContainer}>
+    <>
       <Autocomplete
         selectedLabel={'Страна'}
         labels={countries}
@@ -40,7 +39,7 @@ const CustomerDashboard = () => {
         selectedValue={selectedCountry}
       />
       {dataLoading ? <ManyCardsLoading /> : CustomerDiagrams({ dashboardData })}
-    </div>
+    </>
   )
 }
 
