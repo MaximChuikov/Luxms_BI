@@ -7,23 +7,25 @@
 .table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 5px;
-
-
-  th, td {
-    padding: 12px 15px;
-  }
+  border-spacing: 0 12px;
 
   thead {
     tr {
       th {
+        padding: 10px 18px;
         font-weight: normal;
+
+        &:first-child{
+          div {
+            justify-content: flex-start;
+          }
+        }
 
         div {
           white-space: nowrap;
           cursor: pointer;
           display: flex;
-          justify-content: flex-start;
+          justify-content: flex-end;
           align-items: center;
 
           .arrowsContainer {
@@ -60,12 +62,43 @@
 
   tbody {
     tr {
+      border-radius: 5px;
+      box-shadow: $boxShadow;
+      &.redRow {
+        td {
+          &:nth-child(n) {
+            border-top: 1px solid $dE21A1A;
+            border-bottom: 1px solid $dE21A1A;
+          }
+          &:first-child {
+            border-left: 1px solid $dE21A1A;
+          }
+          &:last-child {
+            border-right: 1px solid $dE21A1A;
+          }
+        }
+      }
       td {
+        position: relative;
+        padding: 20px 18px;
+
+        &:first-child {
+          border-radius: 5px 0 0 5px;
+        }
+        &:last-child {
+          border-radius: 0 5px 5px 0;
+        }
+
+        &:first-child{
+          div {
+            justify-content: flex-start;
+          }
+        }
         div {
           display: flex;
           flex-direction: row;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: flex-end;
           .stats {
             margin-left: 5px;
             display: flex;
@@ -83,9 +116,6 @@
           }
         }
       }
-    }
-    tr:nth-child(odd) {
-      background-color: #e5e8f1;
     }
   }
 }

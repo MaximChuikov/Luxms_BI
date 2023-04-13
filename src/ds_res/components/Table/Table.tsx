@@ -13,9 +13,14 @@ export type ITableColumn = {
   }
 }
 
+export interface ITableRow {
+  isIncrease: boolean
+  columns: ITableColumn[]
+}
+
 export interface ITableProps {
   headers: string[]
-  tableData: ITableColumn[][]
+  tableData: ITableRow[]
 }
 
 const Table = ({ headers, tableData }: ITableProps) => {
@@ -23,17 +28,18 @@ const Table = ({ headers, tableData }: ITableProps) => {
    * {(header index by which one do sort), (1 - descending, 0 - none, -1 - ascending)}
    */
   const [headerSort, setHeaderSort] = useState({ headerIndex: 0, sortDirection: 0 })
-  const [sortedTableData, setSortedTableData] = useState([] as ITableColumn[][])
+  const [sortedTableData, setSortedTableData] = useState([] as ITableRow[])
   useEffect(() => {
-    function compareHandler(a: ITableColumn[], b: ITableColumn[]) {
+    function compareHandler(a: ITableRow, b: ITableRow) {
       const hi = headerSort.headerIndex
+      const aV = a.columns[hi].value
+      const bV = b.columns[hi].value
       // без этого кода неравильно работает сортировка чисел, она работает как со строками
       // 140 > 20 = false берется только первый символ
-      if (typeof a[hi].value === 'number' && typeof b[hi].value === 'number')
-        return (Number(a[hi].value) - Number(b[hi].value)) * headerSort.sortDirection
+      if (typeof aV === 'number' && typeof bV === 'number') return Number(aV) - Number(bV) * headerSort.sortDirection
 
-      if (a[hi].value > b[hi].value) return headerSort.sortDirection
-      if (a[hi].value < b[hi].value) return -1 * headerSort.sortDirection
+      if (aV > bV) return headerSort.sortDirection
+      if (aV < bV) return -1 * headerSort.sortDirection
       return 0
     }
 
@@ -81,8 +87,8 @@ const Table = ({ headers, tableData }: ITableProps) => {
         </thead>
         <tbody>
           {sortedTableData.map((row, index) => (
-            <tr key={index}>
-              {row.map((column, ind) => (
+            <tr key={index} className={!row.isIncrease && style.redRow}>
+              {row.columns.map((column, ind) => (
                 <td key={ind}>
                   <div>
                     <div>
